@@ -741,11 +741,7 @@
                             <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
                             <span class="text-xs font-bold text-emerald-900 uppercase tracking-wider">Mô hình không gian thời gian thực</span>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <button onclick="toggleBeforeAfter()" id="btn-toggle-view" class="text-[11px] font-medium bg-stone-100 hover:bg-stone-200 text-stone-700 transition border border-stone-300 flex items-center gap-1.5 shadow-2xs">
-                                <i class="fa-solid fa-arrows-rotate text-emerald-700"></i> Xem trước/sau phủ xanh
-                            </button>
-                        </div>
+
                     </div>
 
                     <!-- THE VISUAL CANVAS (KHÔNG GIAN TRỰC QUAN SỐNG ĐỘNG - NỀN SÁNG TRONG TRẺO) -->
@@ -3062,18 +3058,26 @@
                 `;
             }).join('');
 
-            // Before / After View Toggle Label
+            // Before / After View Toggle Label (Guarded)
             const btnView = document.getElementById('btn-toggle-view');
             if (tele.count === 4 && tele.warnCount === 0) {
-                btnView.innerHTML = `<i class="fa-solid fa-rotate-left text-amber-400"></i> Đang xem: SAU (Bấm xem TRƯỚC)`;
-                btnView.className = "text-[11px] font-bold bg-emerald-800 hover:bg-emerald-700 px-3 py-1.5 rounded-xl text-emerald-100 transition border border-emerald-500 flex items-center gap-1.5 shadow";
-                document.getElementById('visual-complete-badge').classList.remove('hidden');
-                document.getElementById('visual-guide-text').innerText = "🌿 Không gian xanh đã tối ưu hoàn hảo! Các thông số vi khí hậu đều đạt chuẩn quang hợp.";
+                if (btnView) {
+                    btnView.innerHTML = `<i class="fa-solid fa-rotate-left text-amber-400"></i> Đang xem: SAU (Bấm xem TRƯỚC)`;
+                    btnView.className = "text-[11px] font-bold bg-emerald-800 hover:bg-emerald-700 px-3 py-1.5 rounded-xl text-emerald-100 transition border border-emerald-500 flex items-center gap-1.5 shadow";
+                }
+                const compBadge = document.getElementById('visual-complete-badge');
+                if (compBadge) compBadge.classList.remove('hidden');
+                const guideEl = document.getElementById('visual-guide-text');
+                if (guideEl) guideEl.innerText = "🌿 Không gian xanh đã tối ưu hoàn hảo! Các thông số vi khí hậu đều đạt chuẩn quang hợp.";
             } else {
-                btnView.innerHTML = `<i class="fa-solid fa-arrows-rotate text-emerald-400"></i> Xem trước/sau phủ xanh`;
-                btnView.className = "text-[11px] font-bold bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded-xl text-slate-200 transition border border-slate-600 flex items-center gap-1.5";
-                document.getElementById('visual-complete-badge').classList.add('hidden');
-                document.getElementById('visual-guide-text').innerText = `Đã chọn ${tele.count}/4 giải pháp tối ưu • ${tele.warnCount > 0 ? 'Có bẫy gây hại, hãy đọc cảnh báo để sửa!' : 'Tiếp tục phân tích và hoàn thiện!'}`;
+                if (btnView) {
+                    btnView.innerHTML = `<i class="fa-solid fa-arrows-rotate text-emerald-400"></i> Xem trước/sau phủ xanh`;
+                    btnView.className = "text-[11px] font-bold bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded-xl text-slate-200 transition border border-slate-600 flex items-center gap-1.5";
+                }
+                const compBadge = document.getElementById('visual-complete-badge');
+                if (compBadge) compBadge.classList.add('hidden');
+                const guideEl = document.getElementById('visual-guide-text');
+                if (guideEl) guideEl.innerText = `Đã chọn ${tele.count}/4 giải pháp tối ưu • ${tele.warnCount > 0 ? 'Có bẫy gây hại, hãy đọc cảnh báo để sửa!' : 'Tiếp tục phân tích và hoàn thiện!'}`;
             }
         }
 
