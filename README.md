@@ -40,8 +40,9 @@ Dự án tham gia **Hội thi Thiết kế chủ đề tích hợp STEM / Dạy 
 
 ## 🚀 Hướng dẫn sử dụng
 
-1. **Xem trực tiếp trên trình duyệt**:
-   * Tải mã nguồn về hoặc clone repository:
+1. **Xem trực tiếp trên trình duyệt (Đã xuất bản Online)**:
+   * **Website chính thức**: [https://sinhhoc-amber.vercel.app/](https://sinhhoc-amber.vercel.app/)
+   * Hoặc tải mã nguồn về:
      ```bash
      git clone https://github.com/quangthien18041996-stack/SINHHOC.git
      ```
