@@ -965,11 +965,7 @@
                                        class="w-full text-xs p-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-emerald-600 bg-white text-stone-800 placeholder-stone-400 shadow-2xs">
                             </div>
                             
-                            <div class="space-y-1">
-                                <label class="text-[11px] font-bold text-stone-700 block">Giải thích cơ chế khoa học (Bài 23 SGK):</label>
-                                <textarea id="input-group-note" rows="3" placeholder="Giải thích vì sao nhóm chọn các giải pháp trên? Yếu tố nào giúp khí khổng mở và tăng tốc quang hợp?" 
-                                          class="w-full text-xs p-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-emerald-600 bg-white text-stone-800 placeholder-stone-400 shadow-2xs"></textarea>
-                            </div>
+
 
                             <!-- Submit Feedback Alert -->
                             <div id="submit-alert-box" class="hidden p-3 rounded-xl text-xs font-semibold bg-emerald-700 text-white flex items-center justify-between shadow-md">
@@ -3241,13 +3237,7 @@
             renderObservationTable();
 
             const membersInput = document.getElementById('input-group-members');
-            const noteInput = document.getElementById('input-group-note');
-            if (membersInput && !membersInput.value) {
-                membersInput.value = groupSubmissions[currentStationId].members;
-            }
-            if (noteInput && !noteInput.value) {
-                noteInput.value = groupSubmissions[currentStationId].hypothesis;
-            }
+            if (membersInput && !membersInput.value) { membersInput.value = groupSubmissions[currentStationId].members; }
             updateStationReportTab();
             alert(`✨ Đã tự động nạp 4 giải pháp tối ưu & dữ liệu mẫu cho Trạm ${currentStationId}! Bây giờ bạn có thể bấm "Gửi Báo Cáo" ngay.`);
         }
@@ -3255,7 +3245,7 @@
         // SUBMIT GROUP WORKSHEET (HỌC SINH NỘP BÀI LÊN CHO GIÁO VIÊN DUYỆT)
         function submitGroupWorksheet() {
             const members = (document.getElementById('input-group-members')?.value || '').trim();
-            const notes = (document.getElementById('input-group-note')?.value || '').trim();
+            // Notes removed from web form (moved to physical/Word worksheet)
             const stateObj = stationState[currentStationId];
             const data = visualConfigs[currentStationId];
 
@@ -3282,7 +3272,7 @@
             groupSubmissions[currentStationId] = {
                 ...groupSubmissions[currentStationId],
                 members: members || groupSubmissions[currentStationId].members,
-                hypothesis: notes || groupSubmissions[currentStationId].hypothesis,
+                hypothesis: groupSubmissions[currentStationId].hypothesis || 'Học sinh trình bày cơ chế quang hợp trong Phiếu học tập số và bảo vệ miệng khi thuyết trình.',
                 status: 'pending_review',
                 submittedAt: timeStr,
                 co2: tele.co2 || "450 ppm",
@@ -3334,7 +3324,6 @@
             if (!sub) return;
 
             const membersInput = document.getElementById('input-group-members');
-            const noteInput = document.getElementById('input-group-note');
             const banner = document.getElementById('tab3-status-banner');
             const badge = document.getElementById('tab3-status-badge');
             const alertBox = document.getElementById('submit-alert-box');
@@ -3344,9 +3333,7 @@
             if (membersInput && sub.members && !membersInput.value) {
                 membersInput.value = sub.members;
             }
-            if (noteInput && sub.hypothesis && !noteInput.value) {
-                noteInput.value = sub.hypothesis;
-            }
+            
 
             if (badge && banner) {
                 if (sub.status === 'approved') {
@@ -3628,7 +3615,7 @@
             document.getElementById('rev-members').innerText = `Thành viên: ${sub.members}`;
             document.getElementById('rev-telemetry').innerText = `CO₂: ${sub.co2} • Ánh sáng: ${sub.lux} • Nhiệt: ${sub.temp}`;
             document.getElementById('rev-score').innerText = `Hiệu quả quang hợp: ${sub.photoScore}`;
-            document.getElementById('rev-hypothesis').innerText = `"${sub.hypothesis}"`;
+            // rev-hypothesis removed
 
             // Solutions list
             const solListEl = document.getElementById('rev-solutions-list');
@@ -4600,13 +4587,14 @@
                     </div>
                 </div>
 
-                <!-- Student Hypothesis / Explanation -->
+                <!-- Student Explanation via Worksheet Note -->
                 <div>
                     <div class="text-xs font-bold text-stone-900 mb-1.5 flex items-center gap-1.5">
-                        <i class="fa-solid fa-book-open-reader text-emerald-700"></i> Cơ chế sinh học nhóm giải thích (Bài 23 SGK):
+                        <i class="fa-solid fa-file-signature text-emerald-700"></i> Cơ chế sinh học & Phiếu học tập thực nghiệm:
                     </div>
-                    <div id="rev-hypothesis" class="p-3 rounded-xl bg-stone-50 border border-stone-200 text-stone-800 text-xs leading-relaxed italic">
-                        <!-- Populated via JS -->
+                    <div class="p-3 rounded-xl bg-[#f8f9f5] border border-[#dce0d5] text-stone-700 text-xs leading-relaxed flex items-center justify-between">
+                        <span class="italic"><i class="fa-solid fa-pen-nib mr-1.5 text-emerald-700"></i> Học sinh giải thích cơ chế quang hợp trực tiếp trên Phiếu học tập số & bảo vệ miệng khi thuyết trình.</span>
+                        <span class="text-[10px] font-bold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full border border-emerald-300 shrink-0">Hồ sơ đính kèm</span>
                     </div>
                 </div>
 
