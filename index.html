@@ -639,88 +639,88 @@
 
     <!-- SECTION 2: MÔ HÌNH KHÔNG GIAN XANH TRỰC QUAN 4 TRẠM (INTERACTIVE VISUAL GREEN SPACE) -->
     <!-- SECTION 2: XƯỞNG THIẾT KẾ VI KHÍ HẬU & 4 TRẠM KHÔNG GIAN (URBAN ECOLOGY STUDIO) -->
-    <section id="4-khong-gian" class="module-section hidden py-16 bg-[#16221c] text-stone-100 relative overflow-hidden border-t border-b border-[#293d32]">
+    <section id="4-khong-gian" class="module-section hidden py-16 bg-[#f4f6f1] text-stone-800 relative overflow-hidden border-t border-b border-[#e2e5dc]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <!-- Section Header -->
             <div class="text-center max-w-3xl mx-auto mb-9">
-                <span class="text-emerald-300 font-bold text-xs uppercase tracking-wider bg-[#101b15] border border-[#2b4c38] px-3.5 py-1 rounded-full inline-flex items-center gap-1.5 font-mono">
-                    <i class="fa-solid fa-compass-drafting text-emerald-400"></i> Ứng Dụng Sinh Học & Thiết Kế Sinh Thái
+                <span class="text-emerald-800 font-bold text-xs uppercase tracking-wider bg-emerald-100/90 border border-emerald-300 px-3.5 py-1 rounded-full inline-flex items-center gap-1.5 font-mono">
+                    <i class="fa-solid fa-compass-drafting text-emerald-700"></i> Ứng Dụng Sinh Học & Thiết Kế Sinh Thái
                 </span>
-                <h2 class="text-2xl sm:text-4xl font-serif font-bold text-white mt-3">
+                <h2 class="text-2xl sm:text-4xl font-serif font-bold text-stone-900 mt-3">
                     Xưởng Nghiên Cứu Vi Khí Hậu & Thiết Kế Không Gian Xanh
                 </h2>
-                <p class="text-stone-300 text-xs sm:text-sm mt-2 max-w-3xl mx-auto leading-relaxed">
+                <p class="text-stone-600 text-xs sm:text-sm mt-2 max-w-3xl mx-auto leading-relaxed">
                     Vận dụng quy luật quang hợp (tầng tán cây, thích nghi ánh sáng, cơ chế điều tiết khí khổng và thoát hơi nước) để giải quyết bài toán môi trường tại <strong>4 Vùng Vi Khí Hậu</strong> thực tế tại TP.HCM.
                 </p>
             </div>
 
-            <!-- STATION TAB SELECTOR (4 TRẠM - 2 HÀNG ĐỀU NHAU, MỖI HÀNG 2 NHÓM) -->
+            <!-- STATION TAB SELECTOR (4 TRẠM - 2 HÀNG ĐỀU NHAU, MỖI HÀNG 2 NHÓM - NỀN SÁNG) -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-4xl mx-auto mb-6">
                 <!-- Hàng 1 - Nhóm 1 -->
-                <button onclick="switchStation(1)" id="tab-btn-1" class="station-tab-btn active w-full px-4 py-3 rounded-2xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-between gap-2 shadow-sm bg-emerald-600 text-white shadow-emerald-500/30 border-2 border-emerald-400">
+                <button onclick="switchStation(1)" id="tab-btn-1" class="station-tab-btn active w-full px-4 py-3 rounded-2xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-between gap-2 shadow-sm bg-[#1b3a2b] text-white shadow-stone-300 border-2 border-[#1b3a2b]">
                     <div class="flex items-center gap-2.5 min-w-0">
                         <span class="w-6 h-6 rounded-lg bg-white/20 flex items-center justify-center text-xs shrink-0 font-mono">01</span>
                         <span class="truncate">Trạm 1: Đô Thị Nén & Rừng Đứng</span>
                     </div>
-                    <span class="bg-emerald-900/60 text-[10px] px-2 py-0.5 rounded font-medium text-emerald-200 shrink-0">Nhóm 1</span>
+                    <span class="bg-emerald-800/80 text-[10px] px-2 py-0.5 rounded font-medium text-emerald-100 shrink-0">Nhóm 1</span>
                 </button>
                 <!-- Hàng 1 - Nhóm 2 -->
-                <button onclick="switchStation(2)" id="tab-btn-2" class="station-tab-btn w-full px-4 py-3 rounded-2xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-between gap-2 shadow-sm bg-slate-800 text-slate-300 hover:bg-slate-700 border-2 border-slate-700">
+                <button onclick="switchStation(2)" id="tab-btn-2" class="station-tab-btn w-full px-4 py-3 rounded-2xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-between gap-2 shadow-2xs bg-white text-stone-700 hover:bg-stone-50 border-2 border-[#dce0d5]">
                     <div class="flex items-center gap-2.5 min-w-0">
-                        <span class="w-6 h-6 rounded-lg bg-slate-700 flex items-center justify-center text-xs text-slate-300 shrink-0 font-mono">02</span>
+                        <span class="w-6 h-6 rounded-lg bg-stone-100 flex items-center justify-center text-xs text-stone-600 shrink-0 font-mono">02</span>
                         <span class="truncate">Trạm 2: Nhà Màng Nông Nghiệp Số</span>
                     </div>
-                    <span class="bg-slate-700 text-[10px] px-2 py-0.5 rounded font-medium text-slate-400 shrink-0">Nhóm 2</span>
+                    <span class="bg-stone-100 text-[10px] px-2 py-0.5 rounded font-medium text-stone-600 shrink-0">Nhóm 2</span>
                 </button>
                 <!-- Hàng 2 - Nhóm 3 -->
-                <button onclick="switchStation(3)" id="tab-btn-3" class="station-tab-btn w-full px-4 py-3 rounded-2xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-between gap-2 shadow-sm bg-slate-800 text-slate-300 hover:bg-slate-700 border-2 border-slate-700">
+                <button onclick="switchStation(3)" id="tab-btn-3" class="station-tab-btn w-full px-4 py-3 rounded-2xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-between gap-2 shadow-2xs bg-white text-stone-700 hover:bg-stone-50 border-2 border-[#dce0d5]">
                     <div class="flex items-center gap-2.5 min-w-0">
-                        <span class="w-6 h-6 rounded-lg bg-slate-700 flex items-center justify-center text-xs text-slate-300 shrink-0 font-mono">03</span>
+                        <span class="w-6 h-6 rounded-lg bg-stone-100 flex items-center justify-center text-xs text-stone-600 shrink-0 font-mono">03</span>
                         <span class="truncate">Trạm 3: Sân Thượng Nắng Gắt</span>
                     </div>
-                    <span class="bg-slate-700 text-[10px] px-2 py-0.5 rounded font-medium text-slate-400 shrink-0">Nhóm 3</span>
+                    <span class="bg-stone-100 text-[10px] px-2 py-0.5 rounded font-medium text-stone-600 shrink-0">Nhóm 3</span>
                 </button>
                 <!-- Hàng 2 - Nhóm 4 -->
-                <button onclick="switchStation(4)" id="tab-btn-4" class="station-tab-btn w-full px-4 py-3 rounded-2xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-between gap-2 shadow-sm bg-slate-800 text-slate-300 hover:bg-slate-700 border-2 border-slate-700">
+                <button onclick="switchStation(4)" id="tab-btn-4" class="station-tab-btn w-full px-4 py-3 rounded-2xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-between gap-2 shadow-2xs bg-white text-stone-700 hover:bg-stone-50 border-2 border-[#dce0d5]">
                     <div class="flex items-center gap-2.5 min-w-0">
-                        <span class="w-6 h-6 rounded-lg bg-slate-700 flex items-center justify-center text-xs text-slate-300 shrink-0 font-mono">04</span>
+                        <span class="w-6 h-6 rounded-lg bg-stone-100 flex items-center justify-center text-xs text-stone-600 shrink-0 font-mono">04</span>
                         <span class="truncate">Trạm 4: Trong Nhà & Hành Lang</span>
                     </div>
-                    <span class="bg-slate-700 text-[10px] px-2 py-0.5 rounded font-medium text-slate-400 shrink-0">Nhóm 4</span>
+                    <span class="bg-stone-100 text-[10px] px-2 py-0.5 rounded font-medium text-stone-600 shrink-0">Nhóm 4</span>
                 </button>
             </div>
 
-            <!-- FULL-WIDTH ACTIVE STATION BANNER (TIÊU ĐỀ & THÁCH THỨC VI KHÍ HẬU) -->
-            <div class="bg-slate-800/90 border-2 border-slate-700/80 rounded-3xl p-4 sm:p-5 mb-6 shadow-xl backdrop-blur-md">
+            <!-- FULL-WIDTH ACTIVE STATION BANNER (TIÊU ĐỀ & THÁCH THỨC VI KHÍ HẬU - NỀN SÁNG) -->
+            <div class="bg-white border border-[#dce0d5] rounded-3xl p-4 sm:p-5 mb-6 shadow-sm">
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                     <!-- Left: Title & Badge -->
                     <div class="space-y-1">
                         <div class="flex items-center gap-2">
-                            <span id="station-badge" class="font-extrabold text-xs px-3.5 py-1 rounded-full bg-emerald-950/90 text-emerald-300 border border-emerald-500/40">
+                            <span id="station-badge" class="font-bold text-xs px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">
                                 Nhóm 1 phụ trách
                             </span>
-                            <span id="station-subtitle" class="text-xs text-slate-400 font-semibold">• Khu vực dân cư cao tầng & Nhà mặt phố TP.HCM</span>
+                            <span id="station-subtitle" class="text-xs text-stone-500 font-medium">• Khu vực dân cư cao tầng & Nhà mặt phố TP.HCM</span>
                         </div>
-                        <h3 id="station-title" class="text-xl sm:text-2xl font-black text-white">
+                        <h3 id="station-title" class="text-xl sm:text-2xl font-serif font-bold text-stone-900">
                             Trạm 1: Đô Thị Nén & Tháp Rừng Thẳng Đứng
                         </h3>
                     </div>
 
                     <!-- Center: Compact Challenge Box -->
-                    <div class="bg-rose-950/40 border border-rose-500/40 p-3 rounded-2xl max-w-xl flex items-start gap-2.5">
-                        <i class="fa-solid fa-triangle-exclamation text-rose-400 text-base mt-0.5 shrink-0 animate-pulse"></i>
+                    <div class="bg-rose-50 border border-rose-200 p-3 rounded-2xl max-w-xl flex items-start gap-2.5">
+                        <i class="fa-solid fa-triangle-exclamation text-rose-600 text-base mt-0.5 shrink-0"></i>
                         <div class="text-xs">
-                            <span class="font-bold text-rose-300 uppercase text-[10px] tracking-wide block">Thách thức vi khí hậu quang hợp:</span>
-                            <p id="station-challenge" class="text-rose-200/90 leading-relaxed text-[11px] mt-0.5">
+                            <span class="font-bold text-rose-900 uppercase text-[10px] tracking-wide block">Thách thức vi khí hậu quang hợp:</span>
+                            <p id="station-challenge" class="text-rose-800 leading-relaxed text-[11px] mt-0.5">
                                 Không gian chật hẹp, nồng độ CO₂ cao do khí thải xe cộ, nhiệt độ hấp thụ từ bê tông cao (hiệu ứng đảo nhiệt). Tầng trên nắng gắt, tầng trệt thiếu sáng.
                             </p>
                         </div>
                     </div>
 
                     <!-- Right: Live Score Badge -->
-                    <div class="text-right shrink-0 bg-slate-900/90 px-4 py-2.5 rounded-2xl border border-slate-700 flex lg:flex-col items-center justify-between lg:justify-center gap-2">
-                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Tối Ưu Xanh</div>
-                        <div class="text-2xl font-black text-emerald-400"><span id="efficiency-score">0</span>%</div>
+                    <div class="text-right shrink-0 bg-[#f8f9f5] px-4 py-2.5 rounded-2xl border border-[#e2e5dc] flex lg:flex-col items-center justify-between lg:justify-center gap-1.5 shadow-2xs">
+                        <div class="text-[10px] font-bold text-stone-500 uppercase tracking-wider">Tối Ưu Xanh</div>
+                        <div class="text-2xl font-black text-emerald-700"><span id="efficiency-score">0</span>%</div>
                     </div>
                 </div>
             </div>
@@ -728,24 +728,24 @@
             <!-- MAIN WORKSPACE: BALANCED 2 EQUAL-HEIGHT COLUMNS (50% - 50%) -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
                 
-                <!-- LEFT COLUMN (6 COLS): MÔ HÌNH ĐỒ HỌA TRỰC QUAN TƯƠNG TÁC (THE LIVING VISUAL SPACE) -->
-                <div class="lg:col-span-6 bg-slate-800/90 rounded-3xl p-5 sm:p-6 border-2 border-slate-700 shadow-2xl relative overflow-hidden backdrop-blur-md flex flex-col justify-between h-[580px]">
+                <!-- LEFT COLUMN (6 COLS): MÔ HÌNH ĐỒ HỌA TRỰC QUAN TƯƠNG TÁC (NỀN SÁNG) -->
+                <div class="lg:col-span-6 bg-white rounded-3xl p-5 sm:p-6 border border-[#dce0d5] shadow-sm relative overflow-hidden flex flex-col justify-between h-[580px]">
                     
                     <!-- Top scene status bar -->
                     <div class="flex justify-between items-center mb-3 z-10 relative shrink-0">
                         <div class="flex items-center gap-2">
-                            <span class="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></span>
-                            <span class="text-xs font-bold text-emerald-300 uppercase tracking-wider">Mô hình không gian thời gian thực</span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+                            <span class="text-xs font-bold text-emerald-900 uppercase tracking-wider">Mô hình không gian thời gian thực</span>
                         </div>
                         <div class="flex items-center gap-2">
-                            <button onclick="toggleBeforeAfter()" id="btn-toggle-view" class="text-[11px] font-bold bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded-xl text-slate-200 transition border border-slate-600 flex items-center gap-1.5">
-                                <i class="fa-solid fa-arrows-rotate text-emerald-400"></i> Xem trước/sau phủ xanh
+                            <button onclick="toggleBeforeAfter()" id="btn-toggle-view" class="text-[11px] font-medium bg-stone-100 hover:bg-stone-200 text-stone-700 transition border border-stone-300 flex items-center gap-1.5 shadow-2xs">
+                                <i class="fa-solid fa-arrows-rotate text-emerald-700"></i> Xem trước/sau phủ xanh
                             </button>
                         </div>
                     </div>
 
-                    <!-- THE VISUAL CANVAS (KHÔNG GIAN TRỰC QUAN SỐNG ĐỘNG) -->
-                    <div id="visual-stage" class="relative w-full flex-1 rounded-2xl overflow-hidden border border-slate-600/80 shadow-inner flex flex-col justify-between p-4 bg-gradient-to-b from-sky-900/60 via-slate-800 to-slate-900">
+                    <!-- THE VISUAL CANVAS (KHÔNG GIAN TRỰC QUAN SỐNG ĐỘNG - NỀN SÁNG TRONG TRẺO) -->
+                    <div id="visual-stage" class="relative w-full flex-1 rounded-2xl overflow-hidden border border-[#dce0d5] shadow-inner flex flex-col justify-between p-4 bg-gradient-to-b from-sky-50 via-emerald-50/20 to-stone-100">
                         
                         <!-- Dynamic Sky / Sun / Heat waves -->
                         <div id="sky-environment" class="absolute inset-0 pointer-events-none transition-all duration-700">
@@ -757,23 +757,23 @@
                             <div id="particle-field" class="absolute inset-0"></div>
                         </div>
 
-                        <!-- LIVE TELEMETRY OVERLAY BADGES -->
+                        <!-- LIVE TELEMETRY OVERLAY BADGES (LIGHT THEME) -->
                         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 z-20 relative shrink-0">
-                            <div class="bg-slate-900/85 backdrop-blur-md p-2 rounded-xl border border-slate-700 text-center">
-                                <div class="text-[9px] text-slate-400 font-bold uppercase">Khí CO₂</div>
-                                <div id="v-metric-co2" class="text-xs font-black text-rose-400">850 ppm</div>
+                            <div class="bg-white/95 backdrop-blur-md p-2 rounded-xl border border-stone-200 shadow-2xs text-center">
+                                <div class="text-[9px] text-stone-500 font-bold uppercase">Khí CO₂</div>
+                                <div id="v-metric-co2" class="text-xs font-black text-rose-700">850 ppm</div>
                             </div>
-                            <div class="bg-slate-900/85 backdrop-blur-md p-2 rounded-xl border border-slate-700 text-center">
-                                <div class="text-[9px] text-slate-400 font-bold uppercase">Ánh sáng</div>
-                                <div id="v-metric-light" class="text-xs font-black text-amber-400">45.000 Lux</div>
+                            <div class="bg-white/95 backdrop-blur-md p-2 rounded-xl border border-stone-200 shadow-2xs text-center">
+                                <div class="text-[9px] text-stone-500 font-bold uppercase">Ánh sáng</div>
+                                <div id="v-metric-light" class="text-xs font-black text-amber-700">45.000 Lux</div>
                             </div>
-                            <div class="bg-slate-900/85 backdrop-blur-md p-2 rounded-xl border border-slate-700 text-center">
-                                <div class="text-[9px] text-slate-400 font-bold uppercase">Nhiệt độ vi khí hậu</div>
-                                <div id="v-metric-temp" class="text-xs font-black text-rose-400">36°C</div>
+                            <div class="bg-white/95 backdrop-blur-md p-2 rounded-xl border border-stone-200 shadow-2xs text-center">
+                                <div class="text-[9px] text-stone-500 font-bold uppercase">Nhiệt độ vi khí hậu</div>
+                                <div id="v-metric-temp" class="text-xs font-black text-rose-700">36°C</div>
                             </div>
-                            <div class="bg-slate-900/85 backdrop-blur-md p-2 rounded-xl border border-slate-700 text-center">
-                                <div class="text-[9px] text-slate-400 font-bold uppercase">Hiệu quả quang hợp</div>
-                                <div id="v-metric-status" class="text-xs font-black text-amber-400">Kém (25%)</div>
+                            <div class="bg-white/95 backdrop-blur-md p-2 rounded-xl border border-stone-200 shadow-2xs text-center">
+                                <div class="text-[9px] text-stone-500 font-bold uppercase">Hiệu quả quang hợp</div>
+                                <div id="v-metric-status" class="text-xs font-black text-amber-700">Kém (25%)</div>
                             </div>
                         </div>
 
@@ -854,12 +854,12 @@
                         </div>
 
                         <!-- Interactive instruction banner at bottom of stage -->
-                        <div class="bg-slate-900/90 rounded-xl px-4 py-2 border border-slate-700/80 flex items-center justify-between text-xs z-20 shrink-0">
-                            <span class="text-emerald-300 font-semibold flex items-center gap-1.5 truncate">
-                                <i class="fa-solid fa-wand-magic-sparkles text-amber-400 shrink-0"></i>
-                                <span id="visual-guide-text" class="truncate">🖐️ Kéo thả thẻ giải pháp từ cột phải vào các ô trên mô hình!</span>
+                        <div class="bg-white/95 rounded-xl px-4 py-2 border border-stone-200 shadow-2xs flex items-center justify-between text-xs z-20 shrink-0">
+                            <span class="text-stone-700 font-medium flex items-center gap-1.5 truncate">
+                                <i class="fa-solid fa-hand text-amber-600 shrink-0"></i>
+                                <span id="visual-guide-text" class="truncate">Kéo thả thẻ giải pháp từ cột phải vào các vị trí tương ứng trên mô hình!</span>
                             </span>
-                            <span id="visual-complete-badge" class="bg-emerald-500 text-slate-950 font-black text-[10px] px-2.5 py-0.5 rounded-full uppercase hidden shrink-0">
+                            <span id="visual-complete-badge" class="bg-emerald-700 text-white font-bold text-[10px] px-2.5 py-0.5 rounded-full uppercase hidden shrink-0 shadow-2xs">
                                 Hoàn thành 100%
                             </span>
                         </div>
@@ -867,21 +867,21 @@
                     </div>
                 </div>
 
-                <!-- RIGHT COLUMN (6 COLS): BÀN LÀM VIỆC SỐ & HỘP CÔNG CỤ CỦA TRẠM (INTERACTIVE WORKBENCH) -->
-                <div class="lg:col-span-6 bg-slate-800/90 rounded-3xl p-5 sm:p-6 border-2 border-slate-700 shadow-2xl relative backdrop-blur-md flex flex-col h-[580px] text-white">
+                <!-- RIGHT COLUMN (6 COLS): BÀN LÀM VIỆC SỐ & HỘP CÔNG CỤ CỦA TRẠM (NỀN SÁNG) -->
+                <div class="lg:col-span-6 bg-white rounded-3xl p-5 sm:p-6 border border-[#dce0d5] shadow-sm relative flex flex-col h-[580px] text-stone-800">
                     
                     <!-- 3 INTERACTIVE WORKBENCH TABS -->
-                    <div class="flex items-center gap-1.5 p-1 bg-slate-900/90 rounded-2xl border border-slate-700 mb-3 shrink-0">
-                        <button onclick="setToolkitTab('solutions')" id="btn-tk-solutions" class="flex-1 py-2 px-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 bg-emerald-600 text-white shadow-sm border border-emerald-500">
+                    <div class="flex items-center gap-1.5 p-1 bg-stone-100 rounded-2xl border border-stone-200 mb-3 shrink-0">
+                        <button onclick="setToolkitTab('solutions')" id="btn-tk-solutions" class="flex-1 py-2 px-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 bg-[#1b3a2b] text-white shadow-2xs border border-[#1b3a2b]">
                             <i class="fa-solid fa-layer-group text-xs"></i>
                             <span>1. Giải Pháp (8)</span>
                         </button>
-                        <button onclick="setToolkitTab('plants')" id="btn-tk-plants" class="flex-1 py-2 px-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 text-slate-300 hover:text-white hover:bg-slate-800 border border-transparent">
-                            <i class="fa-solid fa-seedling text-xs text-emerald-400"></i>
+                        <button onclick="setToolkitTab('plants')" id="btn-tk-plants" class="flex-1 py-2 px-2.5 rounded-xl text-xs font-medium transition flex items-center justify-center gap-1.5 text-stone-600 hover:text-stone-900 hover:bg-white border border-transparent">
+                            <i class="fa-solid fa-seedling text-xs text-emerald-700"></i>
                             <span>2. Giống Cây (4)</span>
                         </button>
-                        <button onclick="setToolkitTab('report')" id="btn-tk-report" class="flex-1 py-2 px-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 text-slate-300 hover:text-white hover:bg-slate-800 border border-transparent">
-                            <i class="fa-solid fa-clipboard-check text-xs text-cyan-400"></i>
+                        <button onclick="setToolkitTab('report')" id="btn-tk-report" class="flex-1 py-2 px-2.5 rounded-xl text-xs font-medium transition flex items-center justify-center gap-1.5 text-stone-600 hover:text-stone-900 hover:bg-white border border-transparent">
+                            <i class="fa-solid fa-clipboard-check text-xs text-teal-700"></i>
                             <span>3. Báo Cáo Nhóm</span>
                         </button>
                     </div>
@@ -889,43 +889,43 @@
                     <!-- TAB PANE 1: NGÂN HÀNG GIẢI PHÁP KỸ THUẬT (8 PHƯƠNG ÁN) -->
                     <div id="tab-pane-solutions" class="flex-1 flex flex-col min-h-0 space-y-2.5">
                         
-                        <!-- Filter Tabs & Reset Button -->
+                        <!-- Filter Tabs & Reset Button (LIGHT THEME) -->
                         <div class="flex items-center justify-between gap-2 shrink-0">
-                            <div class="flex items-center gap-1 overflow-x-auto pb-0.5 text-xs font-bold" id="sol-filter-tabs">
-                                <button onclick="setSolutionFilter('all')" id="btn-flt-all" class="px-2.5 py-1 rounded-lg bg-emerald-600 text-white shadow-xs border border-emerald-500 text-[11px] shrink-0 font-bold">
+                            <div class="flex items-center gap-1 overflow-x-auto pb-0.5 text-xs" id="sol-filter-tabs">
+                                <button onclick="setSolutionFilter('all')" id="btn-flt-all" class="px-2.5 py-1 rounded-lg bg-[#1b3a2b] text-white shadow-2xs border border-[#1b3a2b] text-[11px] shrink-0 font-semibold">
                                     Tất cả (8)
                                 </button>
-                                <button onclick="setSolutionFilter('light')" id="btn-flt-light" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-700 text-slate-300 border border-slate-700 text-[11px] shrink-0 font-medium">
-                                    ☀️ Ánh sáng
+                                <button onclick="setSolutionFilter('light')" id="btn-flt-light" class="px-2.5 py-1 rounded-lg bg-white hover:bg-stone-50 text-stone-700 border border-stone-200 text-[11px] shrink-0 font-medium">
+                                    Ánh sáng
                                 </button>
-                                <button onclick="setSolutionFilter('co2')" id="btn-flt-co2" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-700 text-slate-300 border border-slate-700 text-[11px] shrink-0 font-medium">
-                                    💨 Khí CO₂
+                                <button onclick="setSolutionFilter('co2')" id="btn-flt-co2" class="px-2.5 py-1 rounded-lg bg-white hover:bg-stone-50 text-stone-700 border border-stone-200 text-[11px] shrink-0 font-medium">
+                                    Khí CO₂
                                 </button>
-                                <button onclick="setSolutionFilter('temp')" id="btn-flt-temp" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-700 text-slate-300 border border-slate-700 text-[11px] shrink-0 font-medium">
-                                    🌡️ Nhiệt độ
+                                <button onclick="setSolutionFilter('temp')" id="btn-flt-temp" class="px-2.5 py-1 rounded-lg bg-white hover:bg-stone-50 text-stone-700 border border-stone-200 text-[11px] shrink-0 font-medium">
+                                    Nhiệt độ
                                 </button>
-                                <button onclick="setSolutionFilter('water')" id="btn-flt-water" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-700 text-slate-300 border border-slate-700 text-[11px] shrink-0 font-medium">
-                                    💧 Nước
+                                <button onclick="setSolutionFilter('water')" id="btn-flt-water" class="px-2.5 py-1 rounded-lg bg-white hover:bg-stone-50 text-stone-700 border border-stone-200 text-[11px] shrink-0 font-medium">
+                                    Nước
                                 </button>
                             </div>
-                            <button onclick="resetStationSolutions()" class="text-[10px] font-bold bg-slate-900 hover:bg-slate-700 text-slate-300 px-2.5 py-1 rounded-lg border border-slate-700 transition flex items-center gap-1 shrink-0">
+                            <button onclick="resetStationSolutions()" class="text-[10px] font-medium bg-white hover:bg-stone-50 text-stone-600 px-2.5 py-1 rounded-lg border border-stone-200 transition flex items-center gap-1 shrink-0 shadow-2xs">
                                 <i class="fa-solid fa-rotate-left"></i> Làm lại
                             </button>
                         </div>
 
-                        <!-- Status & Score Bar -->
-                        <div class="bg-slate-900/90 px-3 py-2 rounded-xl border border-slate-700 flex items-center justify-between text-xs shrink-0">
+                        <!-- Status & Score Bar (LIGHT THEME) -->
+                        <div class="bg-stone-50 px-3 py-2 rounded-xl border border-stone-200 flex items-center justify-between text-xs shrink-0">
                             <div class="flex items-center gap-2">
-                                <span class="flex items-center gap-1 font-bold text-slate-200 text-[11px]">
-                                    <i class="fa-solid fa-bullseye text-emerald-400"></i> Đã chọn: 
-                                    <span id="opt-count-badge" class="font-black text-emerald-300 bg-emerald-950/80 px-2 py-0.5 rounded-md border border-emerald-500/40">0/4 tối ưu</span>
+                                <span class="flex items-center gap-1 font-medium text-stone-700 text-[11px]">
+                                    <i class="fa-solid fa-bullseye text-emerald-700"></i> Đã chọn: 
+                                    <span id="opt-count-badge" class="font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-md border border-emerald-300">0/4 tối ưu</span>
                                 </span>
-                                <span id="warn-count-badge" class="hidden items-center gap-1 font-bold text-rose-300 bg-rose-950/80 px-2 py-0.5 rounded-md border border-rose-500/40 text-[11px]">
-                                    <i class="fa-solid fa-triangle-exclamation"></i> <span id="warn-count-num">0</span> bẫy sai lầm
+                                <span id="warn-count-badge" class="hidden items-center gap-1 font-bold text-rose-800 bg-rose-100 px-2 py-0.5 rounded-md border border-rose-300 text-[11px]">
+                                    <i class="fa-solid fa-triangle-exclamation text-rose-600"></i> <span id="warn-count-num">0</span> bẫy sai lầm
                                 </span>
                             </div>
-                            <div class="font-bold text-[11px] text-slate-300">
-                                Điểm thiết kế: <span id="design-score-badge" class="text-emerald-400 font-black text-xs">0</span>/100đ
+                            <div class="font-medium text-[11px] text-stone-600">
+                                Điểm thiết kế: <span id="design-score-badge" class="text-emerald-800 font-bold text-xs">0</span>/100đ
                             </div>
                         </div>
 
@@ -935,40 +935,40 @@
                         </div>
                     </div>
 
-                    <!-- TAB PANE 2: KHO GIỐNG CÂY TRỒNG (4 LOÀI) -->
+                    <!-- TAB PANE 2: KHO GIỐNG CÂY TRỒNG (LIGHT THEME) -->
                     <div id="tab-pane-plants" class="flex-1 flex flex-col min-h-0 space-y-3 hidden">
-                        <div class="flex items-center justify-between text-xs bg-slate-900/90 px-3 py-2 rounded-xl border border-slate-700 shrink-0">
-                            <span class="font-bold text-emerald-300 flex items-center gap-1.5">
-                                <i class="fa-solid fa-seedling text-emerald-400"></i> Tuyển chọn cây thích nghi vi khí hậu:
+                        <div class="flex items-center justify-between text-xs bg-stone-50 px-3 py-2 rounded-xl border border-stone-200 shrink-0">
+                            <span class="font-bold text-emerald-900 flex items-center gap-1.5">
+                                <i class="fa-solid fa-seedling text-emerald-700"></i> Tuyển chọn cây thích nghi vi khí hậu:
                             </span>
-                            <span id="plant-pick-feedback" class="text-[10px] text-slate-400 font-semibold">Nhấp để gắn cây vào trạm</span>
+                            <span id="plant-pick-feedback" class="text-[10px] text-stone-500 font-medium">Nhấp để gắn cây vào trạm</span>
                         </div>
                         <div id="plant-picker-container" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 flex-1 overflow-y-auto pr-1 min-h-0">
                             <!-- Injected via JavaScript -->
                         </div>
                     </div>
 
-                    <!-- TAB PANE 3: PHIẾU BÁO CÁO DỰ ÁN SỐ -->
+                    <!-- TAB PANE 3: PHIẾU BÁO CÁO DỰ ÁN SỐ (LIGHT THEME) -->
                     <div id="tab-pane-report" class="flex-1 flex flex-col justify-between min-h-0 space-y-3 hidden">
                         <div class="space-y-3 overflow-y-auto flex-1 pr-1">
-                            <div class="text-xs font-bold text-emerald-300 flex items-center gap-1.5 bg-slate-900/90 p-2.5 rounded-xl border border-slate-700">
-                                <i class="fa-solid fa-clipboard-check text-emerald-400"></i> Phiếu Đánh Giá Thu Hoạch Của Nhóm
+                            <div class="text-xs font-bold text-stone-800 flex items-center gap-1.5 bg-stone-50 p-2.5 rounded-xl border border-stone-200">
+                                <i class="fa-solid fa-clipboard-check text-emerald-700"></i> Phiếu Đánh Giá Thu Hoạch Của Nhóm
                             </div>
                             
                             <div class="space-y-1">
-                                <label class="text-[11px] font-bold text-slate-300 block">Tên nhóm & Thành viên thực hiện:</label>
+                                <label class="text-[11px] font-bold text-stone-700 block">Tên nhóm & Thành viên thực hiện:</label>
                                 <input id="input-group-members" type="text" placeholder="Ví dụ: Nhóm 2 - Nguyễn Văn A, Trần Thị B..." 
-                                       class="w-full text-xs p-2.5 rounded-xl border border-slate-700 focus:outline-none focus:border-emerald-500 bg-slate-900 text-slate-200 placeholder-slate-500">
+                                       class="w-full text-xs p-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-emerald-600 bg-white text-stone-800 placeholder-stone-400 shadow-2xs">
                             </div>
                             
                             <div class="space-y-1">
-                                <label class="text-[11px] font-bold text-slate-300 block">Giải thích cơ chế khoa học (Bài 23 SGK):</label>
+                                <label class="text-[11px] font-bold text-stone-700 block">Giải thích cơ chế khoa học (Bài 23 SGK):</label>
                                 <textarea id="input-group-note" rows="3" placeholder="Giải thích vì sao nhóm chọn các giải pháp trên? Yếu tố nào giúp khí khổng mở và tăng tốc quang hợp?" 
-                                          class="w-full text-xs p-2.5 rounded-xl border border-slate-700 focus:outline-none focus:border-emerald-500 bg-slate-900 text-slate-200 placeholder-slate-500"></textarea>
+                                          class="w-full text-xs p-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-emerald-600 bg-white text-stone-800 placeholder-stone-400 shadow-2xs"></textarea>
                             </div>
 
                             <!-- Submit Feedback Alert -->
-                            <div id="submit-alert-box" class="hidden p-3 rounded-xl text-xs font-semibold bg-emerald-600 text-white flex items-center justify-between shadow-md">
+                            <div id="submit-alert-box" class="hidden p-3 rounded-xl text-xs font-semibold bg-emerald-700 text-white flex items-center justify-between shadow-md">
                                 <div class="flex items-center gap-2">
                                     <i class="fa-solid fa-circle-check text-emerald-200"></i>
                                     <span id="submit-alert-msg">Đã nộp báo cáo thành công!</span>
@@ -976,11 +976,11 @@
                             </div>
                         </div>
 
-                        <div class="flex gap-2 pt-2 border-t border-slate-700/80 shrink-0">
-                            <button onclick="downloadResourcePack()" class="flex-1 bg-slate-900 hover:bg-slate-700 text-slate-200 font-bold text-xs py-2.5 px-3 rounded-xl border border-slate-700 transition flex items-center justify-center gap-1.5 cursor-pointer">
-                                <i class="fa-solid fa-download text-emerald-400"></i> Tải Túi Học Liệu
+                        <div class="flex gap-2 pt-2 border-t border-stone-200 shrink-0">
+                            <button onclick="downloadResourcePack()" class="flex-1 bg-stone-100 hover:bg-stone-200 text-stone-700 font-semibold text-xs py-2.5 px-3 rounded-xl border border-stone-300 transition flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs">
+                                <i class="fa-solid fa-download text-emerald-700"></i> Tải Túi Học Liệu
                             </button>
-                            <button onclick="submitGroupWorksheet()" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-2.5 px-3 rounded-xl transition shadow flex items-center justify-center gap-1.5 cursor-pointer">
+                            <button onclick="submitGroupWorksheet()" class="flex-1 bg-[#1b3a2b] hover:bg-[#152e22] text-white font-semibold text-xs py-2.5 px-4 rounded-xl shadow-xs transition flex items-center justify-center gap-1.5 cursor-pointer border border-[#2e5d42]">
                                 <i class="fa-solid fa-paper-plane"></i> Gửi Báo Cáo
                             </button>
                         </div>
@@ -990,23 +990,23 @@
 
             </div> <!-- Close grid grid-cols-1 lg:grid-cols-12 -->
 
-            <!-- LINK TẢI PHIẾU HỌC TẬP THỰC NGHIỆM SỐ (DÙNG CHO HỌC SINH ĐIỀN) -->
-            <div class="mt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-[#101913] border border-[#233529] p-4 sm:p-5 rounded-2xl shadow-md">
+            <!-- LINK TẢI PHIẾU HỌC TẬP THỰC NGHIỆM SỐ (DÙNG CHO HỌC SINH ĐIỀN - NỀN SÁNG) -->
+            <div class="mt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white border border-[#dce0d5] p-4 sm:p-5 rounded-2xl shadow-sm text-stone-800">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-[#1b3a2b] border border-[#2e5d42] flex items-center justify-center text-emerald-300 text-lg shrink-0">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-100 border border-emerald-300 flex items-center justify-center text-emerald-800 text-lg shrink-0">
                         <i class="fa-solid fa-file-pen"></i>
                     </div>
                     <div>
-                        <h4 class="font-serif font-bold text-sm text-stone-100 flex items-center gap-2">
+                        <h4 class="font-serif font-bold text-sm text-stone-900 flex items-center gap-2">
                             <span>Phiếu Học Tập Thực Nghiệm Số 4 Trạm (Bản Word Dành Cho Học Sinh)</span>
                         </h4>
-                        <p class="text-xs text-stone-400 mt-0.5">
+                        <p class="text-xs text-stone-600 mt-0.5">
                             Bảng số liệu 7 cột và câu hỏi rút ra quy luật sinh học được chuyển vào Phiếu học tập để học sinh ghi nhận trực tiếp bằng tay trong quá trình thực nghiệm.
                         </p>
                     </div>
                 </div>
-                <a href="Phieu_Hoc_Tap_KHTN7_Bai23_Quang_Hop_4_Tram.docx" download class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#1c382a] hover:bg-[#254d39] text-stone-100 border border-[#356149] text-xs font-semibold transition shrink-0 shadow-sm">
-                    <i class="fa-solid fa-file-arrow-down text-emerald-400 text-sm"></i>
+                <a href="Phieu_Hoc_Tap_KHTN7_Bai23_Quang_Hop_4_Tram.docx" download class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#1b3a2b] hover:bg-[#152e22] text-white border border-[#2e5d42] text-xs font-semibold transition shrink-0 shadow-2xs">
+                    <i class="fa-solid fa-file-arrow-down text-emerald-300 text-sm"></i>
                     <span>Tải Phiếu Học Tập (.docx)</span>
                 </a>
             </div>
@@ -2482,10 +2482,10 @@
                 const pane = document.getElementById(tabPanes[k]);
 
                 if (k === tab) {
-                    if (btn) btn.className = "flex-1 py-2 px-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 bg-emerald-600 text-white shadow-sm border border-emerald-500";
+                    if (btn) btn.className = "flex-1 py-2 px-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 bg-[#1b3a2b] text-white shadow-2xs border border-[#1b3a2b]";
                     if (pane) pane.classList.remove('hidden');
                 } else {
-                    if (btn) btn.className = "flex-1 py-2 px-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 text-slate-300 hover:text-white hover:bg-slate-800 border border-transparent";
+                    if (btn) btn.className = "flex-1 py-2 px-2.5 rounded-xl text-xs font-medium transition flex items-center justify-center gap-1.5 text-stone-600 hover:text-stone-900 hover:bg-white border border-transparent";
                     if (pane) pane.classList.add('hidden');
                 }
             });
@@ -2499,9 +2499,9 @@
                 const btn = document.getElementById(`tab-btn-${i}`);
                 if (btn) {
                     if (i === id) {
-                        btn.className = "station-tab-btn active w-full px-4 py-3 rounded-2xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-between gap-2 shadow-sm bg-emerald-600 text-white shadow-emerald-500/30 border-2 border-emerald-400";
+                        btn.className = "station-tab-btn active w-full px-4 py-3 rounded-2xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-between gap-2 shadow-sm bg-[#1b3a2b] text-white shadow-stone-300 border-2 border-[#1b3a2b]";
                     } else {
-                        btn.className = "station-tab-btn w-full px-4 py-3 rounded-2xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-between gap-2 shadow-sm bg-slate-800 text-slate-300 hover:bg-slate-700 border-2 border-slate-700";
+                        btn.className = "station-tab-btn w-full px-4 py-3 rounded-2xl font-bold text-xs sm:text-sm transition-all duration-200 flex items-center justify-between gap-2 shadow-2xs bg-white text-stone-700 hover:bg-stone-50 border-2 border-[#dce0d5]";
                     }
                 }
             }
@@ -2534,9 +2534,9 @@
                 const btn = document.getElementById(filterBtns[k]);
                 if (btn) {
                     if (k === filter) {
-                        btn.className = "px-3 py-1.5 rounded-xl bg-emerald-600 text-white shadow-sm border border-emerald-500 text-[11px] shrink-0 font-bold";
+                        btn.className = "px-2.5 py-1 rounded-lg bg-[#1b3a2b] text-white shadow-2xs border border-[#1b3a2b] text-[11px] shrink-0 font-semibold";
                     } else {
-                        btn.className = "px-3 py-1.5 rounded-xl bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 text-[11px] shrink-0 font-bold";
+                        btn.className = "px-2.5 py-1 rounded-lg bg-white hover:bg-stone-50 text-stone-700 border border-stone-200 text-[11px] shrink-0 font-medium";
                     }
                 }
             });
@@ -3100,34 +3100,34 @@
                 if (zoneEl && iconEl && titleEl && statusEl) {
                     if (assignedSol) {
                         if (assignedSol.isOptimal) {
-                            zoneEl.className = "hotspot-card cursor-pointer group relative p-3 rounded-xl border-2 border-emerald-400 bg-emerald-950/70 shadow-lg shadow-emerald-500/20 transition-all duration-300 scale-[1.02]";
-                            iconEl.className = "w-8 h-8 rounded-lg bg-emerald-500 text-white flex items-center justify-center text-sm font-bold shadow";
+                            zoneEl.className = "hotspot-card cursor-pointer group relative p-3 rounded-xl border-2 border-emerald-500 bg-emerald-50/90 shadow-sm transition-all duration-200";
+                            iconEl.className = "w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-sm font-bold shadow-2xs";
                             iconEl.innerHTML = `<i class="fa-solid fa-check"></i>`;
                             titleEl.innerText = assignedSol.visualTitle;
-                            titleEl.className = "text-xs font-black text-emerald-200";
-                            statusEl.innerText = "✓ Đã kích hoạt • Đang quang hợp tốt";
-                            statusEl.className = "text-[9px] text-emerald-400 font-bold";
+                            titleEl.className = "text-xs font-bold text-emerald-950";
+                            statusEl.innerText = "✓ Tối ưu sinh học • Đang quang hợp tốt";
+                            statusEl.className = "text-[9px] text-emerald-700 font-medium";
                             if (visualEl) visualEl.innerHTML = assignedSol.visualHtml;
                         } else {
-                            zoneEl.className = "hotspot-card cursor-pointer group relative p-3 rounded-xl border-2 border-rose-500 bg-rose-950/80 shadow-lg shadow-rose-500/30 transition-all duration-300 animate-pulse";
-                            iconEl.className = "w-8 h-8 rounded-lg bg-rose-600 text-white flex items-center justify-center text-sm font-bold shadow animate-bounce";
+                            zoneEl.className = "hotspot-card cursor-pointer group relative p-3 rounded-xl border-2 border-rose-400 bg-rose-50/90 shadow-sm transition-all duration-200";
+                            iconEl.className = "w-8 h-8 rounded-lg bg-rose-600 text-white flex items-center justify-center text-sm font-bold shadow-2xs";
                             iconEl.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i>`;
                             titleEl.innerText = assignedSol.visualTitle;
-                            titleEl.className = "text-xs font-black text-rose-200";
-                            statusEl.innerText = "⚠️ Phản tác dụng • Gây hại cây!";
-                            statusEl.className = "text-[9px] text-rose-400 font-extrabold";
+                            titleEl.className = "text-xs font-bold text-rose-950";
+                            statusEl.innerText = "✕ Bẫy sai lầm • Tổn thương mô lá!";
+                            statusEl.className = "text-[9px] text-rose-700 font-medium";
                             if (visualEl) visualEl.innerHTML = assignedSol.visualHtml;
                         }
                     } else {
-                        // Empty slot (Ready for Drag & Drop)
-                        zoneEl.className = `hotspot-card cursor-pointer group relative p-3 rounded-xl border-2 border-dashed border-${hs.color}-500/40 hover:border-${hs.color}-300 bg-${hs.color}-950/20 hover:bg-${hs.color}-950/40 transition-all duration-300`;
-                        iconEl.className = `w-8 h-8 rounded-lg bg-${hs.color}-500/20 text-${hs.color}-300 flex items-center justify-center text-sm font-bold border border-${hs.color}-500/30 group-hover:scale-110 transition-transform`;
+                        // Empty slot (Ready for Drag & Drop - Light Theme)
+                        zoneEl.className = `hotspot-card cursor-pointer group relative p-3 rounded-xl border-2 border-dashed border-${hs.color}-400/80 hover:border-${hs.color}-600 bg-white/80 hover:bg-white transition-all duration-200 shadow-2xs`;
+                        iconEl.className = `w-8 h-8 rounded-lg bg-${hs.color}-100 text-${hs.color}-800 flex items-center justify-center text-sm font-bold border border-${hs.color}-300 group-hover:scale-105 transition-transform`;
                         iconEl.innerHTML = `<i class="fa-solid fa-cloud-arrow-down text-xs"></i>`;
                         titleEl.innerText = hs.defaultTitle;
-                        titleEl.className = `text-[11px] font-bold text-${hs.color}-200`;
+                        titleEl.className = `text-[11px] font-bold text-stone-800`;
                         statusEl.innerText = "📥 Kéo thả giải pháp từ cột phải vào đây";
-                        statusEl.className = "text-[9px] text-amber-300/90 font-medium";
-                        if (visualEl) visualEl.innerHTML = `<i class="${hs.icon} text-slate-600"></i>`;
+                        statusEl.className = "text-[9px] text-stone-500 font-medium";
+                        if (visualEl) visualEl.innerHTML = `<i class="${hs.icon} text-stone-400"></i>`;
                     }
                 }
             });
@@ -3138,20 +3138,20 @@
                 filteredSolutions = data.solutions.filter(s => s.factor === currentSolutionFilter);
             }
 
-            // Render Right Solutions Container (8 items with Full Drag and Drop)
+            // Render Right Solutions Container (8 items with Full Drag and Drop - LIGHT THEME)
             const solContainer = document.getElementById('solutions-container');
             solContainer.innerHTML = filteredSolutions.map(sol => {
                 const isChosen = stateObj.chosenSolutions.includes(sol.id);
-                let cardStyle = "bg-slate-900/80 hover:bg-slate-900 border-slate-700/80 text-slate-200 hover:border-slate-500";
-                let badgeHtml = `<span class="text-[9px] font-bold text-amber-300 bg-amber-950/80 px-2 py-0.5 rounded-md border border-amber-600/40 flex items-center gap-1"><i class="fa-solid fa-grip-vertical"></i> Kéo thả</span>`;
+                let cardStyle = "bg-white hover:bg-stone-50 border border-stone-200 text-stone-800 shadow-2xs hover:border-emerald-500";
+                let badgeHtml = `<span class="text-[9px] font-medium text-stone-600 bg-stone-100 px-2 py-0.5 rounded-md border border-stone-200 flex items-center gap-1"><i class="fa-solid fa-grip-vertical text-stone-400"></i> Kéo thả</span>`;
 
                 if (isChosen) {
                     if (sol.isOptimal) {
-                        cardStyle = "bg-emerald-950/70 border-emerald-500 text-emerald-100 shadow-lg ring-1 ring-emerald-400/40";
-                        badgeHtml = `<span class="text-[9px] font-black text-white bg-emerald-600 px-2 py-0.5 rounded-full shadow flex items-center gap-1"><i class="fa-solid fa-circle-check"></i>✓ Đã lắp (+25đ)</span>`;
+                        cardStyle = "bg-emerald-50/90 border-2 border-emerald-500 text-emerald-950 shadow-xs";
+                        badgeHtml = `<span class="text-[9px] font-bold text-white bg-emerald-700 px-2 py-0.5 rounded-full shadow-2xs flex items-center gap-1"><i class="fa-solid fa-circle-check"></i>✓ Đã lắp (+25đ)</span>`;
                     } else {
-                        cardStyle = "bg-rose-950/80 border-rose-500 text-rose-100 shadow-lg ring-1 ring-rose-400/40 animate-pulse";
-                        badgeHtml = `<span class="text-[9px] font-black text-white bg-rose-600 px-2 py-0.5 rounded-full shadow flex items-center gap-1"><i class="fa-solid fa-triangle-exclamation"></i>⚠️ Bẫy sai (-10đ)</span>`;
+                        cardStyle = "bg-rose-50/90 border-2 border-rose-400 text-rose-950 shadow-xs";
+                        badgeHtml = `<span class="text-[9px] font-bold text-white bg-rose-600 px-2 py-0.5 rounded-full shadow-2xs flex items-center gap-1"><i class="fa-solid fa-triangle-exclamation"></i>⚠️ Bẫy sai (-10đ)</span>`;
                     }
                 }
 
@@ -3220,18 +3220,18 @@
             elStatus.innerText = tele.status;
             elStatus.className = `text-xs font-black ${tele.statusClass}`;
 
-            // Update Plant Picker (Dark Theme)
+            // Update Plant Picker (Light Theme)
             const plantContainer = document.getElementById('plant-picker-container');
             plantContainer.innerHTML = data.plants.map((p, idx) => {
                 const isSel = stateObj.selectedPlants.includes(idx);
                 return `
-                    <button onclick="togglePlant(${idx})" class="p-3 rounded-2xl border text-left transition-all text-xs flex flex-col justify-between ${isSel ? (p.isOptimal ? 'bg-emerald-950/80 border-emerald-500 text-emerald-200 shadow-md ring-1 ring-emerald-400/30' : 'bg-rose-950/80 border-rose-500 text-rose-200 shadow-md ring-1 ring-rose-400/30') : 'bg-slate-900/80 hover:bg-slate-900 border-slate-700 text-slate-300'}">
+                    <button onclick="togglePlant(${idx})" class="p-3 rounded-2xl border text-left transition-all text-xs flex flex-col justify-between ${isSel ? (p.isOptimal ? 'bg-emerald-50 border-2 border-emerald-500 text-emerald-950 shadow-2xs' : 'bg-rose-50 border-2 border-rose-400 text-rose-950 shadow-2xs') : 'bg-white hover:bg-stone-50 border-stone-200 text-stone-800 shadow-2xs'}">
                         <div class="font-bold flex items-center justify-between w-full">
-                            <span class="text-xs font-bold text-white">${p.name}</span>
-                            <i class="${isSel ? (p.isOptimal ? 'fa-solid fa-circle-check text-emerald-400 text-sm' : 'fa-solid fa-triangle-exclamation text-rose-400 text-sm') : 'fa-regular fa-circle text-slate-500'}"></i>
+                            <span class="text-xs font-bold ${isSel ? (p.isOptimal ? 'text-emerald-950' : 'text-rose-950') : 'text-stone-900'}">${p.name}</span>
+                            <i class="${isSel ? (p.isOptimal ? 'fa-solid fa-circle-check text-emerald-600 text-sm' : 'fa-solid fa-triangle-exclamation text-rose-600 text-sm') : 'fa-regular fa-circle text-stone-400'}"></i>
                         </div>
-                        <div class="text-[10px] text-slate-400 mt-1">${p.type}</div>
-                        ${isSel ? `<div class="mt-2 text-[10px] p-1.5 rounded-lg ${p.isOptimal ? 'bg-emerald-900/50 text-emerald-300' : 'bg-rose-900/50 text-rose-300'}">${p.note}</div>` : ''}
+                        <div class="text-[10px] text-stone-500 mt-1 font-serif italic">${p.type}</div>
+                        ${isSel ? `<div class="mt-2 text-[10px] p-2 rounded-xl font-medium ${p.isOptimal ? 'bg-emerald-100/70 text-emerald-900 border border-emerald-200' : 'bg-rose-100/70 text-rose-900 border border-rose-200'}">${p.note}</div>` : ''}
                     </button>
                 `;
             }).join('');
@@ -3975,7 +3975,12 @@
         }
 
         window.addEventListener('DOMContentLoaded', () => {
-            openModule('tong-quan');
+            const hash = window.location.hash.replace('#', '');
+            if (moduleIds.includes(hash)) {
+                openModule(hash);
+            } else {
+                openModule('tong-quan');
+            }
             updateSimulation();
             // updated simulation
             initChart();
