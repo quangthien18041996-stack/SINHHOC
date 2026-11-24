@@ -330,8 +330,17 @@
                 </div>
             </div>
 
-            <!-- Header Quick Actions -->
-            <div class="flex items-center gap-2">
+            <!-- Header Quick Actions & Teacher Profile -->
+            <div class="flex items-center gap-3">
+                <div class="hidden md:flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200/70 text-xs shadow-2xs">
+                    <div class="w-7 h-7 rounded-lg bg-emerald-800 text-white flex items-center justify-center text-xs">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                    </div>
+                    <div class="text-left leading-tight">
+                        <div class="text-[10px] text-stone-500 font-medium">Giáo viên: <span class="font-bold text-emerald-950">Mai Thuý Đức</span></div>
+                        <div class="text-[10px] text-emerald-700 font-semibold">Trường THCS Tân Tạo A</div>
+                    </div>
+                </div>
 
                 <button onclick="openModule('thi-nghiem-ao')" class="bg-[#1b3a2b] hover:bg-[#152e22] text-white font-semibold text-xs px-3.5 py-2 rounded-lg shadow-xs transition flex items-center gap-1.5 border border-[#2d553e]">
                     <i class="fa-solid fa-flask-vial text-emerald-300"></i> <span>Vào Thí Nghiệm Số</span>
@@ -381,6 +390,24 @@
                     <p class="text-stone-200 text-base sm:text-lg leading-relaxed max-w-2xl font-sans">
                         Khám phá cơ chế điều tiết sinh học của <strong>Ánh sáng, Nước, Khí CO₂ và Nhiệt độ</strong>. Vận dụng kiến thức khoa học vào đồ án thiết kế sinh thái không gian xanh cho <strong>4 Vùng Vi Khí Hậu</strong> đặc thù trong đô thị.
                     </p>
+
+                    <!-- Author & School Meta Card -->
+                    <div class="inline-flex flex-wrap items-center gap-3 bg-[#132c1e]/90 border border-[#2d5c3f] rounded-xl px-4 py-2.5 text-xs text-stone-200 backdrop-blur-md shadow-sm">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-chalkboard-user text-emerald-400 text-sm"></i>
+                            <span>Giáo viên: <strong class="text-white font-semibold">Mai Thuý Đức</strong></span>
+                        </div>
+                        <span class="text-emerald-500/60 hidden sm:inline">•</span>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-school text-emerald-400 text-sm"></i>
+                            <span>Đơn vị: <strong class="text-white font-semibold">Trường THCS Tân Tạo A</strong></span>
+                        </div>
+                        <span class="text-emerald-500/60 hidden sm:inline">•</span>
+                        <div class="flex items-center gap-1.5 text-amber-300 font-medium">
+                            <i class="fa-solid fa-award"></i>
+                            <span>Hội thi Dạy học số & STEM TP.HCM (2026 - 2027)</span>
+                        </div>
+                    </div>
 
                     <!-- Biological Parameter Plates (4 Factors) -->
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
@@ -1172,7 +1199,7 @@
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-5 border-b border-[#dce0d5]">
                     <div>
                         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1b3a2b] text-white text-xs font-bold tracking-wide shadow-2xs">
-                            <i class="fa-solid fa-chalkboard-user"></i> CỔNG PHÊ DUYỆT CỦA GIÁO VIÊN (Cô Thúy)
+                            <i class="fa-solid fa-chalkboard-user"></i> CỔNG PHÊ DUYỆT CỦA GIÁO VIÊN: Cô Mai Thuý Đức (Trường THCS Tân Tạo A)
                         </div>
                         <h3 class="text-lg sm:text-xl font-serif font-bold text-stone-900 mt-2">
                             Bảng Kiểm Duyệt Hồ Sơ Dự Án Sinh Thái 4 Nhóm
@@ -1274,7 +1301,7 @@
                         <label class="block text-xs font-bold text-slate-700 mb-1">
                             <i class="fa-solid fa-school text-emerald-600 mr-1"></i> Đơn vị trường:
                         </label>
-                        <input type="text" id="cert-input-school" value="Trường THCS tại TP. Hồ Chí Minh" oninput="updateCertPreview()" class="w-full px-3 py-2 text-xs font-bold rounded-xl border border-slate-300 focus:outline-none focus:border-emerald-500 bg-white shadow-xs text-slate-800">
+                        <input type="text" id="cert-input-school" value="Trường THCS Tân Tạo A" oninput="updateCertPreview()" class="w-full px-3 py-2 text-xs font-bold rounded-xl border border-slate-300 focus:outline-none focus:border-emerald-500 bg-white shadow-xs text-slate-800">
                     </div>
                 </div>
 
@@ -1315,7 +1342,7 @@
                         <p class="text-xs text-slate-500 italic">Chứng nhận hoàn thành nhiệm vụ dự án số được trao tặng cho:</p>
                         <h3 id="cert-view-name" class="text-xl sm:text-2xl font-black uppercase text-emerald-800 tracking-wide">NHÓM 1</h3>
                         <p class="text-xs font-bold text-slate-700">Thành viên: <span id="cert-view-members" class="font-medium text-slate-600">Nguyễn Văn An (Trưởng nhóm), Lê Bảo Châu, Trần Minh Quân, Đỗ Thảo My</span></p>
-                        <p class="text-[11px] text-slate-500"><span id="cert-view-school">Trường THCS tại TP. Hồ Chí Minh</span></p>
+                        <p class="text-[11px] text-slate-500"><span id="cert-view-school">Trường THCS Tân Tạo A</span></p>
                     </div>
 
                     <!-- Nội dung nhiệm vụ được giao hoàn thành -->
@@ -1364,8 +1391,8 @@
 
                         <div class="text-center text-[10px]">
                             <div class="text-slate-500 italic">Giáo viên hướng dẫn</div>
-                            <div class="font-bold text-emerald-800 text-xs mt-6">Cô Thúy</div>
-                            <div class="text-[9px] text-slate-400">Tổ KHTN - STEM TP.HCM</div>
+                            <div class="font-bold text-emerald-800 text-xs mt-6">Mai Thuý Đức</div>
+                            <div class="text-[9px] text-slate-500 font-medium">Trường THCS Tân Tạo A</div>
                         </div>
                     </div>
 
@@ -1417,8 +1444,9 @@
                 </div>
             </div>
             <div class="text-center md:text-right">
-                <p>Thiết kế dự thi Hội thi Chủ đề Dạy học số & STEM năm học 2026 - 2027</p>
-                <p class="text-slate-500 mt-1">Sở Giáo dục và Đào tạo Thành phố Hồ Chí Minh</p>
+                <p class="font-bold text-white text-sm">Giáo viên: Mai Thuý Đức • Trường THCS Tân Tạo A</p>
+                <p class="text-slate-400 mt-1">Thiết kế dự thi Hội thi Chủ đề Dạy học số & STEM năm học 2026 - 2027</p>
+                <p class="text-slate-500 mt-0.5">Sở Giáo dục và Đào tạo Thành phố Hồ Chí Minh</p>
             </div>
         </div>
     </footer>
@@ -3697,7 +3725,7 @@
                 } else if (sub.status === 'pending_review') {
                     banner.className = "p-2.5 rounded-xl text-xs bg-amber-50 border border-amber-300 text-amber-900 flex items-center justify-between";
                     badge.className = "font-bold text-[10px] px-2.5 py-0.5 rounded-full bg-amber-500 text-white animate-pulse";
-                    badge.innerHTML = `<i class="fa-solid fa-clock"></i> Đang Chờ Cô Thúy Duyệt`;
+                    badge.innerHTML = `<i class="fa-solid fa-clock"></i> Đang Chờ Cô Mai Thuý Đức Duyệt`;
                 } else if (sub.status === 'needs_revision') {
                     banner.className = "p-2.5 rounded-xl text-xs bg-rose-50 border border-rose-300 text-rose-900 flex items-center justify-between";
                     badge.className = "font-bold text-[10px] px-2.5 py-0.5 rounded-full bg-rose-600 text-white";
@@ -3734,7 +3762,7 @@
                     alertMsg.innerHTML = `
                         <div class="flex items-center gap-2">
                             <i class="fa-solid fa-clock text-amber-100 text-base"></i>
-                            <span><strong>Đã nộp bài lúc ${sub.submittedAt}!</strong> Đang chờ Cô Thúy phê duyệt.</span>
+                            <span><strong>Đã nộp bài lúc ${sub.submittedAt}!</strong> Đang chờ Cô Mai Thuý Đức phê duyệt.</span>
                         </div>
                         <div class="text-[11px] text-amber-100 pl-6 flex items-center justify-between">
                             <span>Poster sẽ mở khóa tại Phần 4 khi được duyệt.</span>
@@ -3898,7 +3926,7 @@
                                         ${sub.groupName}
                                     </span>
                                     <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-1 rounded-full border border-amber-300 animate-pulse flex items-center gap-1">
-                                        <i class="fa-solid fa-clock"></i> ĐANG CHỜ CÔ THÚY DUYỆT
+                                        <i class="fa-solid fa-clock"></i> ĐANG CHỜ CÔ MAI THUÝ ĐỨC DUYỆT
                                     </span>
                                 </div>
                                 <h4 class="font-serif font-bold text-stone-800 text-base mb-2">
@@ -4024,7 +4052,7 @@
             renderPosterGallery();
             updateStationReportTab();
 
-            alert(`🎉 CHÚC MỪNG!\n\nCô Thúy đã PHÊ DUYỆT hồ sơ của ${groupSubmissions[currentReviewStationId].groupName}!\n\nE-Poster chính thức đã được xuất bản lên Sảnh Triển Lãm (Phần 4). Nhóm có thể mở toàn màn hình để bắt đầu thuyết trình!`);
+            alert(`🎉 CHÚC MỪNG!\n\nCô Mai Thuý Đức đã PHÊ DUYỆT hồ sơ của ${groupSubmissions[currentReviewStationId].groupName}!\n\nE-Poster chính thức đã được xuất bản lên Sảnh Triển Lãm (Phần 4). Nhóm có thể mở toàn màn hình để bắt đầu thuyết trình!`);
         }
 
         // REQUEST REVISION
@@ -4630,7 +4658,7 @@
 
             const members = document.getElementById('cert-input-members').value.trim() || "Nguyễn Văn An (Trưởng nhóm), Lê Bảo Châu, Trần Minh Quân, Đỗ Thảo My";
             const task = document.getElementById('cert-input-task').value.trim() || "Trạm 1: Đô Thị Nén & Tháp Rừng Thẳng Đứng";
-            const school = document.getElementById('cert-input-school').value.trim() || "Trường THCS tại TP. Hồ Chí Minh";
+            const school = document.getElementById('cert-input-school').value.trim() || "Trường THCS Tân Tạo A";
 
             // Update Certificate Preview DOM
             document.getElementById('cert-view-name').innerText = groupName.toUpperCase();
@@ -4822,10 +4850,10 @@
             ctx.fillText('Giáo viên hướng dẫn', W - 180, sigY);
             ctx.fillStyle = '#065f46';
             ctx.font = 'bold 20px Arial';
-            ctx.fillText('Cô Thúy', W - 180, sigY + 40);
-            ctx.fillStyle = '#94a3b8';
+            ctx.fillText('Cô Mai Thuý Đức', W - 180, sigY + 40);
+            ctx.fillStyle = '#64748b';
             ctx.font = '12px Arial';
-            ctx.fillText('Tổ KHTN - STEM TP.HCM', W - 180, sigY + 60);
+            ctx.fillText('Trường THCS Tân Tạo A', W - 180, sigY + 60);
 
             // Download Trigger
             const link = document.createElement('a');
@@ -4865,7 +4893,7 @@
                 Đã Gửi Báo Cáo Của Nhóm Thành Công!
             </h3>
             <p class="text-xs text-stone-600 mt-2 leading-relaxed" id="succ-modal-desc">
-                Hồ sơ thiết kế sinh thái đã được chuyển đến <strong>Bàn Làm Việc của Cô Thúy</strong>. Sau khi Cô Thúy phê duyệt, E-Poster chính thức sẽ được kích hoạt để nhóm thuyết trình.
+                Hồ sơ thiết kế sinh thái đã được chuyển đến <strong>Bàn Làm Việc của Cô Mai Thuý Đức</strong>. Sau khi Cô Mai Thuý Đức phê duyệt, E-Poster chính thức sẽ được kích hoạt để nhóm thuyết trình.
             </p>
 
             <!-- Submission Stats Box -->
@@ -4956,7 +4984,7 @@
                 <div class="bg-emerald-50/70 border border-emerald-200 p-4 rounded-2xl space-y-3">
                     <div class="flex items-center justify-between">
                         <div class="text-xs font-bold text-emerald-950 flex items-center gap-1.5">
-                            <i class="fa-solid fa-pen-fancy text-emerald-700"></i> Đánh giá & Phê duyệt của Giáo viên (Cô Thúy):
+                            <i class="fa-solid fa-pen-fancy text-emerald-700"></i> Đánh giá & Phê duyệt của Giáo viên: Cô Mai Thuý Đức (Trường THCS Tân Tạo A):
                         </div>
                         <div class="flex items-center gap-1 text-xs">
                             <span class="font-bold text-stone-700">Điểm dự án:</span>
@@ -5021,7 +5049,7 @@
                                 Nhóm tác giả: Nguyễn Văn A, Trần Thị B, Lê Văn C, Phạm Thị D
                             </div>
                             <div class="text-[11px] text-stone-500 italic">
-                                Trường THCS • Hội thi Thiết kế Chủ đề Dạy học số & STEM TP.HCM năm học 2026 - 2027
+                                Trường THCS Tân Tạo A • GV hướng dẫn: Mai Thuý Đức • Hội thi Dạy học số & STEM TP.HCM 2026 - 2027
                             </div>
                         </div>
 
@@ -5029,7 +5057,7 @@
                         <div class="shrink-0 flex items-center justify-center">
                             <div class="border-2 border-dashed border-rose-600 text-rose-700 bg-rose-50/80 px-4 py-2.5 rounded-2xl text-center transform rotate-2 shadow-xs">
                                 <div class="text-[9px] font-bold uppercase tracking-wider">★ ĐÃ ĐƯỢC PHÊ DUYỆT ★</div>
-                                <div class="font-serif font-black text-sm">CÔ THÚY CHUẨN Y</div>
+                                <div class="font-serif font-black text-sm">CÔ MAI THUÝ ĐỨC CHUẨN Y</div>
                                 <div class="text-[9px] font-semibold" id="pres-approval-date">Đủ điều kiện bảo vệ đề tài</div>
                             </div>
                         </div>
@@ -5103,7 +5131,7 @@
 
                             <div class="p-3 rounded-xl bg-[#f8f9f5] border border-[#dce0d5]">
                                 <div class="text-[10px] font-bold text-stone-600 uppercase flex items-center gap-1">
-                                    <i class="fa-solid fa-comment-dots text-emerald-700"></i> Lời phê của Cô Thúy:
+                                    <i class="fa-solid fa-comment-dots text-emerald-700"></i> Lời phê của Cô Mai Thuý Đức:
                                 </div>
                                 <p class="text-xs text-stone-800 italic mt-1 font-serif" id="pres-teacher-feedback">
                                     "Thiết kế sinh thái phân tầng rất thông minh, bám sát kiến thức Bài 23 KHTN 7."
