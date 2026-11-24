@@ -192,6 +192,17 @@
             80% { opacity: 0.85; }
             100% { transform: translateY(-120px) scale(1.2); opacity: 0; }
         }
+        
+        @keyframes aquatic-sway {
+            0%, 100% { transform: rotate(0deg) skewX(0deg); }
+            25% { transform: rotate(1.8deg) skewX(0.8deg); }
+            75% { transform: rotate(-1.8deg) skewX(-0.8deg); }
+        }
+        .anim-aquatic-sway {
+            animation: aquatic-sway 4.5s ease-in-out infinite;
+            transform-origin: bottom center;
+        }
+
         .o2-bubble {
             position: absolute;
             background: radial-gradient(circle at 35% 35%, #ffffff 10%, #7dd3fc 60%, #0284c7 100%);
@@ -640,20 +651,48 @@
                             </div>
                         </div>
 
-                        <!-- Center Living Plant & Oxygen Bubbles -->
-                        <div id="tank-container" class="relative w-full h-48 flex items-center justify-center my-1 z-20">
-                            <!-- Visual Plant -->
-                            <div class="relative z-20 text-center transition-all duration-500" id="plant-container-box">
-                                <div id="plant-icon" class="text-7xl transition-all duration-500 text-emerald-600 filter drop-shadow">
-                                    <i class="fa-solid fa-seedling"></i>
+                        <!-- Center Living Plant & Oxygen Bubbles in Glass Beaker -->
+                        <div id="tank-container" class="relative w-full h-56 flex flex-col items-center justify-end my-1 z-20">
+                            
+                            <!-- Glass Beaker Mockup / Water Tank -->
+                            <div class="relative w-64 sm:w-72 h-52 rounded-b-3xl border-2 border-sky-300/90 bg-gradient-to-t from-sky-400/30 via-sky-200/15 to-sky-50/10 flex flex-col items-center justify-end shadow-lg backdrop-blur-[0.5px] overflow-hidden">
+                                
+                                <!-- Beaker Top Rim Highlight -->
+                                <div class="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-sky-200 via-white to-sky-200 border-b border-sky-300/70"></div>
+
+                                <!-- Beaker measurement graduation marks -->
+                                <div class="absolute left-2.5 top-5 bottom-5 flex flex-col justify-between text-[8px] font-mono font-bold text-sky-800/60 select-none pointer-events-none z-10">
+                                    <span>— 500 ml</span>
+                                    <span>— 400 ml</span>
+                                    <span>— 300 ml</span>
+                                    <span>— 200 ml</span>
+                                    <span>— 100 ml</span>
                                 </div>
-                                <div id="plant-state-text" class="mt-2 text-xs font-bold text-slate-800 bg-white/95 px-3 py-1 rounded-full shadow-md border border-sky-200 inline-block transition-all duration-300">
-                                    Cây sinh trưởng tốt • Bọt khí O₂ thoát đều
+
+                                <!-- Water surface ripple line -->
+                                <div class="absolute top-3.5 inset-x-3 h-1 bg-sky-200/70 rounded-full border-t border-white/95 animate-pulse pointer-events-none z-10"></div>
+
+                                <!-- Aquarium Gravel Bed at bottom -->
+                                <div class="absolute bottom-0 inset-x-0 h-5 bg-gradient-to-t from-stone-400/80 via-stone-300/60 to-transparent border-t border-stone-400/40 pointer-events-none flex items-center justify-center z-10">
+                                    <span class="text-[8px] text-stone-600 font-bold uppercase tracking-wider opacity-75">Sỏi thủy sinh đáy cốc</span>
                                 </div>
+
+                                <!-- Visual Plant (Cành rong đuôi chó tự nhiên) -->
+                                <div class="relative z-20 text-center transition-all duration-500 flex flex-col items-center justify-end mb-2" id="plant-container-box">
+                                    <div class="relative group cursor-pointer" onclick="createExtraBubbles()" title="Nhấp vào cành rong để kích thích bọt khí O₂">
+                                        <!-- Realistic Botanical Image with Aquatic Sway -->
+                                        <img id="plant-image" src="images/canh_rong_duoi_cho.png" alt="Cành rong đuôi chó (Elodea canadensis)" class="h-40 sm:h-44 object-contain drop-shadow-[0_4px_12px_rgba(16,185,129,0.35)] transition-all duration-500 anim-aquatic-sway origin-bottom hover:scale-105 active:scale-95">
+                                    </div>
+                                </div>
+
+                                <!-- Floating O2 Bubbles container inside beaker -->
+                                <div id="bubble-box" class="absolute inset-0 pointer-events-none overflow-hidden z-25"></div>
                             </div>
 
-                            <!-- Floating O2 Bubbles container -->
-                            <div id="bubble-box" class="absolute inset-0 pointer-events-none overflow-hidden z-20"></div>
+                            <!-- Live Plant State Pill -->
+                            <div id="plant-state-text" class="mt-2 text-xs font-bold text-slate-800 bg-white/95 px-3.5 py-1 rounded-full shadow-md border border-sky-200 inline-block transition-all duration-300 z-30">
+                                Cây sinh trưởng tốt • Bọt khí O₂ thoát đều
+                            </div>
                         </div>
 
                         <!-- Microscopic Stomata view (Khí khổng) -->
@@ -1604,41 +1643,43 @@
 
             // 6. CÂY VÀ KHÍ KHỔNG (Plant & Stomata)
             const plantBox = document.getElementById('plant-container-box');
-            if (plantBox) {
+            const plantImg = document.getElementById('plant-image');
+            if (plantBox && plantImg) {
                 if (state.water === 'dry') {
-                    plantBox.style.transform = 'rotate(18deg) translateY(12px) scale(0.92)';
+                    plantBox.style.transform = 'rotate(22deg) translateY(16px) scale(0.9)';
+                    plantImg.style.filter = 'grayscale(0.5) brightness(0.75) sepia(0.3)';
                 } else {
                     plantBox.style.transform = 'none';
                 }
             }
 
-            // Plant text and icon color
+            // Plant appearance and feedback state
             if (state.co2 > 0.20) {
-                plantIcon.className = "text-7xl transition-all duration-500 text-slate-500 scale-90";
+                if (plantImg) plantImg.style.filter = 'grayscale(0.7) brightness(0.65) contrast(1.1)';
                 plantStateText.innerText = "☠️ Ngộ độc CO₂ (>0.20%) • Cây ngừng quang hợp!";
                 plantStateText.className = "mt-2 text-xs font-black text-rose-800 bg-rose-100 px-3 py-1 rounded-full shadow border border-rose-300 inline-block";
             } else if (state.temp > 40) {
-                plantIcon.className = "text-7xl transition-all duration-500 text-amber-700 scale-90";
+                if (plantImg) plantImg.style.filter = 'sepia(0.4) hue-rotate(-20deg) brightness(0.9)';
                 plantStateText.innerText = "🔥 Quá nóng (>40°C) • Lá bị đốt nóng, đóng khí khổng!";
                 plantStateText.className = "mt-2 text-xs font-black text-amber-900 bg-amber-100 px-3 py-1 rounded-full shadow border border-amber-300 inline-block";
             } else if (state.water === 'dry') {
-                plantIcon.className = "text-7xl transition-all duration-500 text-amber-600 scale-90";
+                if (plantImg) plantImg.style.filter = 'grayscale(0.4) brightness(0.75) sepia(0.3)';
                 plantStateText.innerText = "🍂 Cây thiếu nước héo rũ • Khí khổng đóng hoàn toàn!";
                 plantStateText.className = "mt-2 text-xs font-bold text-amber-800 bg-amber-50 px-3 py-1 rounded-full shadow border border-amber-200 inline-block";
             } else if (state.light === 0) {
-                plantIcon.className = "text-7xl transition-all duration-500 text-slate-400 opacity-60";
+                if (plantImg) plantImg.style.filter = 'brightness(0.2) contrast(1.2)';
                 plantStateText.innerText = "🌑 Tối đen (0 Lux) • Không có photon ánh sáng, ngừng quang hợp!";
                 plantStateText.className = "mt-2 text-xs font-bold text-slate-700 bg-white/90 px-3 py-1 rounded-full shadow inline-block";
             } else if (rate > 35) {
-                plantIcon.className = "text-7xl transition-all duration-500 text-emerald-500 scale-110 filter drop-shadow-[0_0_8px_rgba(16,185,129,0.5)]";
+                if (plantImg) plantImg.style.filter = 'brightness(1.08) drop-shadow(0 0 14px rgba(16,185,129,0.7))';
                 plantStateText.innerText = "🌿 Quang hợp cực mạnh • Bọt khí O₂ thoát ào ạt!";
                 plantStateText.className = "mt-2 text-xs font-black text-emerald-950 bg-emerald-100 px-3.5 py-1 rounded-full shadow-md border border-emerald-300 inline-block";
             } else if (rate > 15) {
-                plantIcon.className = "text-7xl transition-all duration-500 text-emerald-600 scale-100";
+                if (plantImg) plantImg.style.filter = 'brightness(1.0) drop-shadow(0 2px 8px rgba(16,185,129,0.4))';
                 plantStateText.innerText = "🌱 Quang hợp bình thường • Bọt khí O₂ thoát đều";
                 plantStateText.className = "mt-2 text-xs font-bold text-slate-800 bg-white/90 px-3 py-1 rounded-full shadow border border-sky-200 inline-block";
             } else {
-                plantIcon.className = "text-7xl transition-all duration-500 text-emerald-700 scale-95";
+                if (plantImg) plantImg.style.filter = 'brightness(0.9) opacity(0.85)';
                 plantStateText.innerText = "🌱 Cây quang hợp rất chậm";
                 plantStateText.className = "mt-2 text-xs font-medium text-slate-600 bg-white/90 px-3 py-1 rounded-full shadow inline-block";
             }
@@ -1667,6 +1708,24 @@
 
         // Bubbles animation
         let bubbleInterval = null;
+        
+        function createExtraBubbles() {
+            if (!bubbleBox) return;
+            for (let i = 0; i < 7; i++) {
+                const b = document.createElement('div');
+                b.className = 'o2-bubble';
+                const size = 6 + Math.random() * 8;
+                b.style.width = `${size}px`;
+                b.style.height = `${size}px`;
+                b.style.left = `${35 + (Math.random() - 0.5) * 32}%`;
+                b.style.bottom = `${25 + Math.random() * 45}px`;
+                b.style.animationDuration = `${0.8 + Math.random() * 0.8}s`;
+                bubbleBox.appendChild(b);
+                setTimeout(() => b.remove(), 1600);
+            }
+            if (typeof playGardenSound === 'function') playGardenSound('water');
+        }
+
         function createBubbles(rate) {
             bubbleBox.innerHTML = '';
             if (rate < 2) return; // Almost no bubbles
