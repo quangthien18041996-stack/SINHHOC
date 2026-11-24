@@ -61,7 +61,11 @@
             if (targetId === '4-khong-gian') {
                 renderVisualWorkspace();
                 renderObservationTable();
-            if (typeof updateEcoPoints === 'function') updateEcoPoints();
+                if (typeof updateEcoPoints === 'function') updateEcoPoints();
+                if (typeof updateStationReportTab === 'function') updateStationReportTab();
+            }
+            if (targetId === 'trien-lam-poster') {
+                if (typeof renderPosterGallery === 'function') renderPosterGallery();
             }
             if (targetId === 'thi-nghiem-ao') {
                 updateSimulation();
@@ -1016,49 +1020,303 @@
 <!-- SECTION 4: TRIỂN LÃM BÁO CÁO KHOA HỌC E-POSTER (SCIENTIFIC SYMPOSIUM) -->
     <section id="trien-lam-poster" class="module-section hidden py-16 bg-[#ffffff] border-b border-[#e2e5dc]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- HEADER -->
             <div class="text-center max-w-3xl mx-auto mb-10">
                 <span class="text-emerald-800 font-bold text-xs uppercase tracking-wider bg-emerald-100/80 border border-emerald-300/80 px-3.5 py-1 rounded-full font-mono">
-                    <i class="fa-solid fa-file-waveform mr-1"></i> Báo Cáo Khoa Học & Phản Biện Đồng Cấp (Peer Review)
+                    <i class="fa-solid fa-file-waveform mr-1"></i> Báo Cáo Khoa Học & Phê Duyệt Dự Án (Teacher Moderation)
                 </span>
                 <h2 class="text-2xl sm:text-4xl font-serif font-bold text-stone-900 mt-3">
                     Kỳ Cuộc Triển Lãm Báo Cáo Khoa Học E-Poster
                 </h2>
                 <p class="text-stone-600 text-xs sm:text-sm mt-2 max-w-2xl mx-auto">
-                    Các nhóm công bố hồ sơ thiết kế sinh thái, phân tích số liệu vi khí hậu và bảo vệ luận điểm khoa học trước hội đồng học sinh.
+                    Quy trình chuẩn mực: <strong>Các nhóm nộp bài tại 4 Trạm</strong> ➔ <strong>Giáo viên thẩm định & phê duyệt</strong> ➔ <strong>Xuất bản E-Poster chính thức</strong> để nhóm thuyết trình và nhận phản biện đồng cấp.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Poster Nhóm 1 -->
-                <div class="bg-gradient-to-br from-emerald-50 to-slate-100 border-2 border-emerald-300 rounded-2xl p-6 shadow-sm">
-                    <div class="flex justify-between items-center mb-3">
-                        <span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full">Nhóm 1 • Rừng Đứng Đô Thị</span>
-                        <div class="text-amber-500 text-sm"><i class="fa-solid fa-star"></i> 4.9/5 (18 lượt bình chọn)</div>
+            <!-- TEACHER MODERATION & APPROVAL HUB (BÀN LÀM VIỆC CỦA GIÁO VIÊN CÔ THÚY) -->
+            <div class="bg-[#f8f9f5] border-2 border-[#1b3a2b]/20 rounded-3xl p-6 sm:p-7 shadow-sm mb-12 relative overflow-hidden">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-5 border-b border-[#dce0d5]">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1b3a2b] text-white text-xs font-bold tracking-wide shadow-2xs">
+                            <i class="fa-solid fa-chalkboard-user"></i> CỔNG PHÊ DUYỆT CỦA GIÁO VIÊN (Cô Thúy)
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-serif font-bold text-stone-900 mt-2">
+                            Bảng Kiểm Duyệt Hồ Sơ Dự Án Sinh Thái 4 Nhóm
+                        </h3>
+                        <p class="text-xs text-stone-600 mt-1">
+                            Giáo viên kiểm tra các phương án chọn lựa, mức độ cải thiện vi khí hậu và lời giải thích cơ chế quang hợp (Bài 23) trước khi cấp phép xuất bản poster.
+                        </p>
                     </div>
-                    <h4 class="font-bold text-slate-900 text-base mb-2">Dự án: "Vách Xanh Lọc Khí Thở Chung Cư Cao Tầng"</h4>
-                    <p class="text-xs text-slate-600 mb-4">Kết hợp giàn leo cây ưa sáng tầng trên (hoa giấy) che bóng cho dương xỉ tầng dưới; hệ thống hứng nước mưa tự động.</p>
-                    <div class="bg-white p-3 rounded-xl border border-slate-200 flex justify-between items-center text-xs">
-                        <span class="text-slate-500"><i class="fa-solid fa-file-pdf text-rose-500 mr-1"></i> E-Poster_Nhom1.pdf (3.2MB)</span>
-                        <button class="text-emerald-600 font-bold hover:underline">Xem trực tuyến <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+
+                    <!-- Action Controls for Teacher / Judges -->
+                    <div class="flex flex-wrap items-center gap-2.5">
+                        <button onclick="quickApproveAllGroups()" class="px-3.5 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-2xs cursor-pointer">
+                            <i class="fa-solid fa-bolt-lightning text-amber-300"></i> Duyệt Nhanh Tất Cả 4 Nhóm (Demo Giám Khảo)
+                        </button>
+                        <button onclick="resetGroupSubmissions()" class="px-3 py-2 rounded-xl bg-white hover:bg-stone-100 text-stone-700 border border-stone-300 text-xs font-medium transition flex items-center gap-1.5 cursor-pointer shadow-2xs">
+                            <i class="fa-solid fa-rotate-left"></i> Đặt Lại Trạng Thái
+                        </button>
                     </div>
                 </div>
 
-                <!-- Poster Nhóm 2 -->
-                <div class="bg-gradient-to-br from-teal-50 to-slate-100 border-2 border-teal-300 rounded-2xl p-6 shadow-sm">
-                    <div class="flex justify-between items-center mb-3">
-                        <span class="bg-teal-600 text-white text-xs font-bold px-3 py-1 rounded-full">Nhóm 2 • Nhà Màng Số</span>
-                        <div class="text-amber-500 text-sm"><i class="fa-solid fa-star"></i> 4.8/5 (15 lượt bình chọn)</div>
-                    </div>
-                    <h4 class="font-bold text-slate-900 text-base mb-2">Dự án: "Buồng Luyện Quang Hợp Dâu Tây Thông Minh"</h4>
-                    <p class="text-xs text-slate-600 mb-4">Lập trình quạt thông gió tự động khi nhiệt độ > 32°C; đèn LED phát dải sáng 450nm & 660nm kích thích diệp lục tố.</p>
-                    <div class="bg-white p-3 rounded-xl border border-slate-200 flex justify-between items-center text-xs">
-                        <span class="text-slate-500"><i class="fa-solid fa-file-pdf text-rose-500 mr-1"></i> E-Poster_Nhom2.pdf (4.1MB)</span>
-                        <button class="text-teal-600 font-bold hover:underline">Xem trực tuyến <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
-                    </div>
+                <!-- 4 Groups Progress & Review Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-5" id="teacher-moderation-grid">
+                    <!-- Dynamic rendering via JavaScript -->
                 </div>
             </div>
+
+            <!-- SECTION HEADER: SẢNH TRIỂN LÃM E-POSTER CHÍNH THỨC -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+                <div>
+                    <h3 class="text-xl sm:text-2xl font-serif font-bold text-stone-900 flex items-center gap-2">
+                        <i class="fa-solid fa-palette text-emerald-800"></i> Sảnh Trưng Bày E-Poster 4 Không Gian Sinh Thái
+                    </h3>
+                    <p class="text-xs text-stone-600 mt-0.5">
+                        Chỉ các dự án đã được Giáo viên phê duyệt mới hiển thị E-Poster hoàn chỉnh để thuyết trình và chấm điểm đồng cấp.
+                    </p>
+                </div>
+                <div class="flex items-center gap-2 text-xs font-semibold text-stone-600 bg-[#f4f6f1] px-3 py-1.5 rounded-xl border border-[#dce0d5]">
+                    <span id="gallery-approved-count" class="text-emerald-800 font-bold">2/4</span> poster đã sẵn sàng thuyết trình
+                </div>
+            </div>
+
+            <!-- E-POSTER EXHIBITION GRID (4 NHÓM) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="poster-gallery-container">
+                <!-- Rendered dynamically via JavaScript -->
+            </div>
+
         </div>
     </section>
+
+    <!-- MODAL 1: GIÁO VIÊN THẨM ĐỊNH & PHÊ DUYỆT BÀI LÀM (TEACHER REVIEW MODAL) -->
+    <div id="modal-teacher-review" class="fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-stone-200 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+            <!-- Modal Header -->
+            <div class="bg-[#1b3a2b] text-white p-5 flex items-center justify-between shrink-0">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center text-emerald-300 text-base">
+                        <i class="fa-solid fa-stamp"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-serif font-bold text-base" id="rev-modal-title">Thẩm Định Hồ Sơ Dự Án • Nhóm 1</h4>
+                        <p class="text-[11px] text-emerald-200/80 font-mono" id="rev-modal-subtitle">Trạm 1: Đô Thị Nén & Tháp Rừng Đứng</p>
+                    </div>
+                </div>
+                <button onclick="closeTeacherReviewModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body (Scrollable) -->
+            <div class="p-5 sm:p-6 overflow-y-auto space-y-4 flex-1 text-xs text-stone-700">
+                <!-- Group Info Summary -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-[#f8f9f5] p-3.5 rounded-2xl border border-[#dce0d5]">
+                    <div>
+                        <div class="text-[10px] uppercase font-bold text-stone-500">Tên dự án & Nhóm:</div>
+                        <div class="font-bold text-stone-900 text-xs mt-0.5" id="rev-project-name">Vách Xanh Lọc Khí Thở Chung Cư Cao Tầng</div>
+                        <div class="text-[11px] text-stone-600 mt-1 font-medium" id="rev-members">Thành viên: ...</div>
+                    </div>
+                    <div>
+                        <div class="text-[10px] uppercase font-bold text-stone-500">Chỉ số vi khí hậu đạt được:</div>
+                        <div class="font-bold text-emerald-800 text-xs mt-0.5" id="rev-telemetry">CO₂: 410 ppm • Ánh sáng: 25.000 Lux • Nhiệt: 28.0°C</div>
+                        <div class="text-[11px] text-emerald-700 font-bold mt-1" id="rev-score">Hiệu quả quang hợp: 96/100đ (Tối ưu xuất sắc)</div>
+                    </div>
+                </div>
+
+                <!-- Solutions Selected by Students -->
+                <div>
+                    <div class="text-xs font-bold text-stone-900 mb-2 flex items-center gap-1.5">
+                        <i class="fa-solid fa-list-check text-emerald-700"></i> Phương án thiết kế sinh thái nhóm đã chọn:
+                    </div>
+                    <div id="rev-solutions-list" class="space-y-1.5">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+
+                <!-- Student Hypothesis / Explanation -->
+                <div>
+                    <div class="text-xs font-bold text-stone-900 mb-1.5 flex items-center gap-1.5">
+                        <i class="fa-solid fa-book-open-reader text-emerald-700"></i> Cơ chế sinh học nhóm giải thích (Bài 23 SGK):
+                    </div>
+                    <div id="rev-hypothesis" class="p-3 rounded-xl bg-stone-50 border border-stone-200 text-stone-800 text-xs leading-relaxed italic">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+
+                <!-- Teacher Feedback & Grading Area -->
+                <div class="bg-emerald-50/70 border border-emerald-200 p-4 rounded-2xl space-y-3">
+                    <div class="flex items-center justify-between">
+                        <div class="text-xs font-bold text-emerald-950 flex items-center gap-1.5">
+                            <i class="fa-solid fa-pen-fancy text-emerald-700"></i> Đánh giá & Phê duyệt của Giáo viên (Cô Thúy):
+                        </div>
+                        <div class="flex items-center gap-1 text-xs">
+                            <span class="font-bold text-stone-700">Điểm dự án:</span>
+                            <input id="rev-input-score" type="number" min="0" max="100" class="w-14 p-1 text-center font-bold text-emerald-900 bg-white border border-emerald-300 rounded-lg text-xs" value="95">
+                            <span class="font-bold text-stone-600">/100đ</span>
+                        </div>
+                    </div>
+                    <textarea id="rev-input-feedback" rows="3" class="w-full text-xs p-2.5 rounded-xl border border-emerald-300 focus:outline-none focus:border-emerald-600 bg-white text-stone-800 shadow-2xs" placeholder="Nhập nhận xét sư phạm hoặc lời khen động viên nhóm..."></textarea>
+                </div>
+            </div>
+
+            <!-- Modal Footer Controls -->
+            <div class="p-4 bg-stone-50 border-t border-stone-200 flex flex-wrap items-center justify-end gap-2.5 shrink-0">
+                <button onclick="requestGroupRevisionFromModal()" class="px-3.5 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs font-bold transition flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-arrow-rotate-left"></i> Yêu Cầu Chỉnh Sửa
+                </button>
+                <button onclick="approveGroupFromModal()" class="px-5 py-2.5 rounded-xl bg-[#1b3a2b] hover:bg-[#152e22] text-white text-xs font-bold transition flex items-center gap-2 shadow-xs cursor-pointer border border-[#2e5d42]">
+                    <i class="fa-solid fa-stamp text-amber-300"></i> Phê Duyệt & Xuất Bản E-Poster Thuyết Trình
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: E-POSTER THUYẾT TRÌNH TOÀN MÀN HÌNH (PRESENTATION POSTER MODAL) -->
+    <div id="modal-poster-presentation" class="fixed inset-0 z-50 bg-stone-900/80 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 hidden">
+        <div class="bg-white rounded-3xl max-w-5xl w-full max-h-[95vh] flex flex-col shadow-2xl border border-stone-300 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+            <!-- Top Controls Bar -->
+            <div class="bg-[#152e22] text-white px-5 py-3.5 flex items-center justify-between shrink-0 border-b border-[#2d573e]">
+                <div class="flex items-center gap-2 text-xs font-semibold">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>CHẾ ĐỘ THUYẾT TRÌNH BÁO CÁO KHOA HỌC • E-POSTER CHUẨN STEM</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="printOrDownloadPoster()" class="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-print"></i> In / Tải Poster
+                    </button>
+                    <button onclick="closePosterPresentation()" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition cursor-pointer">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Poster Canvas Content (Scientific Poster Layout) -->
+            <div class="p-6 sm:p-8 overflow-y-auto flex-1 bg-[#faf9f5]" id="printable-poster-area">
+                
+                <!-- Poster Header Banner -->
+                <div class="bg-white rounded-2xl border-2 border-emerald-600/30 p-6 shadow-sm mb-6 relative overflow-hidden">
+                    <div class="absolute -right-4 -bottom-4 text-emerald-50 text-9xl font-serif select-none pointer-events-none">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+                    
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 relative z-10">
+                        <div class="space-y-1.5">
+                            <div class="flex items-center gap-2">
+                                <span class="bg-[#1b3a2b] text-white text-[10px] font-bold px-2.5 py-0.5 rounded-md uppercase font-mono tracking-wider" id="pres-station-badge">TRẠM 1 • RỪNG ĐỨNG ĐÔ THỊ</span>
+                                <span class="bg-emerald-100 text-emerald-900 text-[10px] font-bold px-2.5 py-0.5 rounded-md border border-emerald-300">BÀI 23 KHTN 7</span>
+                            </div>
+                            <h2 class="text-2xl sm:text-3xl font-serif font-black text-stone-900" id="pres-title">
+                                Vách Xanh Lọc Khí Thở Chung Cư Cao Tầng
+                            </h2>
+                            <div class="text-xs text-stone-600 font-medium" id="pres-members">
+                                Nhóm tác giả: Nguyễn Văn A, Trần Thị B, Lê Văn C, Phạm Thị D
+                            </div>
+                            <div class="text-[11px] text-stone-500 italic">
+                                Trường THCS • Hội thi Thiết kế Chủ đề Dạy học số & STEM TP.HCM năm học 2026 - 2027
+                            </div>
+                        </div>
+
+                        <!-- Official Seal / Stamp of Approval -->
+                        <div class="shrink-0 flex items-center justify-center">
+                            <div class="border-2 border-dashed border-rose-600 text-rose-700 bg-rose-50/80 px-4 py-2.5 rounded-2xl text-center transform rotate-2 shadow-xs">
+                                <div class="text-[9px] font-bold uppercase tracking-wider">★ ĐÃ ĐƯỢC PHÊ DUYỆT ★</div>
+                                <div class="font-serif font-black text-sm">CÔ THÚY CHUẨN Y</div>
+                                <div class="text-[9px] font-semibold" id="pres-approval-date">Đủ điều kiện bảo vệ đề tài</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Poster 3 Scientific Columns -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Column 1: Vấn đề & Thách thức Vi khí hậu -->
+                    <div class="bg-white rounded-2xl p-5 border border-stone-200 shadow-2xs flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs font-bold uppercase tracking-wider text-stone-500 font-mono mb-2 flex items-center gap-1.5">
+                                <span class="w-5 h-5 rounded-md bg-stone-100 text-stone-700 flex items-center justify-center font-bold text-[10px]">1</span>
+                                ĐẶT VẤN ĐỀ & THÁCH THỨC
+                            </div>
+                            <h4 class="font-serif font-bold text-stone-900 text-sm mb-2" id="pres-challenge-title">Đặc điểm vi khí hậu tại trạm</h4>
+                            <p class="text-xs text-stone-600 leading-relaxed mb-4" id="pres-challenge-desc">
+                                Khu vực bê tông hóa hấp thụ nhiệt cao, nồng độ CO₂ tăng cục bộ do khói xe, tầng trên nắng gắt trên 45.000 Lux nhưng tầng trệt lại thiếu sáng trầm trọng.
+                            </p>
+                        </div>
+                        <div class="bg-rose-50 border border-rose-200 rounded-xl p-3 text-[11px] text-rose-900">
+                            <strong>Thách thức quang hợp:</strong> Cây xanh dễ bị cháy lá do dư sáng tầng trên, hoặc ngưng quang hợp do thiếu sáng tầng trệt; khí khổng đóng vì nhiệt độ quá cao.
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Phương án thiết kế & Cơ chế Bài 23 -->
+                    <div class="bg-white rounded-2xl p-5 border border-stone-200 shadow-2xs flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs font-bold uppercase tracking-wider text-emerald-800 font-mono mb-2 flex items-center gap-1.5">
+                                <span class="w-5 h-5 rounded-md bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-[10px]">2</span>
+                                PHƯƠNG ÁN & CƠ CHẾ SINH HỌC
+                            </div>
+                            <h4 class="font-serif font-bold text-stone-900 text-sm mb-2">Các giải pháp kỹ thuật đã chọn</h4>
+                            <div class="space-y-1.5 mb-3" id="pres-solutions-tags">
+                                <!-- Tags via JS -->
+                            </div>
+                            <div class="text-[11px] text-stone-700 font-bold mb-1">Cơ chế Bài 23 SGK KHTN 7:</div>
+                            <p class="text-xs text-stone-600 leading-relaxed italic bg-stone-50 p-3 rounded-xl border border-stone-200" id="pres-hypothesis-text">
+                                Nhóm phân tầng cây ưa sáng và ưa bóng hợp lý, giúp tối ưu hóa diện tích tiếp nhận ánh sáng mà không làm cháy mô lá.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Column 3: Kết quả thực nghiệm vi khí hậu & Đánh giá của GV -->
+                    <div class="bg-white rounded-2xl p-5 border border-stone-200 shadow-2xs flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs font-bold uppercase tracking-wider text-teal-800 font-mono mb-2 flex items-center gap-1.5">
+                                <span class="w-5 h-5 rounded-md bg-teal-100 text-teal-800 flex items-center justify-center font-bold text-[10px]">3</span>
+                                KẾT QUẢ & LỜI PHÊ GIÁO VIÊN
+                            </div>
+                            <h4 class="font-serif font-bold text-stone-900 text-sm mb-2">Hiệu quả cải tạo môi trường</h4>
+                            <div class="grid grid-cols-2 gap-2 mb-3 text-center" id="pres-metrics-grid">
+                                <div class="bg-emerald-50 border border-emerald-200 p-2 rounded-xl">
+                                    <div class="text-[9px] text-emerald-800 font-bold">Khí CO₂</div>
+                                    <div class="text-xs font-black text-emerald-950" id="pres-co2-val">410 ppm</div>
+                                </div>
+                                <div class="bg-amber-50 border border-amber-200 p-2 rounded-xl">
+                                    <div class="text-[9px] text-amber-800 font-bold">Ánh Sáng</div>
+                                    <div class="text-xs font-black text-amber-950" id="pres-lux-val">25.000 Lux</div>
+                                </div>
+                                <div class="bg-sky-50 border border-sky-200 p-2 rounded-xl">
+                                    <div class="text-[9px] text-sky-800 font-bold">Nhiệt Độ</div>
+                                    <div class="text-xs font-black text-sky-950" id="pres-temp-val">28.0°C</div>
+                                </div>
+                                <div class="bg-indigo-50 border border-indigo-200 p-2 rounded-xl">
+                                    <div class="text-[9px] text-indigo-800 font-bold">Quang Hợp</div>
+                                    <div class="text-xs font-black text-indigo-950" id="pres-photo-val">96/100đ</div>
+                                </div>
+                            </div>
+
+                            <div class="p-3 rounded-xl bg-[#f8f9f5] border border-[#dce0d5]">
+                                <div class="text-[10px] font-bold text-stone-600 uppercase flex items-center gap-1">
+                                    <i class="fa-solid fa-comment-dots text-emerald-700"></i> Lời phê của Cô Thúy:
+                                </div>
+                                <p class="text-xs text-stone-800 italic mt-1 font-serif" id="pres-teacher-feedback">
+                                    "Thiết kế sinh thái phân tầng rất thông minh, bám sát kiến thức Bài 23 KHTN 7."
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Peer Review Interactive Widget -->
+                        <div class="mt-3 pt-3 border-t border-stone-200 flex items-center justify-between text-xs">
+                            <span class="text-stone-500 font-medium">Khán giả bình chọn:</span>
+                            <div class="flex items-center gap-1 text-amber-500 font-bold" id="pres-star-rating">
+                                <i class="fa-solid fa-star"></i> 4.9/5 (18 lượt)
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <!-- SECTION 5: ĐÁNH GIÁ CHUẨN NĂNG LỰC RUBRIC & MINI-QUIZ -->
     <section id="danh-gia-rubric" class="module-section hidden py-16 bg-[#f7f6f1] border-t border-b border-[#e2e5dc]">
@@ -2510,6 +2768,7 @@
             if (allBtn) setSolutionFilter('all');
             renderVisualWorkspace();
             renderObservationTable();
+            if (typeof updateStationReportTab === 'function') updateStationReportTab();
         }
         let currentSolutionFilter = 'all';
 
@@ -2548,6 +2807,7 @@
             stationState[currentStationId].chosenSolutions = [];
             renderVisualWorkspace();
             renderObservationTable();
+            if (typeof updateStationReportTab === 'function') updateStationReportTab();
         }
 
         function selectSolution(solId) {
@@ -2571,6 +2831,7 @@
 
             renderVisualWorkspace();
             renderObservationTable();
+            if (typeof updateStationReportTab === 'function') updateStationReportTab();
         }
 
 
@@ -3277,17 +3538,122 @@
             }
             renderVisualWorkspace();
             renderObservationTable();
+            if (typeof updateStationReportTab === 'function') updateStationReportTab();
         }
 
+        // =========================================================================
+        // 4.1 TEACHER MODERATION & DYNAMIC E-POSTER PRESENTATION ENGINE
+        // =========================================================================
+
+        const defaultGroupSubmissions = {
+            1: {
+                stationId: 1,
+                stationName: "Trạm 1: Đô Thị Nén & Tháp Rừng Thẳng Đứng",
+                projectTitle: "Vách Xanh Lọc Khí Thở Chung Cư Cao Tầng",
+                groupName: "Nhóm 1 • Rừng Đứng Đô Thị",
+                members: "Nguyễn Văn An, Trần Thị Bình, Lê Văn Cường, Phạm Thị Dung",
+                hypothesis: "Tại vùng cao tầng nắng gắt >45.000 Lux, nhóm bố trí giàn hoa giấy ưa sáng để hấp thu bức xạ và hạ nhiệt độ bê tông; vách tường đứng dùng dây leo xanh ngăn bụi mịn và hấp thụ CO₂ từ xe cộ; tầng trệt bóng râm bố trí lưỡi hổ ưa bóng lọc formaldehyde và duy trì quang hợp ở ánh sáng tán xạ yếu.",
+                status: "approved", // 'not_submitted', 'pending_review', 'approved', 'needs_revision'
+                submittedAt: "08:35 - Hôm nay",
+                approvedAt: "08:50 - Hôm nay",
+                teacherFeedback: "Ý tưởng phân tầng sinh thái bám sát Bài 23 KHTN 7. Nhóm giải thích cơ chế thoát hơi nước và điều tiết khí khổng rất sắc sảo!",
+                teacherScore: 98,
+                co2: "410 ppm",
+                lux: "25.000 Lux",
+                temp: "28.0°C",
+                photoScore: "98/100đ",
+                rating: 4.9,
+                voteCount: 18,
+                solutions: [
+                    "Trồng cây ưa sáng tầng thượng (Hoa giấy, Trúc quân tử)",
+                    "Vườn tường đứng nhiều tầng (Vertical Wall) bằng giàn leo",
+                    "Trồng cây ưa bóng tầng trệt (Lưỡi hổ, Lan ý) lọc độc",
+                    "Hệ thống tưới nhỏ giọt tự động hẹn giờ số"
+                ]
+            },
+            2: {
+                stationId: 2,
+                stationName: "Trạm 2: Nhà Màng Nông Nghiệp Số",
+                projectTitle: "Buồng Luyện Quang Hợp Dâu Tây Thông Minh",
+                groupName: "Nhóm 2 • Nhà Màng Số",
+                members: "Hoàng Minh Tuấn, Đỗ Ngọc Mai, Vũ Quốc Huy, Nguyễn Linh Chi",
+                hypothesis: "Nhiệt độ trong nhà màng nếu quá 35°C sẽ làm enzyme quang hợp bị biến tính, khí khổng đóng lại làm ngưng trệ quang hợp. Nhóm tích hợp quạt hút thông gió kết hợp phun sương cảm biến để duy trì 26-28°C tối ưu; đồng thời bơm CO₂ 800ppm và chiếu đèn LED 450nm & 660nm để tối đa hóa pha sáng.",
+                status: "pending_review", // Waiting for teacher Thuy to review
+                submittedAt: "09:05 - Hôm nay",
+                approvedAt: null,
+                teacherFeedback: "Thiết kế cảm biến IoT và kiểm soát vi khí hậu rất khoa học. Nhóm chú ý thêm lượng nước tưới nền đất.",
+                teacherScore: 95,
+                co2: "750 ppm",
+                lux: "28.000 Lux",
+                temp: "26.5°C",
+                photoScore: "95/100đ",
+                rating: 4.8,
+                voteCount: 14,
+                solutions: [
+                    "Hệ thống quạt đối lưu thông gió làm mát khi T > 32°C",
+                    "Đèn LED chuyên dụng bổ sung dải phổ 450nm & 660nm",
+                    "Thiết bị làm giàu CO₂ hữu cơ đạt ngưỡng quang hợp tối ưu",
+                    "Cảm biến độ ẩm đất kết hợp tưới phun sương tự động"
+                ]
+            },
+            3: {
+                stationId: 3,
+                stationName: "Trạm 3: Sân Thượng Nắng Gắt",
+                projectTitle: "Vườn Mái Sinh Thái Cản Nhiệt Đảo Đô Thị",
+                groupName: "Nhóm 3 • Nắng Gắt Sân Thượng",
+                members: "Trần Bảo Nam, Bùi Phương Uyên, Lê Gia Hưng, Vũ Thảo My",
+                hypothesis: "Sân thượng nhận bức xạ quang hợp trên 45.000 Lux và nhiệt mặt bê tông lên tới 42°C. Cần chọn cây có tầng cutin dày chống thoát hơi nước quá mức, kết hợp giàn che giảm bớt 30% nắng gắt và khay trữ nước ngầm để lá luôn giữ sức trương tế bào.",
+                status: "not_submitted",
+                submittedAt: null,
+                approvedAt: null,
+                teacherFeedback: "",
+                teacherScore: null,
+                co2: "850 ppm",
+                lux: "45.000 Lux",
+                temp: "36.0°C",
+                photoScore: "Chưa tối ưu (0%)",
+                rating: 0,
+                voteCount: 0,
+                solutions: []
+            },
+            4: {
+                stationId: 4,
+                stationName: "Trạm 4: Trong Nhà & Hành Lang",
+                projectTitle: "Ốc Đảo Sinh Thái Lọc Bụi Mịn & Khí Độc Nội Thất",
+                groupName: "Nhóm 4 • Hành Lang Xanh",
+                members: "Ngô Quang Hải, Trịnh Khánh Linh, Đặng Tuấn Khang, Mai Ánh Nguyệt",
+                hypothesis: "Khu vực hành lang và lớp học chỉ có 1.500 - 3.000 Lux, ánh sáng yếu. Nhóm chọn các giống cây ưa bóng có hàm lượng chlorophyll b cao để hấp thu ánh sáng khuếch tán, đồng thời lọc benzen và formaldehyde từ sơn tường.",
+                status: "not_submitted",
+                submittedAt: null,
+                approvedAt: null,
+                teacherFeedback: "",
+                teacherScore: null,
+                co2: "920 ppm",
+                lux: "2.000 Lux",
+                temp: "31.0°C",
+                photoScore: "Chưa tối ưu (0%)",
+                rating: 0,
+                voteCount: 0,
+                solutions: []
+            }
+        };
+
+        // Clone state for runtime manipulation
+        let groupSubmissions = JSON.parse(JSON.stringify(defaultGroupSubmissions));
+        let currentReviewStationId = 1;
+
+        // SUBMIT GROUP WORKSHEET FROM MODULE 3 (STUDENTS SUBMIT TO TEACHER)
         function submitGroupWorksheet() {
             const members = document.getElementById('input-group-members').value.trim();
+            const notes = document.getElementById('input-group-note').value.trim();
             const stateObj = stationState[currentStationId];
+            const data = visualConfigs[currentStationId];
             const tele = computeStationTelemetry(currentStationId);
             const alertBox = document.getElementById('submit-alert-box');
             const alertMsg = document.getElementById('submit-alert-msg');
 
             if (stateObj.chosenSolutions.length === 0) {
-                alert("Vui lòng phân tích và chọn ít nhất 1 giải pháp kỹ thuật trước khi nộp báo cáo!");
+                alert("⚠️ Vui lòng phân tích và chọn ít nhất 1 giải pháp kỹ thuật trước khi nộp báo cáo!");
                 return;
             }
 
@@ -3296,8 +3662,515 @@
                 return;
             }
 
-            alertBox.className = "p-3 rounded-xl text-xs font-semibold bg-emerald-600 text-white flex items-center justify-between shadow-md block animate-bounce";
-            alertMsg.innerHTML = `🎉 <strong>Thành công!</strong> Đã ghi nhận Báo cáo của ${members || 'Nhóm ' + currentStationId} • Điểm Tối Ưu Quang Hợp: <strong>${tele.score}/100đ</strong>.`;
+            // Extract solution titles
+            const solTitles = stateObj.chosenSolutions.map(id => {
+                const s = data.solutions.find(item => item.id === id);
+                return s ? s.title : '';
+            }).filter(Boolean);
+
+            // Update submission in state
+            const now = new Date();
+            const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')} - Hôm nay`;
+
+            groupSubmissions[currentStationId] = {
+                ...groupSubmissions[currentStationId],
+                members: members || `Thành viên Nhóm ${currentStationId}`,
+                hypothesis: notes || groupSubmissions[currentStationId].hypothesis,
+                status: 'pending_review',
+                submittedAt: timeStr,
+                co2: `${tele.co2} ppm`,
+                lux: `${tele.lux.toLocaleString()} Lux`,
+                temp: `${tele.temp.toFixed(1)}°C`,
+                photoScore: `${tele.score}/100đ`,
+                solutions: solTitles.length > 0 ? solTitles : groupSubmissions[currentStationId].solutions
+            };
+
+            // Alert for Students
+            if (alertBox && alertMsg) {
+                alertBox.className = "p-3.5 rounded-xl text-xs font-semibold bg-amber-500 text-white flex flex-col gap-1.5 shadow-md block animate-pulse";
+                alertMsg.innerHTML = `
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-clock text-amber-100 text-base"></i>
+                        <span><strong>Đã nộp bài thành công!</strong> Hồ sơ của ${members || 'Nhóm ' + currentStationId} đang chờ Cô Thúy phê duyệt.</span>
+                    </div>
+                    <div class="text-[11px] text-amber-100 font-normal pl-6">
+                        Poster thuyết trình tại <strong>Phần 4</strong> sẽ tự động xuất bản ngay khi Cô Thúy phê duyệt.
+                        <button onclick="openModule('trien-lam-poster')" class="underline font-bold text-white ml-1 hover:text-amber-200">Đến Cổng Phê Duyệt ➔</button>
+                    </div>
+                `;
+            }
+
+            // Update Gallery
+            renderPosterGallery();
+
+            // Notify user
+            alert(`✅ ĐÃ NỘP BÀI THÀNH CÔNG!\\n\\nHồ sơ dự án của Nhóm ${currentStationId} đã được chuyển đến Bàn Kiểm Duyệt của Cô Thúy.\\nSau khi Cô Thúy duyệt, E-Poster chính thức sẽ được kích hoạt để nhóm thuyết trình.`);
+        }
+
+        // RENDER POSTER GALLERY AND TEACHER MODERATION HUB
+        function renderPosterGallery() {
+            const modGrid = document.getElementById('teacher-moderation-grid');
+            const galGrid = document.getElementById('poster-gallery-container');
+            const countEl = document.getElementById('gallery-approved-count');
+
+            if (!modGrid || !galGrid) return;
+
+            let approvedCount = 0;
+
+            // 1. Render Teacher Moderation Grid (4 Groups in Hub)
+            modGrid.innerHTML = [1, 2, 3, 4].map(id => {
+                const sub = groupSubmissions[id];
+                if (sub.status === 'approved') approvedCount++;
+
+                let badgeHtml = '';
+                let actionBtn = '';
+
+                if (sub.status === 'approved') {
+                    badgeHtml = `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300"><i class="fa-solid fa-check"></i> Đã Duyệt (${sub.teacherScore}đ)</span>`;
+                    actionBtn = `
+                        <div class="flex gap-1.5 mt-2.5">
+                            <button onclick="openTeacherReviewModal(${id})" class="flex-1 py-1 px-2 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-700 text-[11px] font-bold border border-stone-300 transition text-center cursor-pointer">
+                                Xem Lại
+                            </button>
+                            <button onclick="openPresentationPoster(${id})" class="flex-1 py-1 px-2 rounded-lg bg-[#1b3a2b] hover:bg-[#152e22] text-white text-[11px] font-bold transition text-center cursor-pointer shadow-2xs">
+                                Mở Poster
+                            </button>
+                        </div>
+                    `;
+                } else if (sub.status === 'pending_review') {
+                    badgeHtml = `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-300 animate-pulse"><i class="fa-solid fa-clock"></i> Chờ Duyệt</span>`;
+                    actionBtn = `
+                        <button onclick="openTeacherReviewModal(${id})" class="w-full mt-2.5 py-1.5 px-3 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold transition shadow-xs flex items-center justify-center gap-1 cursor-pointer">
+                            <i class="fa-solid fa-stamp"></i> Thẩm Định & Duyệt
+                        </button>
+                    `;
+                } else if (sub.status === 'needs_revision') {
+                    badgeHtml = `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-100 text-rose-800 border border-rose-300"><i class="fa-solid fa-rotate-left"></i> Yêu Cầu Sửa</span>`;
+                    actionBtn = `
+                        <button onclick="openTeacherReviewModal(${id})" class="w-full mt-2.5 py-1.5 px-3 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs font-bold transition flex items-center justify-center gap-1 cursor-pointer">
+                            Kiểm Tra Lại
+                        </button>
+                    `;
+                } else {
+                    badgeHtml = `<span class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-stone-100 text-stone-500 border border-stone-200">Đang Thực Hiện</span>`;
+                    actionBtn = `
+                        <button onclick="quickSubmitMockForStation(${id})" class="w-full mt-2.5 py-1.5 px-3 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-700 border border-stone-300 text-xs font-medium transition flex items-center justify-center gap-1 cursor-pointer">
+                            <i class="fa-solid fa-arrow-up-from-bracket text-[10px]"></i> Nộp Mẫu Thử
+                        </button>
+                    `;
+                }
+
+                return `
+                    <div class="p-3.5 rounded-2xl bg-white border border-[#dce0d5] flex flex-col justify-between shadow-2xs">
+                        <div>
+                            <div class="flex items-center justify-between gap-1 mb-1.5">
+                                <span class="font-mono text-[10px] font-bold text-stone-500">TRẠM ${id}</span>
+                                ${badgeHtml}
+                            </div>
+                            <div class="font-serif font-bold text-xs text-stone-900 leading-snug">${sub.groupName}</div>
+                            <div class="text-[10px] text-stone-500 mt-1 truncate font-medium">${sub.members}</div>
+                        </div>
+                        ${actionBtn}
+                    </div>
+                `;
+            }).join('');
+
+            if (countEl) countEl.innerText = `${approvedCount}/4`;
+
+            // 2. Render Poster Exhibition Grid (4 Groups Posters)
+            galGrid.innerHTML = [1, 2, 3, 4].map(id => {
+                const sub = groupSubmissions[id];
+                const isApproved = sub.status === 'approved';
+                const isPending = sub.status === 'pending_review';
+
+                if (isApproved) {
+                    return `
+                        <!-- Poster Đã Phê Duyệt • Nhóm ${id} -->
+                        <div class="bg-gradient-to-br from-white via-[#f7f9f5] to-emerald-50/40 border-2 border-emerald-500/60 rounded-3xl p-6 sm:p-7 shadow-md flex flex-col justify-between relative overflow-hidden transition-all hover:shadow-lg">
+                            <div class="absolute -right-6 -bottom-6 text-emerald-100/40 text-8xl font-serif select-none pointer-events-none">
+                                <i class="fa-solid fa-award"></i>
+                            </div>
+
+                            <div class="relative z-10">
+                                <div class="flex flex-wrap justify-between items-center gap-2 mb-3">
+                                    <span class="bg-[#1b3a2b] text-white text-xs font-bold px-3 py-1 rounded-full shadow-2xs font-mono">
+                                        ${sub.groupName}
+                                    </span>
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-md border border-emerald-300">
+                                            ✓ ĐÃ PHÊ DUYỆT (${sub.teacherScore}đ)
+                                        </span>
+                                        <div class="text-amber-500 text-xs font-bold"><i class="fa-solid fa-star"></i> ${sub.rating}/5</div>
+                                    </div>
+                                </div>
+
+                                <h4 class="font-serif font-bold text-stone-900 text-base sm:text-lg mb-2">
+                                    Dự án: "${sub.projectTitle}"
+                                </h4>
+                                <div class="text-xs text-stone-500 font-medium mb-3">
+                                    <i class="fa-solid fa-user-group text-stone-400 mr-1"></i> ${sub.members}
+                                </div>
+                                <p class="text-xs text-stone-600 line-clamp-3 mb-4 leading-relaxed italic bg-white/80 p-3 rounded-xl border border-stone-200">
+                                    "${sub.hypothesis}"
+                                </p>
+
+                                <div class="grid grid-cols-4 gap-2 bg-white/90 p-2.5 rounded-xl border border-stone-200 text-center mb-4">
+                                    <div>
+                                        <div class="text-[9px] text-stone-500 font-bold">CO₂</div>
+                                        <div class="text-[11px] font-black text-emerald-900">${sub.co2}</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-[9px] text-stone-500 font-bold">Ánh Sáng</div>
+                                        <div class="text-[11px] font-black text-amber-900">${sub.lux}</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-[9px] text-stone-500 font-bold">Nhiệt Độ</div>
+                                        <div class="text-[11px] font-black text-sky-900">${sub.temp}</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-[9px] text-stone-500 font-bold">Quang Hợp</div>
+                                        <div class="text-[11px] font-black text-indigo-900">${sub.photoScore}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="relative z-10 flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-emerald-100">
+                                <button onclick="votePeerReview(${id})" class="text-xs text-stone-600 hover:text-amber-600 font-bold flex items-center gap-1 cursor-pointer transition">
+                                    <i class="fa-regular fa-star text-amber-500"></i> Bình chọn (${sub.voteCount})
+                                </button>
+                                <button onclick="openPresentationPoster(${id})" class="px-4 py-2 rounded-xl bg-[#1b3a2b] hover:bg-[#152e22] text-white font-bold text-xs shadow-xs transition flex items-center gap-1.5 cursor-pointer border border-[#2e5d42]">
+                                    <i class="fa-solid fa-chalkboard-user"></i> Phóng To E-Poster Thuyết Trình
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                } else if (isPending) {
+                    return `
+                        <!-- Poster Đang Chờ Duyệt • Nhóm ${id} -->
+                        <div class="bg-amber-50/40 border-2 border-dashed border-amber-300 rounded-3xl p-6 sm:p-7 shadow-xs flex flex-col justify-between relative overflow-hidden">
+                            <div>
+                                <div class="flex justify-between items-center mb-3">
+                                    <span class="bg-stone-200 text-stone-700 text-xs font-bold px-3 py-1 rounded-full font-mono">
+                                        ${sub.groupName}
+                                    </span>
+                                    <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-1 rounded-full border border-amber-300 animate-pulse flex items-center gap-1">
+                                        <i class="fa-solid fa-clock"></i> ĐANG CHỜ CÔ THÚY DUYỆT
+                                    </span>
+                                </div>
+                                <h4 class="font-serif font-bold text-stone-800 text-base mb-2">
+                                    Dự án: "${sub.projectTitle}"
+                                </h4>
+                                <div class="text-xs text-stone-500 font-medium mb-3">
+                                    <i class="fa-solid fa-user-group text-stone-400 mr-1"></i> ${sub.members}
+                                </div>
+                                <p class="text-xs text-stone-500 italic bg-white/60 p-3 rounded-xl border border-stone-200 mb-4">
+                                    "Nhóm đã nộp phương án sinh thái lúc ${sub.submittedAt}. E-Poster đang chờ giáo viên thẩm định để mở khóa quyền thuyết trình."
+                                </p>
+                            </div>
+
+                            <div class="flex items-center justify-between gap-3 pt-3 border-t border-amber-200/60">
+                                <span class="text-[11px] text-amber-800 font-medium">
+                                    <i class="fa-solid fa-lock text-amber-600 mr-1"></i> Chưa xuất bản poster
+                                </span>
+                                <button onclick="openTeacherReviewModal(${id})" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs transition flex items-center gap-1.5 shadow-2xs cursor-pointer">
+                                    <i class="fa-solid fa-stamp"></i> Duyệt Bài Ngay
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    return `
+                        <!-- Poster Chưa Nộp • Nhóm ${id} -->
+                        <div class="bg-stone-50 border-2 border-dashed border-stone-200 rounded-3xl p-6 sm:p-7 flex flex-col justify-between opacity-80 hover:opacity-100 transition">
+                            <div>
+                                <div class="flex justify-between items-center mb-3">
+                                    <span class="bg-stone-200 text-stone-600 text-xs font-bold px-3 py-1 rounded-full font-mono">
+                                        ${sub.groupName}
+                                    </span>
+                                    <span class="bg-stone-200 text-stone-600 text-[10px] font-medium px-2.5 py-0.5 rounded-full">
+                                        Chưa Nộp Bài
+                                    </span>
+                                </div>
+                                <h4 class="font-serif font-bold text-stone-700 text-base mb-2">
+                                    ${sub.stationName}
+                                </h4>
+                                <p class="text-xs text-stone-500 mb-4 leading-relaxed">
+                                    Nhóm đang thảo luận, thao tác kéo thả và đo đạc vi khí hậu tại trạm. Học sinh cần hoàn thành và nộp bài tại Phần 3 để giáo viên chấm duyệt.
+                                </p>
+                            </div>
+
+                            <div class="flex items-center justify-between gap-2 pt-3 border-t border-stone-200">
+                                <button onclick="openStationFromGallery(${id})" class="text-xs font-bold text-emerald-800 hover:underline flex items-center gap-1 cursor-pointer">
+                                    <i class="fa-solid fa-arrow-left"></i> Đến Trạm ${id} Làm Bài
+                                </button>
+                                <button onclick="quickSubmitMockForStation(${id})" class="px-3 py-1.5 rounded-xl bg-white hover:bg-stone-100 text-stone-700 border border-stone-300 text-xs font-medium cursor-pointer shadow-2xs">
+                                    Nộp Mẫu Thử
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }
+            }).join('');
+        }
+
+        // OPEN TEACHER REVIEW MODAL FOR A SPECIFIC STATION
+        function openTeacherReviewModal(stationId) {
+            currentReviewStationId = stationId;
+            const sub = groupSubmissions[stationId];
+            const data = visualConfigs[stationId];
+
+            document.getElementById('rev-modal-title').innerText = `Thẩm Định Hồ Sơ Dự Án • ${sub.groupName}`;
+            document.getElementById('rev-modal-subtitle').innerText = `${sub.stationName}`;
+            document.getElementById('rev-project-name').innerText = sub.projectTitle;
+            document.getElementById('rev-members').innerText = `Thành viên: ${sub.members}`;
+            document.getElementById('rev-telemetry').innerText = `CO₂: ${sub.co2} • Ánh sáng: ${sub.lux} • Nhiệt: ${sub.temp}`;
+            document.getElementById('rev-score').innerText = `Hiệu quả quang hợp: ${sub.photoScore}`;
+            document.getElementById('rev-hypothesis').innerText = `"${sub.hypothesis}"`;
+
+            // Solutions list
+            const solListEl = document.getElementById('rev-solutions-list');
+            if (sub.solutions && sub.solutions.length > 0) {
+                solListEl.innerHTML = sub.solutions.map(s => `
+                    <div class="flex items-center gap-2 p-2 rounded-xl bg-white border border-stone-200 text-xs font-medium text-stone-800">
+                        <i class="fa-solid fa-circle-check text-emerald-600"></i>
+                        <span>${s}</span>
+                    </div>
+                `).join('');
+            } else {
+                solListEl.innerHTML = `
+                    <div class="text-xs text-stone-500 italic p-2 bg-white rounded-xl border border-stone-200">
+                        Nhóm chưa chọn giải pháp tối ưu cụ thể.
+                    </div>
+                `;
+            }
+
+            // Default Feedback and Score
+            document.getElementById('rev-input-score').value = sub.teacherScore || 96;
+            document.getElementById('rev-input-feedback').value = sub.teacherFeedback || `Thiết kế sinh thái của ${sub.groupName} rất chuẩn xác theo Bài 23 KHTN 7. Cơ chế quang hợp và phân tầng ánh sáng hợp lý, đủ điều kiện xuất bản poster!`;
+
+            document.getElementById('modal-teacher-review').classList.remove('hidden');
+        }
+
+        function closeTeacherReviewModal() {
+            document.getElementById('modal-teacher-review').classList.add('hidden');
+        }
+
+        // APPROVE GROUP SUBMISSION (PRODUCES OFFICIAL E-POSTER)
+        function approveGroupFromModal() {
+            const score = parseInt(document.getElementById('rev-input-score').value) || 95;
+            const feedback = document.getElementById('rev-input-feedback').value.trim();
+
+            const now = new Date();
+            const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')} - Hôm nay`;
+
+            groupSubmissions[currentReviewStationId] = {
+                ...groupSubmissions[currentReviewStationId],
+                status: 'approved',
+                approvedAt: timeStr,
+                teacherScore: score,
+                teacherFeedback: feedback || "Thiết kế đạt chuẩn năng lực STEM KHTN 7.",
+                rating: groupSubmissions[currentReviewStationId].rating || 4.9,
+                voteCount: groupSubmissions[currentReviewStationId].voteCount || 10
+            };
+
+            closeTeacherReviewModal();
+            renderPosterGallery();
+
+            alert(`🎉 CHÚC MỪNG!\\n\\nCô Thúy đã PHÊ DUYỆT hồ sơ của ${groupSubmissions[currentReviewStationId].groupName}!\\n\\nE-Poster chính thức đã được xuất bản lên Sảnh Triển Lãm (Phần 4). Nhóm có thể mở toàn màn hình để bắt đầu thuyết trình!`);
+        }
+
+        // REQUEST REVISION
+        function requestGroupRevisionFromModal() {
+            const feedback = document.getElementById('rev-input-feedback').value.trim();
+
+            groupSubmissions[currentReviewStationId] = {
+                ...groupSubmissions[currentReviewStationId],
+                status: 'needs_revision',
+                teacherFeedback: feedback || "Nhóm cần rà soát lại các giải pháp gây hại và bổ sung giải thích cơ chế sinh học."
+            };
+
+            closeTeacherReviewModal();
+            renderPosterGallery();
+
+            alert(`⚠️ Đã gửi yêu cầu chỉnh sửa đến ${groupSubmissions[currentReviewStationId].groupName}. Nhóm sẽ làm lại và nộp lại bài.`);
+        }
+
+        // QUICK APPROVE ALL GROUPS (DEMO FOR JUDGES)
+        function quickApproveAllGroups() {
+            [1, 2, 3, 4].forEach(id => {
+                groupSubmissions[id] = {
+                    ...defaultGroupSubmissions[id],
+                    status: 'approved',
+                    approvedAt: 'Vừa xong',
+                    teacherScore: 95 + (id % 5),
+                    rating: 4.8 + (id * 0.05),
+                    voteCount: 15 + id * 2,
+                    solutions: defaultGroupSubmissions[id].solutions && defaultGroupSubmissions[id].solutions.length > 0 ? defaultGroupSubmissions[id].solutions : [
+                        "Trồng cây thích nghi ánh sáng Bài 23 KHTN 7",
+                        "Điều hòa nhiệt độ và thoát hơi nước qua khí khổng",
+                        "Làm giàu nồng độ CO₂ tối ưu quang hợp",
+                        "Hệ thống tưới giữ sức trương tế bào lá"
+                    ]
+                };
+            });
+
+            renderPosterGallery();
+            alert("⚡ THÀNH CÔNG!\\n\\nĐã phê duyệt toàn bộ 4 Nhóm dự án sinh thái.\\nTất cả 4 E-Poster đã được xuất bản và sẵn sàng thuyết trình toàn màn hình!");
+        }
+
+        // RESET SUBMISSIONS TO DEFAULT
+        function resetGroupSubmissions() {
+            groupSubmissions = JSON.parse(JSON.stringify(defaultGroupSubmissions));
+            renderPosterGallery();
+            alert("🔄 Đã khôi phục trạng thái ban đầu của 4 Nhóm và Cổng duyệt giáo viên!");
+        }
+
+        // QUICK SUBMIT MOCK FOR EMPTY STATIONS
+        function quickSubmitMockForStation(stationId) {
+            groupSubmissions[stationId] = {
+                ...defaultGroupSubmissions[stationId],
+                status: 'pending_review',
+                submittedAt: 'Vừa xong',
+                co2: '450 ppm',
+                lux: '25.000 Lux',
+                temp: '27.5°C',
+                photoScore: '92/100đ',
+                solutions: [
+                    "Bố trí tầng cây ưa sáng và ưa bóng hợp lý",
+                    "Cung cấp đủ nước để khí khổng mở rộng",
+                    "Điều hòa nhiệt độ vi khí hậu trong khoảng 25-30°C",
+                    "Tăng khả năng quang hợp và làm sạch không khí"
+                ]
+            };
+            renderPosterGallery();
+            alert(`📥 Đã nộp bài mẫu cho ${groupSubmissions[stationId].groupName}! Hồ sơ đang ở trạng thái Chờ Duyệt.`);
+        }
+
+        // OPEN SCIENTIFIC E-POSTER PRESENTATION FULLSCREEN
+        function openPresentationPoster(stationId) {
+            const sub = groupSubmissions[stationId];
+            if (!sub || sub.status !== 'approved') {
+                alert("⚠️ E-Poster của nhóm này chưa được Giáo viên phê duyệt!");
+                return;
+            }
+
+            document.getElementById('pres-station-badge').innerText = sub.stationName.toUpperCase();
+            document.getElementById('pres-title').innerText = sub.projectTitle;
+            document.getElementById('pres-members').innerText = `Nhóm tác giả: ${sub.members} (${sub.groupName})`;
+            document.getElementById('pres-approval-date').innerText = `Phê duyệt lúc ${sub.approvedAt || 'Hôm nay'}`;
+            document.getElementById('pres-hypothesis-text').innerText = `"${sub.hypothesis}"`;
+            document.getElementById('pres-co2-val').innerText = sub.co2;
+            document.getElementById('pres-lux-val').innerText = sub.lux;
+            document.getElementById('pres-temp-val').innerText = sub.temp;
+            document.getElementById('pres-photo-val').innerText = `${sub.teacherScore}/100đ`;
+            document.getElementById('pres-teacher-feedback').innerText = `"${sub.teacherFeedback}"`;
+            document.getElementById('pres-star-rating').innerHTML = `<i class="fa-solid fa-star"></i> ${sub.rating}/5 (${sub.voteCount} lượt)`;
+
+            // Render solutions tags
+            const solTagsEl = document.getElementById('pres-solutions-tags');
+            if (sub.solutions && sub.solutions.length > 0) {
+                solTagsEl.innerHTML = sub.solutions.map(s => `
+                    <div class="flex items-center gap-2 p-2 rounded-xl bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-950">
+                        <i class="fa-solid fa-check text-emerald-700 text-xs"></i>
+                        <span>${s}</span>
+                    </div>
+                `).join('');
+            } else {
+                solTagsEl.innerHTML = `<div class="text-xs text-stone-500 italic">4 Giải pháp sinh thái Bài 23 KHTN 7</div>`;
+            }
+
+            document.getElementById('modal-poster-presentation').classList.remove('hidden');
+        }
+
+        function closePosterPresentation() {
+            document.getElementById('modal-poster-presentation').classList.add('hidden');
+        }
+
+        // PRINT OR DOWNLOAD POSTER
+        function printOrDownloadPoster() {
+            alert("🖨️ Đang kích hoạt hộp thoại In ấn / Xuất file PDF E-Poster chất lượng cao!");
+            window.print();
+        }
+
+        // PEER REVIEW VOTING
+        function votePeerReview(stationId) {
+            const sub = groupSubmissions[stationId];
+            if (!sub) return;
+            sub.voteCount = (sub.voteCount || 0) + 1;
+            renderPosterGallery();
+            alert(`⭐ Cảm ơn bạn đã bình chọn và phản biện cho ${sub.groupName}! (Tổng lượt bình chọn: ${sub.voteCount})`);
+        }
+
+        // OPEN STATION FROM GALLERY
+        function openStationFromGallery(stationId) {
+            openModule('4-khong-gian');
+            switchStation(stationId);
+        }
+
+        // UPDATE STATION REPORT TAB (MODULE 3 TAB 3)
+        function updateStationReportTab() {
+            const sub = groupSubmissions[currentStationId];
+            if (!sub) return;
+
+            const membersInput = document.getElementById('input-group-members');
+            const noteInput = document.getElementById('input-group-note');
+            const alertBox = document.getElementById('submit-alert-box');
+            const alertMsg = document.getElementById('submit-alert-msg');
+
+            if (membersInput && sub.members && !membersInput.value) {
+                membersInput.value = sub.members;
+            }
+            if (noteInput && sub.hypothesis && !noteInput.value) {
+                noteInput.value = sub.hypothesis;
+            }
+
+            if (alertBox && alertMsg) {
+                if (sub.status === 'approved') {
+                    alertBox.className = "p-3.5 rounded-xl text-xs font-semibold bg-emerald-700 text-white flex flex-col gap-1.5 shadow-md block";
+                    alertMsg.innerHTML = `
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check text-emerald-200 text-base"></i>
+                            <span><strong>Giáo viên đã phê duyệt!</strong> Đạt điểm: <strong>${sub.teacherScore}/100đ</strong></span>
+                        </div>
+                        <div class="text-[11px] text-emerald-100 pl-6 italic">
+                            "${sub.teacherFeedback}"
+                        </div>
+                        <div class="mt-1 pl-6 flex gap-2">
+                            <button onclick="openPresentationPoster(${currentStationId})" class="bg-white hover:bg-emerald-50 text-emerald-950 px-3 py-1 rounded-lg font-bold text-[11px] shadow-2xs transition cursor-pointer">
+                                🎙️ Mở E-Poster Thuyết Trình Của Nhóm ➔
+                            </button>
+                            <button onclick="openModule('trien-lam-poster')" class="bg-emerald-800 hover:bg-emerald-900 text-white px-2.5 py-1 rounded-lg font-medium text-[11px] transition cursor-pointer">
+                                Xem Sảnh Triển Lãm
+                            </button>
+                        </div>
+                    `;
+                } else if (sub.status === 'pending_review') {
+                    alertBox.className = "p-3.5 rounded-xl text-xs font-semibold bg-amber-500 text-white flex flex-col gap-1.5 shadow-md block";
+                    alertMsg.innerHTML = `
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-clock text-amber-100 text-base"></i>
+                            <span><strong>Đã nộp bài lúc ${sub.submittedAt}!</strong> Hồ sơ đang chờ Cô Thúy phê duyệt.</span>
+                        </div>
+                        <div class="text-[11px] text-amber-100 pl-6">
+                            Poster thuyết trình sẽ tự động mở khóa tại Phần 4 ngay khi được Cô Thúy duyệt.
+                            <button onclick="openModule('trien-lam-poster')" class="underline font-bold text-white ml-1 hover:text-amber-200 cursor-pointer">Xem Cổng Phê Duyệt ➔</button>
+                        </div>
+                    `;
+                } else if (sub.status === 'needs_revision') {
+                    alertBox.className = "p-3.5 rounded-xl text-xs font-semibold bg-rose-600 text-white flex flex-col gap-1.5 shadow-md block";
+                    alertMsg.innerHTML = `
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-triangle-exclamation text-rose-200 text-base"></i>
+                            <span><strong>Cô Thúy yêu cầu chỉnh sửa:</strong></span>
+                        </div>
+                        <div class="text-[11px] text-rose-100 pl-6 italic">
+                            "${sub.teacherFeedback}"
+                        </div>
+                    `;
+                } else {
+                    alertBox.classList.add('hidden');
+                }
+            }
         }
 
         function downloadResourcePack() {
@@ -3985,6 +4858,8 @@
             // updated simulation
             initChart();
             renderQuiz();
+            if (typeof renderPosterGallery === 'function') renderPosterGallery();
+            if (typeof updateStationReportTab === 'function') updateStationReportTab();
         });
     </script>
 </body>
