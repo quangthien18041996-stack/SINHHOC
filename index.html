@@ -314,6 +314,35 @@
                 visibility: visible !important;
             }
         }
+
+        /* --- PLANT DIALOGUE ANIMATIONS --- */
+        @keyframes plant-sweat-shiver {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            20% { transform: translateY(-3px) rotate(1.2deg); }
+            40% { transform: translateY(1.5px) rotate(-1deg); }
+            60% { transform: translateY(-1.5px) rotate(1deg); }
+            80% { transform: translateY(2px) rotate(-0.8deg); }
+        }
+        .anim-plant-sweat {
+            animation: plant-sweat-shiver 2.2s ease-in-out infinite;
+        }
+
+        @keyframes plant-sleep-droop {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(4px) scale(0.985); }
+        }
+        .anim-plant-droop {
+            animation: plant-sleep-droop 3.6s ease-in-out infinite;
+        }
+
+        @keyframes dialog-bounce {
+            0% { transform: scale(0.96); opacity: 0.8; }
+            50% { transform: scale(1.01); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .anim-dialog-pop {
+            animation: dialog-bounce 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
     </style>
 
 </head>
@@ -477,6 +506,147 @@
                             </p>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- ========================================================== -->
+            <!-- KHỞI ĐỘNG KHOA HỌC: CUỘC ĐỐI THOẠI CỦA HAI BẠN CÂY (STORY HOOK) -->
+            <!-- ========================================================== -->
+            <div class="mt-12 bg-white text-stone-800 rounded-3xl p-6 sm:p-8 shadow-2xl border-2 border-emerald-500/40 relative overflow-hidden">
+                <!-- Top Badge & Header -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-stone-200">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 text-xs font-bold font-mono uppercase tracking-wider">
+                            <span>🌱 KHỞI ĐỘNG BÀI HỌC • TÌNH HUỐNG THỰC TIỄN</span>
+                        </div>
+                        <h2 class="text-xl sm:text-2xl font-serif font-bold text-stone-900 mt-2 flex items-center gap-2">
+                            <span>Câu Chuyện Của Hai Bạn Cây: "Sao Bạn Lại Buồn?"</span>
+                            <span class="text-2xl animate-bounce">🤔</span>
+                        </h2>
+                        <p class="text-xs text-stone-600 mt-1">
+                            Lắng nghe cuộc đối thoại giữa <strong>Bạn Cây Sân Thượng</strong> (thừa nắng cháy lá) và <strong>Bạn Cây Phòng Khách</strong> (thiếu sáng đói lả) để tìm ra câu hỏi nghiên cứu trọng tâm!
+                        </p>
+                    </div>
+
+                    <!-- Voice Audio & Play Controls -->
+                    <div class="flex items-center gap-2 shrink-0">
+                        <button type="button" id="btn-toggle-tts" onclick="togglePlantTTS()" class="px-3 py-1.5 rounded-xl border border-stone-300 text-stone-700 hover:bg-stone-50 text-xs font-semibold flex items-center gap-1.5 transition shadow-2xs cursor-pointer">
+                            <i id="tts-icon" class="fa-solid fa-volume-high text-emerald-600"></i>
+                            <span id="tts-label">Giọng đọc: BẬT</span>
+                        </button>
+                        <button type="button" onclick="togglePlantDialogAutoplay()" id="btn-dialog-autoplay" class="px-3.5 py-1.5 rounded-xl bg-[#1b3a2b] hover:bg-[#142e22] text-white text-xs font-bold flex items-center gap-1.5 transition shadow-2xs cursor-pointer border border-[#2e5d42]">
+                            <i id="icon-autoplay" class="fa-solid fa-play text-amber-300"></i>
+                            <span id="label-autoplay">Tự động nói</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Simulation Main Stage: 2 Plant Avatars + Speech Bubble -->
+                <div class="my-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                    
+                    <!-- Left Character: Bé Lan Ý Sân Thượng -->
+                    <div id="card-plant-sun" class="lg:col-span-3 bg-amber-50/70 border-2 border-amber-300/90 rounded-2xl p-4 text-center transition-all duration-300 hover:shadow-md relative overflow-hidden">
+                        <div class="absolute top-2 left-2 bg-amber-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-2xs">
+                            ☀️ Sân Thượng Nắng Gắt
+                        </div>
+                        <div class="w-36 h-36 mx-auto relative mt-4 flex items-center justify-center">
+                            <img src="images/cay_san_thuong.png" id="img-plant-sun" alt="Bé Lan Ý Sân Thượng" class="max-w-full max-h-full object-contain filter drop-shadow-md anim-plant-sweat transition-transform duration-300">
+                        </div>
+                        <h4 class="font-serif font-bold text-stone-900 text-sm mt-2">Bé Lan Ý (Ưa Bóng)</h4>
+                        <div class="text-[10px] text-amber-950 font-semibold bg-amber-200/70 rounded-md py-0.5 px-2 mt-1 inline-block">
+                            "Nóng rát phiến lá quá!"
+                        </div>
+                        <!-- Live Telemetry Tag -->
+                        <div class="mt-3 pt-2.5 border-t border-amber-200 text-left text-[11px] space-y-1 text-stone-600 font-mono">
+                            <div class="flex justify-between"><span>Ánh sáng:</span><strong class="text-rose-600 font-bold">48.000 Lux ⚠️</strong></div>
+                            <div class="flex justify-between"><span>Nhiệt độ:</span><strong class="text-rose-600 font-bold">39.0°C ⚠️</strong></div>
+                            <div class="flex justify-between"><span>Tưới nước:</span><strong class="text-emerald-700 font-bold">Đầy đủ (100%)</strong></div>
+                        </div>
+                    </div>
+
+                    <!-- Center: Interactive Speech Bubble & Storyteller -->
+                    <div class="lg:col-span-6 flex flex-col justify-between h-full space-y-4">
+                        <!-- Comic Speech Bubble -->
+                        <div id="plant-dialog-bubble" class="bg-[#fcfdfa] border-2 border-amber-400 rounded-3xl p-5 sm:p-6 shadow-xl relative min-h-[190px] flex flex-col justify-between transition-all duration-300 ring-4 ring-amber-100">
+                            <!-- Speaker Tag Header -->
+                            <div class="flex items-center justify-between pb-2 border-b border-stone-200">
+                                <div id="dialog-speaker-badge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold font-sans bg-amber-100 text-amber-900 border border-amber-300">
+                                    <span>☀️ Bé Lan Ý than thở:</span>
+                                </div>
+                                <span id="dialog-step-indicator" class="text-[11px] font-mono text-stone-400 font-bold">
+                                    1 / 6
+                                </span>
+                            </div>
+
+                            <!-- Dialog Content Text -->
+                            <p id="dialog-text" class="text-stone-800 text-sm sm:text-base leading-relaxed font-serif my-3 italic anim-dialog-pop">
+                                "Nóng quá bạn Bàng ơi! Nắng rọi trên đầu tớ tới 48.000 Lux rát hết cả phiến lá, mép lá bị cháy xém khô giòn rồi... Dù sáng nào tớ cũng được bạn nhỏ tưới một gáo nước đầy! Huhu..."
+                            </p>
+
+                            <!-- Bottom Bubble Navigation -->
+                            <div class="flex items-center justify-between pt-2 border-t border-stone-100 text-xs">
+                                <button type="button" onclick="prevPlantDialogTurn()" id="btn-dialog-prev" class="text-stone-400 hover:text-stone-700 font-semibold flex items-center gap-1 transition cursor-pointer disabled:opacity-30">
+                                    <i class="fa-solid fa-chevron-left text-[10px]"></i> Quay lại
+                                </button>
+                                <div class="flex items-center gap-1.5" id="dialog-dots">
+                                    <!-- Dynamic dots -->
+                                </div>
+                                <button type="button" onclick="nextPlantDialogTurn()" id="btn-dialog-next" class="bg-[#1b3a2b] hover:bg-[#142e22] text-white px-3.5 py-1.5 rounded-lg font-bold flex items-center gap-1.5 transition shadow-2xs cursor-pointer border border-[#2e5d42]">
+                                    <span>Tiếp theo</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Environmental Swap Button (Hands-on exploration) -->
+                        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-xs">
+                            <div class="flex items-center gap-2 text-emerald-950 font-medium">
+                                <span class="text-xl">🔄</span>
+                                <span>Thử nghiệm nhanh: <strong>Hoán đổi vị trí</strong> của 2 chậu cây!</span>
+                            </div>
+                            <button type="button" onclick="toggleSwapPlantPositions()" id="btn-swap-plants" class="px-3.5 py-1.5 rounded-xl bg-white hover:bg-emerald-100 border border-emerald-300 text-emerald-900 font-bold transition shadow-2xs shrink-0 cursor-pointer flex items-center gap-1.5">
+                                <i class="fa-solid fa-arrows-rotate text-emerald-600"></i>
+                                <span id="label-swap">Thử Hoán Đổi Vị Trí</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right Character: Bé Bàng Singapore Phòng Khách -->
+                    <div id="card-plant-shade" class="lg:col-span-3 bg-sky-50/70 border-2 border-sky-300/90 rounded-2xl p-4 text-center transition-all duration-300 hover:shadow-md relative overflow-hidden">
+                        <div class="absolute top-2 right-2 bg-sky-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-2xs">
+                            🌑 Phòng Khách Tối Mờ
+                        </div>
+                        <div class="w-36 h-36 mx-auto relative mt-4 flex items-center justify-center">
+                            <img src="images/cay_phong_khach.png" id="img-plant-shade" alt="Bé Bàng Singapore Phòng Khách" class="max-w-full max-h-full object-contain filter drop-shadow-md anim-plant-droop transition-transform duration-300">
+                        </div>
+                        <h4 class="font-serif font-bold text-stone-900 text-sm mt-2">Bé Bàng Cảnh (Ưa Sáng)</h4>
+                        <div class="text-[10px] text-sky-950 font-semibold bg-sky-200/70 rounded-md py-0.5 px-2 mt-1 inline-block">
+                            "Tối mờ, đói lả cả người!"
+                        </div>
+                        <!-- Live Telemetry Tag -->
+                        <div class="mt-3 pt-2.5 border-t border-sky-200 text-left text-[11px] space-y-1 text-stone-600 font-mono">
+                            <div class="flex justify-between"><span>Ánh sáng:</span><strong class="text-sky-700 font-bold">650 Lux ⚠️</strong></div>
+                            <div class="flex justify-between"><span>Nhiệt độ:</span><strong class="text-emerald-700 font-bold">25.0°C (Mát)</strong></div>
+                            <div class="flex justify-between"><span>Tưới nước:</span><strong class="text-emerald-700 font-bold">Đầy đủ (100%)</strong></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Call to action button at the end of dialog -->
+                <div id="box-story-cta" class="mt-2 p-4 rounded-2xl bg-gradient-to-r from-[#1b3a2b] to-emerald-800 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md border border-emerald-600/40">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center text-xl shrink-0">
+                            🚀
+                        </div>
+                        <div>
+                            <h4 class="font-serif font-bold text-sm sm:text-base">Nhiệm Vụ Học Tập Trọng Tâm: Giải Cứu Cây Xanh!</h4>
+                            <p class="text-xs text-emerald-100">Cùng vào Phòng Thí Nghiệm Số để điều tra ngưỡng tối ưu của Ánh Sáng, Nước, CO₂ và Nhiệt Độ.</p>
+                        </div>
+                    </div>
+                    <button type="button" onclick="openModule('thi-nghiem-ao')" class="px-5 py-2.5 rounded-xl bg-white hover:bg-emerald-50 text-emerald-950 font-bold text-xs sm:text-sm transition shadow-lg shrink-0 flex items-center gap-2 cursor-pointer">
+                        <i class="fa-solid fa-flask-vial text-emerald-600"></i>
+                        <span>Vào Phòng Thí Nghiệm Số Ngay ➔</span>
+                    </button>
                 </div>
             </div>
 
@@ -1453,6 +1623,325 @@
 
     <!-- INTERACTIVE JAVASCRIPT LOGIC -->
     <script>
+        // ==========================================================
+        // 0. DIALOG SIMULATION: HAI BẠN CÂY NÓI CHUYỆN (MODULE 1 HOOK)
+        // ==========================================================
+        const plantDialogTurns = [
+            {
+                speaker: "sun",
+                name: "☀️ Bé Lan Ý (Sân Thượng Nắng Gắt)",
+                badgeClass: "bg-amber-100 text-amber-900 border border-amber-300",
+                text: "“Nóng quá bạn Bàng ơi! Nắng rọi trên đầu tớ tới 48.000 Lux rát hết cả phiến lá, mép lá bị cháy xém khô giòn rồi... Dù sáng nào tớ cũng được bạn nhỏ tưới một gáo nước đầy! Huhu...”",
+                bubbleBorder: "border-amber-400 ring-4 ring-amber-100",
+                activePlant: "sun"
+            },
+            {
+                speaker: "shade",
+                name: "🌑 Bé Bàng Cảnh (Phòng Khách Tối Mờ)",
+                badgeClass: "bg-sky-100 text-sky-900 border border-sky-300",
+                text: "“Ôi cậu còn sướng hơn tớ đấy Lan Ý à! Tớ bị để trong góc tối phòng khách, ánh sáng chỉ có vỏn vẹn 650 Lux... Đói lả cả người, chẳng có photon ánh sáng nào để quang hợp nấu tinh bột cả!”",
+                bubbleBorder: "border-sky-400 ring-4 ring-sky-100",
+                activePlant: "shade"
+            },
+            {
+                speaker: "sun",
+                name: "☀️ Bé Lan Ý (Sân Thượng)",
+                badgeClass: "bg-amber-100 text-amber-900 border border-amber-300",
+                text: "“Ủa kì lạ vậy? Rõ ràng trong sách cô giáo Mai Thuý Đức dạy: 'Cây xanh cần ánh sáng và nước để quang hợp'. Tớ thừa nắng thừa nước sao vẫn bị cháy héo? Cậu có nước sao vẫn đói meo?”",
+                bubbleBorder: "border-amber-400 ring-4 ring-amber-100",
+                activePlant: "sun"
+            },
+            {
+                speaker: "shade",
+                name: "🌑 Bé Bàng Cảnh",
+                badgeClass: "bg-sky-100 text-sky-900 border border-sky-300",
+                text: "“Đúng đấy! Hình như tớ là cây ưa sáng phiến lá dày, cần nhiều nắng; còn cậu là cây ưa bóng phiến lá mỏng, chỉ thích ánh sáng dịu mát thôi! Lại còn nhiệt độ nữa, trên 40°C thì các chú thợ enzyme quang hợp bị đình công hết!”",
+                bubbleBorder: "border-sky-400 ring-4 ring-sky-100",
+                activePlant: "shade"
+            },
+            {
+                speaker: "sun",
+                name: "☀️ Bé Lan Ý",
+                badgeClass: "bg-amber-100 text-amber-900 border border-amber-300",
+                text: "“Thế thì rốt cuộc cây xanh chúng mình cần Ánh Sáng, Nước, Khí CO₂ và Nhiệt Độ ở ngưỡng bao nhiêu thì mới tươi cười quang hợp đạt đỉnh 100 điểm nhỉ?”",
+                bubbleBorder: "border-amber-400 ring-4 ring-amber-100",
+                activePlant: "sun"
+            },
+            {
+                speaker: "both",
+                name: "🌿 Cả Hai Bạn Cây Đồng Thanh:",
+                badgeClass: "bg-emerald-100 text-emerald-900 border border-emerald-300 animate-pulse",
+                text: "“Các bạn học sinh lớp 7 ơi! Hãy cùng bấm nút [Vào Phòng Thí Nghiệm Số] ngay bên dưới để điều tra các biến số và giải cứu tụi mình nhé! 🚀🔬”",
+                bubbleBorder: "border-emerald-500 ring-4 ring-emerald-100 shadow-emerald-200",
+                activePlant: "both"
+            }
+        ];
+
+        let currentDialogTurnIndex = 0;
+        let isDialogAutoplay = false;
+        let dialogAutoplayTimer = null;
+        let isTTSActive = true;
+        let isPlantsSwapped = false;
+
+        function updatePlantDialogView() {
+            const data = plantDialogTurns[currentDialogTurnIndex];
+            if (!data) return;
+
+            const badge = document.getElementById('dialog-speaker-badge');
+            const textElem = document.getElementById('dialog-text');
+            const bubble = document.getElementById('plant-dialog-bubble');
+            const stepElem = document.getElementById('dialog-step-indicator');
+            const cardSun = document.getElementById('card-plant-sun');
+            const cardShade = document.getElementById('card-plant-shade');
+            const prevBtn = document.getElementById('btn-dialog-prev');
+            const nextBtn = document.getElementById('btn-dialog-next');
+
+            if (badge) {
+                badge.className = `inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold font-sans ${data.badgeClass}`;
+                badge.innerHTML = `<span>${data.name}</span>`;
+            }
+
+            if (textElem) {
+                textElem.innerText = data.text;
+                textElem.classList.remove('anim-dialog-pop');
+                void textElem.offsetWidth;
+                textElem.classList.add('anim-dialog-pop');
+            }
+
+            if (bubble) {
+                bubble.className = `bg-[#fcfdfa] border-2 rounded-3xl p-5 sm:p-6 shadow-xl relative min-h-[190px] flex flex-col justify-between transition-all duration-300 ${data.bubbleBorder}`;
+            }
+
+            if (stepElem) {
+                stepElem.innerText = `${currentDialogTurnIndex + 1} / ${plantDialogTurns.length}`;
+            }
+
+            // Visual highlighting of speaking character
+            if (cardSun && cardShade) {
+                if (data.activePlant === 'sun') {
+                    cardSun.classList.add('scale-105', 'ring-4', 'ring-amber-300', 'shadow-lg');
+                    cardSun.classList.remove('opacity-75');
+                    cardShade.classList.remove('scale-105', 'ring-4', 'ring-sky-300', 'shadow-lg');
+                    cardShade.classList.add('opacity-75');
+                } else if (data.activePlant === 'shade') {
+                    cardShade.classList.add('scale-105', 'ring-4', 'ring-sky-300', 'shadow-lg');
+                    cardShade.classList.remove('opacity-75');
+                    cardSun.classList.remove('scale-105', 'ring-4', 'ring-amber-300', 'shadow-lg');
+                    cardSun.classList.add('opacity-75');
+                } else {
+                    cardSun.classList.add('scale-105', 'ring-4', 'ring-emerald-400', 'shadow-lg');
+                    cardShade.classList.add('scale-105', 'ring-4', 'ring-emerald-400', 'shadow-lg');
+                    cardSun.classList.remove('opacity-75');
+                    cardShade.classList.remove('opacity-75');
+                }
+            }
+
+            // Prev / Next button states
+            if (prevBtn) prevBtn.disabled = (currentDialogTurnIndex === 0);
+            if (nextBtn) {
+                if (currentDialogTurnIndex === plantDialogTurns.length - 1) {
+                    nextBtn.innerHTML = `<span>Bắt đầu lại</span> <i class="fa-solid fa-arrow-rotate-left text-[10px]"></i>`;
+                } else {
+                    nextBtn.innerHTML = `<span>Tiếp theo</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>`;
+                }
+            }
+
+            // Dots indicator
+            renderDialogDots();
+
+            // Sound effect & Web Speech TTS
+            if (typeof playGardenSound === 'function') {
+                playGardenSound('breeze');
+            }
+
+            if (isTTSActive && 'speechSynthesis' in window) {
+                speakPlantDialog(data.text);
+            }
+        }
+
+        function speakPlantDialog(rawText) {
+            try {
+                if (!window.speechSynthesis) return;
+                window.speechSynthesis.cancel();
+                const clean = rawText.replace(/[“”…!?:()]/g, ' ').replace(/\s+/g, ' ');
+                const utterance = new SpeechSynthesisUtterance(clean);
+                utterance.lang = 'vi-VN';
+                utterance.rate = 1.05;
+                const turn = plantDialogTurns[currentDialogTurnIndex];
+                utterance.pitch = (turn && turn.speaker === 'sun') ? 1.25 : 0.95;
+                window.speechSynthesis.speak(utterance);
+            } catch (e) {
+                console.log('Speech synthesis note:', e);
+            }
+        }
+
+        function togglePlantTTS() {
+            isTTSActive = !isTTSActive;
+            const icon = document.getElementById('tts-icon');
+            const label = document.getElementById('tts-label');
+            if (isTTSActive) {
+                if (icon) icon.className = "fa-solid fa-volume-high text-emerald-600";
+                if (label) label.innerText = "Giọng đọc: BẬT";
+                speakPlantDialog(plantDialogTurns[currentDialogTurnIndex].text);
+            } else {
+                if (icon) icon.className = "fa-solid fa-volume-xmark text-stone-400";
+                if (label) label.innerText = "Giọng đọc: TẮT";
+                if (window.speechSynthesis) window.speechSynthesis.cancel();
+            }
+        }
+
+        function renderDialogDots() {
+            const container = document.getElementById('dialog-dots');
+            if (!container) return;
+            container.innerHTML = '';
+            for (let i = 0; i < plantDialogTurns.length; i++) {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.onclick = () => { currentDialogTurnIndex = i; updatePlantDialogView(); };
+                dot.className = `w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${i === currentDialogTurnIndex ? 'bg-emerald-600 w-5' : 'bg-stone-300 hover:bg-stone-400'}`;
+                container.appendChild(dot);
+            }
+        }
+
+        function nextPlantDialogTurn() {
+            if (currentDialogTurnIndex < plantDialogTurns.length - 1) {
+                currentDialogTurnIndex++;
+            } else {
+                currentDialogTurnIndex = 0;
+            }
+            updatePlantDialogView();
+        }
+
+        function prevPlantDialogTurn() {
+            if (currentDialogTurnIndex > 0) {
+                currentDialogTurnIndex--;
+                updatePlantDialogView();
+            }
+        }
+
+        function togglePlantDialogAutoplay() {
+            isDialogAutoplay = !isDialogAutoplay;
+            const icon = document.getElementById('icon-autoplay');
+            const label = document.getElementById('label-autoplay');
+
+            if (isDialogAutoplay) {
+                if (icon) icon.className = "fa-solid fa-pause text-amber-300";
+                if (label) label.innerText = "Tạm dừng";
+                runDialogAutoplayLoop();
+            } else {
+                if (icon) icon.className = "fa-solid fa-play text-amber-300";
+                if (label) label.innerText = "Tự động nói";
+                if (dialogAutoplayTimer) clearTimeout(dialogAutoplayTimer);
+            }
+        }
+
+        function runDialogAutoplayLoop() {
+            if (!isDialogAutoplay) return;
+            dialogAutoplayTimer = setTimeout(() => {
+                if (!isDialogAutoplay) return;
+                if (currentDialogTurnIndex < plantDialogTurns.length - 1) {
+                    currentDialogTurnIndex++;
+                    updatePlantDialogView();
+                    runDialogAutoplayLoop();
+                } else {
+                    togglePlantDialogAutoplay();
+                }
+            }, 6500);
+        }
+
+        function toggleSwapPlantPositions() {
+            isPlantsSwapped = !isPlantsSwapped;
+            const cardSun = document.getElementById('card-plant-sun');
+            const cardShade = document.getElementById('card-plant-shade');
+            const labelSwap = document.getElementById('label-swap');
+            const textElem = document.getElementById('dialog-text');
+            const badge = document.getElementById('dialog-speaker-badge');
+
+            if (typeof playGardenSound === 'function') playGardenSound('water');
+
+            if (isPlantsSwapped) {
+                if (labelSwap) labelSwap.innerText = "Khôi phục vị trí cũ";
+                if (cardSun) {
+                    cardSun.className = "lg:col-span-3 bg-emerald-50/90 border-2 border-emerald-400 rounded-2xl p-4 text-center transition-all duration-500 shadow-md";
+                    cardSun.querySelector('h4').innerText = "Bé Lan Ý (Đã vào mát!)";
+                    const tag1 = cardSun.querySelector('.text-\\[10px\\]');
+                    if (tag1) {
+                        tag1.innerText = "✨ 'Mát mẻ quá, hết cháy lá rồi!'";
+                        tag1.className = "text-[10px] text-emerald-900 font-bold bg-emerald-200 rounded-md py-0.5 px-2 mt-1 inline-block";
+                    }
+                    const mono1 = cardSun.querySelector('.font-mono');
+                    if (mono1) {
+                        mono1.innerHTML = `
+                            <div class="flex justify-between"><span>Ánh sáng:</span><strong class="text-emerald-700 font-bold">12.000 Lux (Vừa)</strong></div>
+                            <div class="flex justify-between"><span>Nhiệt độ:</span><strong class="text-emerald-700 font-bold">27.0°C (Mát)</strong></div>
+                            <div class="flex justify-between"><span>Quang hợp:</span><strong class="text-emerald-800 font-bold">96% (Cực đại)</strong></div>
+                        `;
+                    }
+                }
+                if (cardShade) {
+                    cardShade.className = "lg:col-span-3 bg-emerald-50/90 border-2 border-emerald-400 rounded-2xl p-4 text-center transition-all duration-500 shadow-md";
+                    cardShade.querySelector('h4').innerText = "Bé Bàng Cảnh (Đã ra sáng!)";
+                    const tag2 = cardShade.querySelector('.text-\\[10px\\]');
+                    if (tag2) {
+                        tag2.innerText = "🎉 'Đủ ánh sáng rồi, tớ no nê!'";
+                        tag2.className = "text-[10px] text-emerald-900 font-bold bg-emerald-200 rounded-md py-0.5 px-2 mt-1 inline-block";
+                    }
+                    const mono2 = cardShade.querySelector('.font-mono');
+                    if (mono2) {
+                        mono2.innerHTML = `
+                            <div class="flex justify-between"><span>Ánh sáng:</span><strong class="text-emerald-700 font-bold">25.000 Lux (Đỉnh)</strong></div>
+                            <div class="flex justify-between"><span>Nhiệt độ:</span><strong class="text-emerald-700 font-bold">29.0°C (Ấm)</strong></div>
+                            <div class="flex justify-between"><span>Quang hợp:</span><strong class="text-emerald-800 font-bold">100% (Đỉnh cao)</strong></div>
+                        `;
+                    }
+                }
+                if (badge) {
+                    badge.className = "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold font-sans bg-emerald-600 text-white";
+                    badge.innerHTML = "<span>🎉 KẾT QUẢ HOÁN ĐỔI KỲ DIỆU:</span>";
+                }
+                if (textElem) {
+                    textElem.innerHTML = "“<strong>Oa tuyệt vời quá!</strong> Khi đổi chỗ: Bé Lan Ý vào chỗ râm mát thì hết bỏng rát lá, còn Bé Bàng Singapore ra chỗ nhiều nắng thì quang hợp đạt 100% đỉnh cao!<br><br><span class='text-emerald-900 font-sans font-bold text-xs'>💡 BÀI HỌC KHOA HỌC: Mỗi loài cây có nhu cầu quang hợp khác nhau (Cây ưa sáng vs Cây ưa bóng). Muốn cây phát triển, phải bố trí đúng vị trí thích nghi!</span>”";
+                }
+            } else {
+                if (labelSwap) labelSwap.innerText = "Thử Hoán Đổi Vị Trí";
+                if (cardSun) {
+                    cardSun.className = "lg:col-span-3 bg-amber-50/70 border-2 border-amber-300/90 rounded-2xl p-4 text-center transition-all duration-500";
+                    cardSun.querySelector('h4').innerText = "Bé Lan Ý (Ưa Bóng)";
+                    const tag1 = cardSun.querySelector('.text-\\[10px\\]');
+                    if (tag1) {
+                        tag1.innerText = "\"Nóng rát phiến lá quá!\"";
+                        tag1.className = "text-[10px] text-amber-950 font-semibold bg-amber-200/70 rounded-md py-0.5 px-2 mt-1 inline-block";
+                    }
+                    const mono1 = cardSun.querySelector('.font-mono');
+                    if (mono1) {
+                        mono1.innerHTML = `
+                            <div class="flex justify-between"><span>Ánh sáng:</span><strong class="text-rose-600 font-bold">48.000 Lux ⚠️</strong></div>
+                            <div class="flex justify-between"><span>Nhiệt độ:</span><strong class="text-rose-600 font-bold">39.0°C ⚠️</strong></div>
+                            <div class="flex justify-between"><span>Tưới nước:</span><strong class="text-emerald-700 font-bold">Đầy đủ (100%)</strong></div>
+                        `;
+                    }
+                }
+                if (cardShade) {
+                    cardShade.className = "lg:col-span-3 bg-sky-50/70 border-2 border-sky-300/90 rounded-2xl p-4 text-center transition-all duration-500";
+                    cardShade.querySelector('h4').innerText = "Bé Bàng Cảnh (Ưa Sáng)";
+                    const tag2 = cardShade.querySelector('.text-\\[10px\\]');
+                    if (tag2) {
+                        tag2.innerText = "\"Tối mờ, đói lả cả người!\"";
+                        tag2.className = "text-[10px] text-sky-950 font-semibold bg-sky-200/70 rounded-md py-0.5 px-2 mt-1 inline-block";
+                    }
+                    const mono2 = cardShade.querySelector('.font-mono');
+                    if (mono2) {
+                        mono2.innerHTML = `
+                            <div class="flex justify-between"><span>Ánh sáng:</span><strong class="text-sky-700 font-bold">650 Lux ⚠️</strong></div>
+                            <div class="flex justify-between"><span>Nhiệt độ:</span><strong class="text-emerald-700 font-bold">25.0°C (Mát)</strong></div>
+                            <div class="flex justify-between"><span>Tưới nước:</span><strong class="text-emerald-700 font-bold">Đầy đủ (100%)</strong></div>
+                        `;
+                    }
+                }
+                updatePlantDialogView();
+            }
+        }
+
         // 1. SIMULATION STATE & LOGIC
         const state = {
             light: 25000,     // 0 - 60000 Lux
@@ -4873,6 +5362,7 @@
             // updated simulation
             initChart();
             renderQuiz();
+            if (typeof updatePlantDialogView === 'function') updatePlantDialogView();
             if (typeof renderPosterGallery === 'function') renderPosterGallery();
             if (typeof updateStationReportTab === 'function') updateStationReportTab();
         });
