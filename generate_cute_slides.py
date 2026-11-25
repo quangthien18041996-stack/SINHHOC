@@ -369,88 +369,94 @@ def create_cute_deck():
 
     # 2 Comparison Cards (Pastel Rose vs Pastel Sky)
     c_left = create_card(s4, 0.8, 1.7, 5.7, 3.8, bg_color=C_WHITE, border_color=BORDER_ROSE, border_width=1.5)
-    tb = s4.shapes.add_textbox(Inches(1.0), Inches(1.85), Inches(5.3), Inches(3.5))
+    if os.path.exists("images/cay_san_thuong.png"):
+        s4.shapes.add_picture("images/cay_san_thuong.png", Inches(5.1), Inches(1.8), Inches(1.25), Inches(1.25))
+
+    tb = s4.shapes.add_textbox(Inches(0.95), Inches(1.8), Inches(4.1), Inches(3.5))
     tf = tb.text_frame
     tf.word_wrap = True
     p = tf.paragraphs[0]
     r = p.add_run()
-    r.text = "☀️ BẠN CÂY SÂN THƯỢNG: \"NÓNG QUÁ, TỚ CHÁY LÁ MẤT THÔI!\""
+    r.text = "☀️ BÉ LAN Ý (SÂN THƯỢNG):\n\"NÓNG QUÁ, TỚ CHÁY LÁ RỒI!\""
     r.font.bold = True
-    r.font.size = Pt(11.5)
+    r.font.size = Pt(11)
     r.font.color.rgb = T_ROSE
 
     p = tf.add_paragraph()
-    p.space_before = Pt(8)
+    p.space_before = Pt(6)
     r = p.add_run()
     r.text = "• Tình cảnh: "
     r.font.bold = True
-    r.font.size = Pt(10.5)
+    r.font.size = Pt(10)
     r.font.color.rgb = T_BODY
     r2 = p.add_run()
-    r2.text = "Giữa trưa hè nắng chang chang (>45.000 Lux, 38°C), dù sáng nào bạn nhỏ cũng tưới nước đẫm chậu, nhưng mép lá của bạn cây cứ vàng xém rồi cháy khô giòn rụm!"
-    r2.font.size = Pt(10)
+    r2.text = "Nắng gắt 48.000 Lux, 39°C. Sáng nào cũng được tưới 100% đẫm nước nhưng mép lá cứ vàng xém khô giòn!"
+    r2.font.size = Pt(9.5)
 
     p2 = tf.add_paragraph()
-    p2.space_before = Pt(8)
+    p2.space_before = Pt(6)
     r = p2.add_run()
-    r.text = "• Nghịch lý đáng yêu: "
+    r.text = "• Nghịch lý: "
     r.font.bold = True
-    r.font.size = Pt(10.5)
+    r.font.size = Pt(10)
     r.font.color.rgb = T_ROSE
     r2 = p2.add_run()
-    r2.text = "Quang hợp thì cần ánh sáng mặt trời, tại sao nhiều nắng quá cây lại bị 'cháy nắng' thế nhỉ?"
-    r2.font.size = Pt(10)
+    r2.text = "Quang hợp cần nắng và nước, vì sao thừa cả hai mà cây vẫn bị cháy lá?"
+    r2.font.size = Pt(9.5)
 
     c_right = create_card(s4, 6.8, 1.7, 5.7, 3.8, bg_color=C_WHITE, border_color=BORDER_SKY, border_width=1.5)
-    tb = s4.shapes.add_textbox(Inches(7.0), Inches(1.85), Inches(5.3), Inches(3.5))
+    if os.path.exists("images/cay_phong_khach.png"):
+        s4.shapes.add_picture("images/cay_phong_khach.png", Inches(11.1), Inches(1.8), Inches(1.25), Inches(1.25))
+
+    tb = s4.shapes.add_textbox(Inches(6.95), Inches(1.8), Inches(4.1), Inches(3.5))
     tf = tb.text_frame
     tf.word_wrap = True
     p = tf.paragraphs[0]
     r = p.add_run()
-    r.text = "🌑 BẠN CÂY PHÒNG KHÁCH: \"TỐI QUÁ, TỚ ĐÓI LẢ ĐI MẤT!\""
+    r.text = "🌑 BÉ BÀNG CẢNH (PHÒNG KHÁCH):\n\"TỐI QUÁ, TỚ ĐÓI LẢ ĐI MẤT!\""
     r.font.bold = True
-    r.font.size = Pt(11.5)
+    r.font.size = Pt(11)
     r.font.color.rgb = T_BLUE
 
     p = tf.add_paragraph()
-    p.space_before = Pt(8)
+    p.space_before = Pt(6)
     r = p.add_run()
     r.text = "• Tình cảnh: "
     r.font.bold = True
-    r.font.size = Pt(10.5)
+    r.font.size = Pt(10)
     r.font.color.rgb = T_BODY
     r2 = p.add_run()
-    r2.text = "Được mang vào đặt ở góc sảnh tối kín gió trong nhà, dù đất luôn ẩm ướt và mát mẻ nhưng lá cây cứ nhạt màu dần rồi rụng lả tả từng chiếc một."
-    r2.font.size = Pt(10)
+    r2.text = "Đặt góc sảnh tối 650 Lux, 25°C. Đất luôn ẩm mát nhưng lá nhạt màu dần rồi rụng lả tả vì đói năng lượng!"
+    r2.font.size = Pt(9.5)
 
     p2 = tf.add_paragraph()
-    p2.space_before = Pt(8)
+    p2.space_before = Pt(6)
     r = p2.add_run()
-    r.text = "• Nghịch lý đáng yêu: "
+    r.text = "• Nghịch lý: "
     r.font.bold = True
-    r.font.size = Pt(10.5)
+    r.font.size = Pt(10)
     r.font.color.rgb = T_BLUE
     r2 = p2.add_run()
-    r2.text = "Được uống nước no nê mà không có nắng thì cây có tự nấu thức ăn (quang hợp) được không?"
-    r2.font.size = Pt(10)
+    r2.text = "Uống nước no nê mà không có ánh sáng thì cây có quang hợp tạo tinh bột được không?"
+    r2.font.size = Pt(9.5)
 
-    # Bottom Question Plate (Cute pill)
-    c_bot = create_card(s4, 0.8, 5.7, 11.7, 1.2, bg_color=C_PILL_MINT, border_color=BORDER_MINT, border_width=1.5)
-    tb = s4.shapes.add_textbox(Inches(1.0), Inches(5.78), Inches(11.3), Inches(1.0))
+    # Bottom Question Plate (Cute pill with web link)
+    c_bot = create_card(s4, 0.8, 5.7, 11.7, 1.25, bg_color=C_PILL_MINT, border_color=BORDER_MINT, border_width=1.5)
+    tb = s4.shapes.add_textbox(Inches(1.0), Inches(5.75), Inches(11.3), Inches(1.15))
     tf = tb.text_frame
     tf.word_wrap = True
     p = tf.paragraphs[0]
     r = p.add_run()
-    r.text = "💡 CÂU HỎI THÁM HIỂM HÔM NAY DÀNH CHO CẢ LỚP:"
+    r.text = "💡 TRẢI NGHIỆM TƯƠNG TÁC SỐ TRÊN WEB: https://sinhhoc-amber.vercel.app/"
     r.font.bold = True
-    r.font.size = Pt(11.5)
+    r.font.size = Pt(10.5)
     r.font.color.rgb = T_PRIMARY
     p2 = tf.add_paragraph()
-    p2.space_before = Pt(3)
+    p2.space_before = Pt(2)
     r = p2.add_run()
-    r.text = "Cây xanh cần Nắng ☀️, Nước 💧, Khí CO₂ ☁️ và Nhiệt độ 🌡️ ở mức 'vừa vặn' như thế nào để luôn xanh tươi và vui vẻ quang hợp?"
+    r.text = "👉 Bấm nút [🔄 Thử Hoán Đổi Vị Trí] trên web để xem phép màu! Cây cần Nắng ☀️, Nước 💧, Khí CO₂ ☁️ và Nhiệt độ 🌡️ ở ngưỡng bao nhiêu thì tối ưu?"
     r.font.bold = True
-    r.font.size = Pt(11.5)
+    r.font.size = Pt(10.5)
     r.font.color.rgb = T_GREEN
 
     # ==========================================================
