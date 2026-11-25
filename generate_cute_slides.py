@@ -199,13 +199,13 @@ def create_cute_deck():
     p_web = tf.add_paragraph()
     p_web.space_before = Pt(4)
     r = p_web.add_run()
-    r.text = "🌐 Nền tảng học tập số tương tác: "
-    r.font.size = Pt(11)
+    r.text = "📞 SĐT: 0975515659  •  ✉️ Email: maithuyduc36@gmail.com  •  🌐 Học liệu số: "
+    r.font.size = Pt(10.5)
     r.font.color.rgb = T_BODY
     r_link = p_web.add_run()
     r_link.text = "https://sinhhoc-amber.vercel.app/"
     r_link.font.bold = True
-    r_link.font.size = Pt(11)
+    r_link.font.size = Pt(10.5)
     r_link.font.color.rgb = T_GREEN
 
     # ==========================================================
@@ -1129,21 +1129,21 @@ def create_cute_deck():
     p3.alignment = PP_ALIGN.CENTER
     p3.space_before = Pt(22)
     r3 = p3.add_run()
-    r3.text = "CÔ GIÁO: MAI THUÝ ĐỨC  🌸  TRƯỜNG THCS TÂN TẠO A (QUẬN BÌNH TÂN, TP.HCM)\n"
+    r3.text = "CÔ GIÁO: MAI THUÝ ĐỨC (KHTN SINH HỌC - 9 NĂM KINH NGHIỆM)  🌸  TRƯỜNG THCS TÂN TẠO A\n"
     r3.font.bold = True
-    r3.font.size = Pt(12.5)
+    r3.font.size = Pt(12)
     r3.font.color.rgb = T_PRIMARY
 
     r4 = p3.add_run()
-    r4.text = "🌐 Nền tảng học tập mở: https://sinhhoc-amber.vercel.app/"
+    r4.text = "📞 SĐT: 0975515659  •  ✉️ Email: maithuyduc36@gmail.com  •  🌐 Web: https://sinhhoc-amber.vercel.app/"
     r4.font.bold = True
-    r4.font.size = Pt(11.5)
+    r4.font.size = Pt(11)
     r4.font.color.rgb = T_GREEN
 
-    # Save presentation
-    output_filename = "KHTN7_Bai23_QuangHop_MaiThuyDuc.pptx"
-    prs.save(output_filename)
-    print(f"Cute & gentle presentation successfully created: {output_filename}")
+    # Save presentation to both names
+    prs.save("KHTN7_Bai23_QuangHop_MaiThuyDuc.pptx")
+    prs.save("03_Slide_Trinh_Chieu_Giang_Day_Mai_Thuy_Duc.pptx")
+    print("Cute presentation saved to both files.")
 
 if __name__ == "__main__":
     create_cute_deck()
