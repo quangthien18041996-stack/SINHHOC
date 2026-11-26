@@ -1,0 +1,318 @@
+{
+  "1": {
+    "title": "Trạm 1: Đô Thị Nén & Tháp Rừng Thẳng Đứng",
+    "subtitle": "Khu vực dân cư cao tầng & Nhà mặt phố TP.HCM",
+    "badge": "Nhóm 1 phụ trách",
+    "challenge": "Không gian chật hẹp, nồng độ CO₂ cao do khí thải xe cộ, nhiệt độ hấp thụ từ bê tông cao (hiệu ứng đảo nhiệt). Tầng trên nắng gắt, tầng trệt thiếu sáng.",
+    "steps": [
+      {
+        "step": "Ban đầu (Hiện trạng)",
+        "solution": "Chưa kích hoạt giải pháp nào",
+        "co2": "850 ppm",
+        "light": "45,000 Lux",
+        "temp": "36.0°C",
+        "status": "Chưa tối ưu (0%)",
+        "comment": "Hiện trạng ban đầu: Bê tông giữ nhiệt, khói xe dày đặc, quang hợp bị ức chế nghiêm trọng."
+      },
+      {
+        "step": "Bước 1",
+        "solution": "Trồng cây ưa sáng có tầng cutin dày (Hoa giấy, Trúc quân tử)",
+        "co2": "730 ppm",
+        "light": "45,000 Lux",
+        "temp": "33.5°C",
+        "status": "Kém (25%)",
+        "comment": "Cây tầng thượng có tán lá dày giúp cản 15.000 Lux nắng gắt, giảm bức xạ nhiệt xuống tầng dưới."
+      },
+      {
+        "step": "Bước 2",
+        "solution": "Bố trí vườn tường đứng nhiều tầng (Vertical Wall) bằng giàn cây leo bản rộng",
+        "co2": "580 ppm",
+        "light": "30,000 Lux",
+        "temp": "31.5°C",
+        "status": "Trung bình (50%)",
+        "comment": "Giàn cây leo che phủ bê tông làm mát tường thêm 2.5°C và hấp thụ 120 ppm khí CO₂."
+      },
+      {
+        "step": "Bước 3",
+        "solution": "Trồng cây ưa bóng (Lưỡi hổ, Lan ý) có khả năng lọc formaldehyde",
+        "co2": "460 ppm",
+        "light": "30,000 Lux",
+        "temp": "30.5°C",
+        "status": "Khá tốt (75%)",
+        "comment": "Cây ưa bóng tầng trệt hấp thụ CO₂ khói xe và lọc formaldehyde mà không bị cháy lá."
+      },
+      {
+        "step": "Bước 4",
+        "solution": "Cài đặt van tưới nhỏ giọt hẹn giờ tự động kết hợp khay hứng tràn",
+        "co2": "410 ppm",
+        "light": "25,000 Lux",
+        "temp": "28.0°C",
+        "status": "Tối ưu 100% 🌿",
+        "comment": "Cung cấp nước đều đặn làm khí khổng mở tối đa, CO₂ khuếch tán vào mô lá đạt đỉnh quang hợp 100%."
+      }
+    ],
+    "initTele": {
+      "co2": "850 ppm",
+      "co2Class": "text-rose-400",
+      "light": "45,000 Lux",
+      "lightClass": "text-amber-400",
+      "temp": "36.0°C",
+      "tempClass": "text-rose-400",
+      "status": "Chưa tối ưu (0%)",
+      "statusClass": "text-slate-400 font-semibold",
+      "score": 0,
+      "count": 0,
+      "warnCount": 0
+    },
+    "finalTele": {
+      "co2": "410 ppm",
+      "co2Class": "text-emerald-400 font-bold",
+      "light": "25,000 Lux",
+      "lightClass": "text-emerald-400 font-bold",
+      "temp": "28.0°C",
+      "tempClass": "text-emerald-400 font-bold",
+      "status": "Tối ưu 100% 🌿",
+      "statusClass": "text-emerald-400 font-black animate-pulse",
+      "score": 100,
+      "count": 4,
+      "warnCount": 0
+    }
+  },
+  "2": {
+    "title": "Trạm 2: Nhà Màng Nông Nghiệp Thông Minh",
+    "subtitle": "Mô hình Nông nghiệp đô thị Củ Chi & Đà Lạt",
+    "badge": "Nhóm 2 phụ trách",
+    "challenge": "Yêu cầu năng suất và chất lượng quả tối đa, cần chủ động kiểm soát cả 4 yếu tố quang hợp quanh năm bất chấp thời tiết bất lợi bên ngoài.",
+    "steps": [
+      {
+        "step": "Ban đầu (Hiện trạng)",
+        "solution": "Chưa kích hoạt giải pháp nào",
+        "co2": "400 ppm (Tự nhiên)",
+        "light": "12.000 Lux (Thiếu)",
+        "temp": "34.0°C",
+        "status": "Chưa tối ưu (0%)",
+        "comment": "Hiện trạng ban đầu: Cây phụ thuộc thời tiết bên ngoài, thiếu sáng và nhiệt độ bí nóng."
+      },
+      {
+        "step": "Bước 1",
+        "solution": "Lắp đặt đèn LED chuyên dụng phát dải sáng xanh (450nm) và đỏ (660nm)",
+        "co2": "400 ppm (Tự nhiên)",
+        "light": "35.000 Lux (LED)",
+        "temp": "34.0°C",
+        "status": "Kém (25%)",
+        "comment": "Đèn LED đa phổ cung cấp đúng 2 bước sóng 450nm và 660nm, kích thích mạnh pha sáng."
+      },
+      {
+        "step": "Bước 2",
+        "solution": "Bơm bổ sung khí CO₂ duy trì ở ngưỡng tối ưu 0.10% – 0.15% (1.000 - 1.500 ppm)",
+        "co2": "1.200 ppm (Tối ưu)",
+        "light": "35.000 Lux (LED)",
+        "temp": "34.0°C",
+        "status": "Trung bình (50%)",
+        "comment": "Bơm CO₂ bổ sung lên 1.200 ppm làm tăng tốc độ tổng hợp đường bột trước điểm bão hòa."
+      },
+      {
+        "step": "Bước 3",
+        "solution": "Lưới cắt nắng tự động kích hoạt kết hợp quạt hút và màng nước làm mát",
+        "co2": "1.200 ppm (Tối ưu)",
+        "light": "35.000 Lux (LED)",
+        "temp": "28.0°C",
+        "status": "Khá tốt (75%)",
+        "comment": "Quạt hút gió và màng nước hạ nhiệt về 27°C, bảo vệ các enzyme quang hợp hoạt động cực đại."
+      },
+      {
+        "step": "Bước 4",
+        "solution": "Tưới dinh dưỡng nhỏ giọt tự động kiểm soát theo độ ẩm đất đo bằng cảm biến IoT",
+        "co2": "1.200 ppm (Tối ưu)",
+        "light": "35.000 Lux (LED)",
+        "temp": "26.0°C",
+        "status": "Tối ưu 100% 🌿",
+        "comment": "Tưới nhỏ giọt IoT cung cấp nước liên tục, duy trì tế bào khí khổng mở suốt ngày đêm."
+      }
+    ],
+    "initTele": {
+      "co2": "400 ppm (Tự nhiên)",
+      "co2Class": "text-amber-400",
+      "light": "12.000 Lux (Thiếu)",
+      "lightClass": "text-amber-400",
+      "temp": "34.0°C",
+      "tempClass": "text-rose-400",
+      "status": "Chưa tối ưu (0%)",
+      "statusClass": "text-slate-400 font-semibold",
+      "score": 0,
+      "count": 0,
+      "warnCount": 0
+    },
+    "finalTele": {
+      "co2": "1.200 ppm (Tối ưu)",
+      "co2Class": "text-emerald-400 font-bold",
+      "light": "35.000 Lux (LED)",
+      "lightClass": "text-emerald-400 font-bold",
+      "temp": "26.0°C",
+      "tempClass": "text-emerald-400 font-bold",
+      "status": "Tối ưu 100% 🌿",
+      "statusClass": "text-emerald-400 font-black animate-pulse",
+      "score": 100,
+      "count": 4,
+      "warnCount": 0
+    }
+  },
+  "3": {
+    "title": "Trạm 3: Sân Thượng Nắng Gắt & Nhiệt Độ Cao",
+    "subtitle": "Vùng mái nhà bê tông & Ban công hướng Tây",
+    "badge": "Nhóm 3 phụ trách",
+    "challenge": "Nắng trưa gay gắt > 55.000 Lux, nhiệt độ sàn bê tông lên tới 43°C. Khí khổng đóng chặt tránh mất nước làm ngừng quang hợp, lá dễ bị 'đốt nóng' và cháy khô.",
+    "steps": [
+      {
+        "step": "Ban đầu (Hiện trạng)",
+        "solution": "Chưa kích hoạt giải pháp nào",
+        "co2": "Khí khổng đóng",
+        "light": "58,000 Lux",
+        "temp": "43.0°C",
+        "status": "Chưa tối ưu (0%)",
+        "comment": "Hiện trạng ban đầu: Nắng trưa >55.000 Lux làm đốt nóng lá, nhiệt độ 43°C khiến khí khổng đóng chặt."
+      },
+      {
+        "step": "Bước 1",
+        "solution": "Căng lưới lan đen che chắn giảm 40 - 50% ánh sáng trong khung giờ 11h - 14h",
+        "co2": "Khí khổng đóng",
+        "light": "28,000 Lux",
+        "temp": "39.0°C",
+        "status": "Kém (25%)",
+        "comment": "Lưới lan đen giảm 50% cường độ bức xạ, ngăn chặn phá hủy diệp lục tố của lá."
+      },
+      {
+        "step": "Bước 2",
+        "solution": "Trồng các giống cây chịu hạn, ưa sáng mạnh (Hoa sứ Thái, Hoa giấy, Xương rồng)",
+        "co2": "Khí khổng đóng",
+        "light": "28,000 Lux",
+        "temp": "38.0°C",
+        "status": "Trung bình (50%)",
+        "comment": "Cây hoa sứ và xương rồng có tầng cutin dày, thích nghi và bắt đầu quang hợp dưới nhiệt độ cao."
+      },
+      {
+        "step": "Bước 3",
+        "solution": "Phun sương làm mát bề mặt sàn bê tông vào giữa trưa để hạ nhiệt độ về dưới 33°C",
+        "co2": "Khí khổng mở",
+        "light": "28,000 Lux",
+        "temp": "33.0°C",
+        "status": "Khá tốt (75%)",
+        "comment": "Phun sương sàn hạ nhiệt độ mặt bê tông xuống 34°C, kích thích tế bào khí khổng hé mở lại."
+      },
+      {
+        "step": "Bước 4",
+        "solution": "Phủ lớp vỏ trấu / sỏi nhẹ giữ ẩm đất chậu và chỉ tưới vào sáng sớm hoặc chiều mát",
+        "co2": "Khí khổng mở",
+        "light": "28,000 Lux",
+        "temp": "31.0°C",
+        "status": "Tối ưu 100% 🌿",
+        "comment": "Lớp phủ rơm rạ và sỏi nhẹ ngăn bốc hơi nước rễ, giúp cây quang hợp bền bỉ cả ngày."
+      }
+    ],
+    "initTele": {
+      "co2": "Khí khổng đóng",
+      "co2Class": "text-rose-400",
+      "light": "58,000 Lux",
+      "lightClass": "text-rose-400",
+      "temp": "43.0°C",
+      "tempClass": "text-rose-400",
+      "status": "Chưa tối ưu (0%)",
+      "statusClass": "text-slate-400 font-semibold",
+      "score": 0,
+      "count": 0,
+      "warnCount": 0
+    },
+    "finalTele": {
+      "co2": "Khí khổng mở",
+      "co2Class": "text-emerald-400 font-bold",
+      "light": "28,000 Lux",
+      "lightClass": "text-emerald-400 font-bold",
+      "temp": "31.0°C",
+      "tempClass": "text-emerald-400 font-bold",
+      "status": "Tối ưu 100% 🌿",
+      "statusClass": "text-emerald-400 font-black animate-pulse",
+      "score": 100,
+      "count": 4,
+      "warnCount": 0
+    }
+  },
+  "4": {
+    "title": "Trạm 4: Trong Nhà & Hành Lang Râm Mát",
+    "subtitle": "Lớp học, văn phòng & Khu vực gầm cầu thang",
+    "badge": "Nhóm 4 phụ trách",
+    "challenge": "Ánh sáng rất yếu (< 1.500 Lux, dưới điểm bù ánh sáng của cây ưa sáng), thiếu thông gió tự nhiên, nồng độ CO₂ tăng cao do hơi thở con người.",
+    "steps": [
+      {
+        "step": "Ban đầu (Hiện trạng)",
+        "solution": "Chưa kích hoạt giải pháp nào",
+        "co2": "650 ppm",
+        "light": "800 Lux",
+        "temp": "26.0°C",
+        "status": "Chưa tối ưu (0%)",
+        "comment": "Hiện trạng ban đầu: Ánh sáng <800 Lux dưới điểm bù quang hợp, cây tiêu hao nhiều hơn tạo ra."
+      },
+      {
+        "step": "Bước 1",
+        "solution": "Trang bị đèn rọi LED ánh sáng trắng ấm 4000K (15W) chiếu bổ sung 3 - 4 giờ/ngày",
+        "co2": "650 ppm",
+        "light": "1,500 Lux",
+        "temp": "26.0°C",
+        "status": "Kém (25%)",
+        "comment": "App Lux Meter định vị được vị trí đón ánh sáng tán xạ 1.500 Lux gần cửa sổ."
+      },
+      {
+        "step": "Bước 2",
+        "solution": "Tuyển chọn 100% cây ưa bóng có phiến lá to mỏng, giàu diệp lục b (Lá lốt, Trầu không, Kim tiền)",
+        "co2": "590 ppm",
+        "light": "1,500 Lux",
+        "temp": "26.0°C",
+        "status": "Trung bình (50%)",
+        "comment": "Cây lá lốt ưa bóng với phiến lá to, mỏng, chứa nhiều diệp lục b bắt trọn ánh sáng yếu."
+      },
+      {
+        "step": "Bước 3",
+        "solution": "Dùng app 'Lux Meter' quét chọn các vị trí gần cửa sổ / giếng trời có độ rọi > 1.500 Lux",
+        "co2": "590 ppm",
+        "light": "2,500 Lux",
+        "temp": "26.0°C",
+        "status": "Khá tốt (75%)",
+        "comment": "Đèn rọi LED 15W bổ sung thêm 1.000 Lux, kích thích pha sáng diễn ra bình thường."
+      },
+      {
+        "step": "Bước 4",
+        "solution": "Định kỳ lau sạch bụi bám trên bề mặt lá bằng khăn ẩm mềm",
+        "co2": "450 ppm",
+        "light": "2,500 Lux",
+        "temp": "26.0°C",
+        "status": "Tối ưu 100% 🌿",
+        "comment": "Lau sạch bụi bám trên bề mặt lá giúp lỗ khí khổng thông thoáng, CO₂ khuếch tán dễ dàng."
+      }
+    ],
+    "initTele": {
+      "co2": "650 ppm",
+      "co2Class": "text-amber-400",
+      "light": "800 Lux",
+      "lightClass": "text-rose-400",
+      "temp": "26.0°C",
+      "tempClass": "text-emerald-400 font-bold",
+      "status": "Chưa tối ưu (0%)",
+      "statusClass": "text-slate-400 font-semibold",
+      "score": 0,
+      "count": 0,
+      "warnCount": 0
+    },
+    "finalTele": {
+      "co2": "450 ppm",
+      "co2Class": "text-emerald-400 font-bold",
+      "light": "2,500 Lux",
+      "lightClass": "text-emerald-400 font-bold",
+      "temp": "26.0°C",
+      "tempClass": "text-emerald-400 font-bold",
+      "status": "Tối ưu 100% 🌿",
+      "statusClass": "text-emerald-400 font-black animate-pulse",
+      "score": 100,
+      "count": 4,
+      "warnCount": 0
+    }
+  }
+}
