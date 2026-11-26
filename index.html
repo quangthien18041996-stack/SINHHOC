@@ -1384,9 +1384,14 @@
                                     Nước
                                 </button>
                             </div>
-                            <button onclick="resetStationSolutions()" class="text-[10px] font-medium bg-white hover:bg-stone-50 text-stone-600 px-2.5 py-1 rounded-lg border border-stone-200 transition flex items-center gap-1 shrink-0 shadow-2xs">
-                                <i class="fa-solid fa-rotate-left"></i> Làm lại
-                            </button>
+                            <div class="flex items-center gap-1.5 shrink-0">
+                                <button onclick="quickSubmitMockForStation(currentStationId)" class="text-[10px] font-medium bg-white hover:bg-stone-50 text-stone-700 px-2.5 py-1 rounded-lg border border-stone-200 transition flex items-center gap-1 shadow-2xs cursor-pointer" title="Nạp nhanh giải pháp chuẩn và nộp mẫu thử cho trạm này">
+                                    <i class="fa-solid fa-arrow-up-from-bracket text-emerald-700"></i> Nộp Mẫu Thử
+                                </button>
+                                <button onclick="resetStationSolutions()" class="text-[10px] font-medium bg-white hover:bg-stone-50 text-stone-600 px-2.5 py-1 rounded-lg border border-stone-200 transition flex items-center gap-1 shrink-0 shadow-2xs">
+                                    <i class="fa-solid fa-rotate-left"></i> Làm lại
+                                </button>
+                            </div>
                         </div>
 
                         <!-- Status & Score Bar (LIGHT THEME) -->
@@ -4859,27 +4864,45 @@
             alert("🔄 Đã khôi phục trạng thái ban đầu của 4 Nhóm và Cổng duyệt giáo viên!");
         }
 
-        // QUICK SUBMIT MOCK FOR EMPTY STATIONS
+        // QUICK SUBMIT MOCK FOR STATION (TỰ ĐỘNG CHỌN GIẢI PHÁP TỐI ƯU VÀ NỘP BÀI MẪU)
         function quickSubmitMockForStation(stationId) {
+            const data = visualConfigs[stationId];
+            if (data && data.solutions) {
+                stationState[stationId].chosenSolutions = data.solutions.filter(s => s.isOptimal).map(s => s.id);
+            }
+            if (data && data.plants && data.plants.length > 0) {
+                stationState[stationId].selectedPlants = [0, 2];
+            }
+            renderVisualWorkspace();
+
+            const finalMetrics = {
+                1: { co2: '410 ppm', lux: '25.000 Lux', temp: '28.0°C', score: '100/100đ' },
+                2: { co2: '1.200 ppm', lux: '35.000 Lux', temp: '26.0°C', score: '100/100đ' },
+                3: { co2: 'Khí khổng mở', lux: '28.000 Lux', temp: '31.0°C', score: '100/100đ' },
+                4: { co2: '450 ppm', lux: '2.500 Lux', temp: '26.0°C', score: '100/100đ' }
+            };
+
+            const optTitles = (data && data.solutions) ? data.solutions.filter(s => s.isOptimal).map(s => s.title) : [];
+
             groupSubmissions[stationId] = {
                 ...defaultGroupSubmissions[stationId],
                 status: 'pending_review',
-                submittedAt: 'Vừa xong',
-                co2: '450 ppm',
-                lux: '25.000 Lux',
-                temp: '27.5°C',
-                photoScore: '92/100đ',
-                solutions: [
-                    "Bố trí tầng cây ưa sáng và ưa bóng hợp lý",
-                    "Cung cấp đủ nước để khí khổng mở rộng",
-                    "Điều hòa nhiệt độ vi khí hậu trong khoảng 25-30°C",
-                    "Tăng khả năng quang hợp và làm sạch không khí"
+                submittedAt: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }),
+                co2: finalMetrics[stationId] ? finalMetrics[stationId].co2 : '450 ppm',
+                lux: finalMetrics[stationId] ? finalMetrics[stationId].lux : '25.000 Lux',
+                temp: finalMetrics[stationId] ? finalMetrics[stationId].temp : '27.0°C',
+                photoScore: finalMetrics[stationId] ? finalMetrics[stationId].score : '100/100đ',
+                solutions: optTitles.length > 0 ? optTitles : [
+                    "Bố trí tầng cây thích nghi vi khí hậu tối ưu",
+                    "Điều hòa nhiệt độ và độ mở khí khổng",
+                    "Tối ưu nồng độ CO₂ và cường độ ánh sáng quang hợp",
+                    "Cung cấp độ ẩm và dưỡng chất cân bằng"
                 ]
             };
             saveGroupSubmissionsToStorage();
             renderPosterGallery();
             updateStationReportTab();
-            alert(`📥 Đã nộp bài mẫu cho ${groupSubmissions[stationId].groupName}! Hồ sơ đang ở trạng thái Chờ Duyệt.`);
+            alert(`📥 Đã nộp bài mẫu thử thành công cho ${groupSubmissions[stationId].groupName}!\n\n• Vi khí hậu: Đạt chuẩn tối ưu 100%\n• Trạng thái hồ sơ: Chờ Giáo viên phê duyệt tại Mục 4 (Triển Lãm Poster).`);
         }
 
         // OPEN SCIENTIFIC E-POSTER PRESENTATION FULLSCREEN
