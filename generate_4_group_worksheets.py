@@ -4,19 +4,24 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml import parse_xml
 from docx.oxml.ns import nsdecls
-from generate_measured_worksheets import stations
+from stations_data import stations
 
 def set_cell_background(cell, fill_hex):
     tcPr = cell._tc.get_or_add_tcPr()
     shd = parse_xml(f'<w:shd {nsdecls("w")} w:fill="{fill_hex}"/>')
     tcPr.append(shd)
 
-def set_cell_margins(cell, top=60, bottom=60, left=70, right=70):
+def set_cell_margins(cell, top=60, bottom=60, left=50, right=50):
     tcPr = cell._tc.get_or_add_tcPr()
     tcMar = parse_xml(f'<w:tcMar {nsdecls("w")}><w:top w:w="{top}" w:type="dxa"/><w:bottom w:w="{bottom}" w:type="dxa"/><w:left w:w="{left}" w:type="dxa"/><w:right w:w="{right}" w:type="dxa"/></w:tcMar>')
     tcPr.append(tcMar)
 
-def set_table_borders(table, color="9CA3AF", sz="4", val="single"):
+def set_cell_valign(cell, valign="center"):
+    tcPr = cell._tc.get_or_add_tcPr()
+    vAlign = parse_xml(f'<w:vAlign {nsdecls("w")} w:val="{valign}"/>')
+    tcPr.append(vAlign)
+
+def set_table_borders(table, color="000000", sz="4", val="single"):
     tblPr = table._tbl.tblPr
     borders = parse_xml(f'''
         <w:tblBorders {nsdecls("w")}>
@@ -30,147 +35,143 @@ def set_table_borders(table, color="9CA3AF", sz="4", val="single"):
     ''')
     tblPr.append(borders)
 
-def create_single_worksheet(st, filename):
+def remove_table_borders(table):
+    tblPr = table._tbl.tblPr
+    borders = parse_xml(f'''
+        <w:tblBorders {nsdecls("w")}>
+            <w:top w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+            <w:bottom w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+            <w:left w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+            <w:right w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+            <w:insideH w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+            <w:insideV w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+        </w:tblBorders>
+    ''')
+    tblPr.append(borders)
+
+def create_reference_worksheet(st, filename):
     doc = docx.Document()
-    
-    # Page setup: A4 with compact margins
-    for section in doc.sections:
-        section.top_margin = Inches(0.4)
-        section.bottom_margin = Inches(0.4)
-        section.left_margin = Inches(0.5)
-        section.right_margin = Inches(0.5)
-        section.page_width = Inches(8.27)
-        section.page_height = Inches(11.69)
+    section = doc.sections[0]
+    section.page_width = Inches(8.27)
+    section.page_height = Inches(11.69)
+    section.top_margin = Inches(0.5)
+    section.bottom_margin = Inches(0.5)
+    section.left_margin = Inches(0.75)
+    section.right_margin = Inches(0.55)
 
-    # 1. School Header
-    p_hdr = doc.add_paragraph()
-    p_hdr.paragraph_format.space_before = Pt(0)
-    p_hdr.paragraph_format.space_after = Pt(2)
-    p_hdr.paragraph_format.line_spacing = 1.05
+    # 1. Header (2 cols borderless)
+    hdr_table = doc.add_table(rows=1, cols=2)
+    hdr_table.alignment = WD_TABLE_ALIGNMENT.CENTER
+    remove_table_borders(hdr_table)
     
-    r = p_hdr.add_run("TRƯỜNG THCS TÂN TẠO A — TỔ KHOA HỌC TỰ NHIÊN\n")
+    c1 = hdr_table.rows[0].cells[0]
+    c1.width = Inches(3.2)
+    p1 = c1.paragraphs[0]
+    p1.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p1.paragraph_format.space_before = Pt(0)
+    p1.paragraph_format.space_after = Pt(0)
+    p1.paragraph_format.line_spacing = 1.05
+    r = p1.add_run("TRƯỜNG THCS TÂN TẠO A\nTỔ: KHOA HỌC TỰ NHIÊN\n-----------***-----------")
     r.font.name = "Times New Roman"
     r.font.bold = True
-    r.font.size = Pt(9)
-    r.font.color.rgb = RGBColor(75, 85, 99)
-    
-    r2 = p_hdr.add_run("DỰ ÁN STEM SINH HỌC 7: XƯỞNG NGHIÊN CỨU VI KHÍ HẬU & KHÔNG GIAN XANH TP.HCM")
-    r2.font.name = "Times New Roman"
-    r2.font.bold = True
-    r2.font.size = Pt(9.5)
-    r2.font.color.rgb = RGBColor(16, 122, 80)
+    r.font.size = Pt(10)
 
-    # 2. Main Title Banner Box
-    t_box = doc.add_table(rows=1, cols=1)
-    t_box.alignment = WD_TABLE_ALIGNMENT.CENTER
-    cell = t_box.rows[0].cells[0]
-    cell.width = Inches(7.27)
-    set_cell_background(cell, "064E3B") # Emerald 900
-    set_cell_margins(cell, top=70, bottom=70, left=100, right=100)
-    
-    p = cell.paragraphs[0]
-    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p.paragraph_format.space_before = Pt(0)
-    p.paragraph_format.space_after = Pt(0)
-    p.paragraph_format.line_spacing = 1.05
-    
-    r = p.add_run(f"PHIẾU HỌC TẬP THỰC NGHIỆM SỐ {st['code']} — DÀNH CHO {st['group']}\n")
+    c2 = hdr_table.rows[0].cells[1]
+    c2.width = Inches(3.77)
+    p2 = c2.paragraphs[0]
+    p2.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p2.paragraph_format.space_before = Pt(0)
+    p2.paragraph_format.space_after = Pt(0)
+    p2.paragraph_format.line_spacing = 1.05
+    r = p2.add_run("DỰ ÁN STEM SINH HỌC 7\nBÀI 23: QUANG HỢP Ở THỰC VẬT\n")
     r.font.name = "Times New Roman"
     r.font.bold = True
-    r.font.size = Pt(12)
-    r.font.color.rgb = RGBColor(255, 255, 255)
-    
-    r2 = p.add_run(f"TIẾN TRÌNH ĐO LƯỜNG VI KHÍ HẬU & HIỆU QUẢ QUANG HỢP (BÀI 23 KHTN 7)\n")
+    r.font.size = Pt(10)
+    r2 = p2.add_run("(BẢN ĐÁP ÁN ĐỐI CHIẾU SỐ LIỆU ĐO LƯỜNG CHUẨN)")
+    r2.font.name = "Times New Roman"
+    r2.font.italic = True
+    r2.font.size = Pt(8.5)
+
+    # 2. Title
+    p_title = doc.add_paragraph()
+    p_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p_title.paragraph_format.space_before = Pt(6)
+    p_title.paragraph_format.space_after = Pt(1)
+    p_title.paragraph_format.line_spacing = 1.1
+    r = p_title.add_run(f"PHIẾU HỌC TẬP THỰC NGHIỆM SỐ {st['code']}\n")
+    r.font.name = "Times New Roman"
+    r.font.bold = True
+    r.font.size = Pt(13)
+    r2 = p_title.add_run(f"DÀNH CHO {st['group'].upper()} — {st['title'].upper()}\n")
     r2.font.name = "Times New Roman"
     r2.font.bold = True
-    r2.font.size = Pt(9.5)
-    r2.font.color.rgb = RGBColor(167, 243, 208)
-    
-    r3 = p.add_run(f"{st['title']} ({st['subtitle']})")
+    r2.font.size = Pt(10.5)
+    r3 = p_title.add_run(f"({st['subtitle']})")
     r3.font.name = "Times New Roman"
-    r3.font.bold = True
+    r3.font.italic = True
     r3.font.size = Pt(9.5)
-    r3.font.color.rgb = RGBColor(253, 230, 138)
 
-    # 3. Student Identification Line
+    # 3. Student info
     p_info = doc.add_paragraph()
     p_info.paragraph_format.space_before = Pt(4)
     p_info.paragraph_format.space_after = Pt(3)
-    p_info.paragraph_format.line_spacing = 1.05
-    
-    r = p_info.add_run("Tên nhóm: ..................................................... Lớp: 7/......  •  GV hướng dẫn: ")
+    p_info.paragraph_format.line_spacing = 1.15
+    r = p_info.add_run("Tên nhóm: .............................................................. Lớp: 7/......  •  GV hướng dẫn: ")
     r.font.name = "Times New Roman"
-    r.font.size = Pt(9)
-    
-    r2 = p_info.add_run("Cô Mai Thuý Đức")
+    r.font.size = Pt(9.5)
+    r2 = p_info.add_run("Cô Mai Thuý Đức\n")
     r2.font.name = "Times New Roman"
     r2.font.bold = True
-    r2.font.size = Pt(9)
-    r2.font.color.rgb = RGBColor(16, 122, 80)
-    
-    r3 = p_info.add_run("  •  Năm học: 2026 - 2027\n")
+    r2.font.size = Pt(9.5)
+    r3 = p_info.add_run("Thành viên: ....................................................................................................................................................................\n..................................................................................................................................................................................................")
     r3.font.name = "Times New Roman"
     r3.font.size = Pt(9)
-    
-    r4 = p_info.add_run("Thành viên nhóm: 1............................................... 2............................................... 3............................................... 4...............................................")
-    r4.font.name = "Times New Roman"
-    r4.font.size = Pt(8.5)
-    r4.font.color.rgb = RGBColor(75, 85, 99)
 
-    # 4. Section I: Context & Mission
+    # 4. Section I
     p_sec1 = doc.add_paragraph()
     p_sec1.paragraph_format.space_before = Pt(3)
     p_sec1.paragraph_format.space_after = Pt(1)
     r = p_sec1.add_run("I. KHẢO SÁT HIỆN TRẠNG & THÁCH THỨC VI KHÍ HẬU TẠI TRẠM:")
     r.font.name = "Times New Roman"
     r.font.bold = True
-    r.font.size = Pt(9.5)
-    r.font.color.rgb = RGBColor(27, 67, 50)
+    r.font.size = Pt(10)
 
     p_desc = doc.add_paragraph()
     p_desc.paragraph_format.space_before = Pt(0)
     p_desc.paragraph_format.space_after = Pt(3)
-    p_desc.paragraph_format.line_spacing = 1.05
-    
+    p_desc.paragraph_format.line_spacing = 1.1
     r = p_desc.add_run("• Thách thức vi khí hậu: ")
     r.font.name = "Times New Roman"
     r.font.bold = True
-    r.font.size = Pt(8.5)
-    
+    r.font.size = Pt(9)
     r2 = p_desc.add_run(st['challenge'] + "\n")
     r2.font.name = "Times New Roman"
-    r2.font.size = Pt(8.5)
-    
+    r2.font.size = Pt(9)
     r3 = p_desc.add_run("• Nhiệm vụ thực nghiệm số: ")
     r3.font.name = "Times New Roman"
     r3.font.bold = True
-    r3.font.size = Pt(8.5)
-    r3.font.color.rgb = RGBColor(16, 122, 80)
-    
+    r3.font.size = Pt(9)
     r4 = p_desc.add_run(st['mission'])
     r4.font.name = "Times New Roman"
-    r4.font.size = Pt(8.5)
+    r4.font.size = Pt(9)
 
-    # 5. Section II: Telemetry Table (7 Columns, 5 Steps)
+    # 5. Section II (Table with exact reference telemetry)
     p_sec2 = doc.add_paragraph()
     p_sec2.paragraph_format.space_before = Pt(3)
     p_sec2.paragraph_format.space_after = Pt(2)
     r = p_sec2.add_run("II. BẢNG GHI LẠI THÔNG SỐ ĐO LƯỜNG KHI CHO TỪNG GIẢI PHÁP VÀO:")
     r.font.name = "Times New Roman"
     r.font.bold = True
-    r.font.size = Pt(9.5)
-    r.font.color.rgb = RGBColor(27, 67, 50)
-    
-    r_sub = p_sec2.add_run(" (Học sinh đo đạc và quan sát trực tiếp trên mô hình mô phỏng Module 3)")
+    r.font.size = Pt(10)
+    r_sub = p_sec2.add_run(" (Số liệu thực nghiệm chuẩn đo đạc từ mô phỏng Module 3)")
     r_sub.font.name = "Times New Roman"
     r_sub.font.italic = True
-    r_sub.font.size = Pt(8)
-    r_sub.font.color.rgb = RGBColor(100, 116, 139)
+    r_sub.font.size = Pt(8.5)
 
-    col_widths = [Inches(0.95), Inches(1.85), Inches(0.75), Inches(0.80), Inches(0.65), Inches(0.80), Inches(1.47)]
+    col_widths = [Inches(1.0), Inches(1.85), Inches(0.72), Inches(0.75), Inches(0.65), Inches(0.75), Inches(1.25)]
     table = doc.add_table(rows=6, cols=7)
     table.alignment = WD_TABLE_ALIGNMENT.CENTER
-    set_table_borders(table, color="9CA3AF", sz="4")
+    set_table_borders(table, color="000000", sz="4", val="single")
 
     headers = [
         "Bước thực nghiệm",
@@ -186,35 +187,33 @@ def create_single_worksheet(st, filename):
     for c_idx, title in enumerate(headers):
         c = hdr_row.cells[c_idx]
         c.width = col_widths[c_idx]
-        set_cell_background(c, "1E3A8A") # Navy Blue 900
+        set_cell_background(c, "F2F2F2")
         set_cell_margins(c, top=60, bottom=60, left=40, right=40)
+        set_cell_valign(c, "center")
         p = c.paragraphs[0]
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p.paragraph_format.space_before = Pt(0)
         p.paragraph_format.space_after = Pt(0)
+        p.paragraph_format.line_spacing = 1.05
         r = p.add_run(title)
         r.font.name = "Times New Roman"
         r.font.bold = True
         r.font.size = Pt(8)
-        r.font.color.rgb = RGBColor(255, 255, 255)
+        r.font.color.rgb = RGBColor(0, 0, 0)
 
     for step_idx, step_data in enumerate(st['steps']):
         row = table.rows[step_idx + 1]
-        bg_color = "F9FAFB" if step_idx % 2 == 0 else "FFFFFF"
-        if step_idx == 0:
-            bg_color = "FEF2F2"
-        elif step_idx == 4:
-            bg_color = "ECFDF5"
-
         for c_idx in range(7):
             c = row.cells[c_idx]
             c.width = col_widths[c_idx]
-            set_cell_background(c, bg_color)
-            set_cell_margins(c, top=55, bottom=55, left=50, right=50)
+            set_cell_background(c, "FFFFFF")
+            set_cell_margins(c, top=55, bottom=55, left=45, right=45)
+            set_cell_valign(c, "center")
             p = c.paragraphs[0]
             p.paragraph_format.space_before = Pt(0)
             p.paragraph_format.space_after = Pt(0)
-            
+            p.paragraph_format.line_spacing = 1.05
+
             if c_idx in [0, 2, 3, 4, 5]:
                 p.alignment = WD_ALIGN_PARAGRAPH.CENTER
             else:
@@ -226,57 +225,58 @@ def create_single_worksheet(st, filename):
             r.font.size = Pt(8)
             if c_idx == 0:
                 r.font.bold = True
-                r.font.color.rgb = RGBColor(31, 41, 55)
-            elif c_idx == 1:
-                r.font.bold = (step_idx == 4)
-                r.font.color.rgb = RGBColor(17, 24, 39)
             elif c_idx == 5:
                 r.font.bold = True
-                r.font.color.rgb = RGBColor(220, 38, 38) if step_idx == 0 else RGBColor(16, 122, 80)
             elif c_idx == 6:
                 r.font.italic = True
                 r.font.size = Pt(7.5)
-                r.font.color.rgb = RGBColor(55, 65, 81)
 
-    # 6. Section III: Delta Improvement
+    # 6. Section III
     p_sec3 = doc.add_paragraph()
-    p_sec3.paragraph_format.space_before = Pt(5)
-    p_sec3.paragraph_format.space_after = Pt(2)
+    p_sec3.paragraph_format.space_before = Pt(4)
+    p_sec3.paragraph_format.space_after = Pt(1)
     r = p_sec3.add_run("III. ĐÁNH GIÁ MỨC ĐỘ CẢI THIỆN VI KHÍ HẬU (Δ SAU KHI HOÀN TẤT - BAN ĐẦU):")
     r.font.name = "Times New Roman"
     r.font.bold = True
     r.font.size = Pt(9.5)
-    r.font.color.rgb = RGBColor(27, 67, 50)
 
     p_delta = doc.add_paragraph()
     p_delta.paragraph_format.space_before = Pt(0)
-    p_delta.paragraph_format.space_after = Pt(3)
+    p_delta.paragraph_format.space_after = Pt(4)
     p_delta.paragraph_format.line_spacing = 1.15
     r = p_delta.add_run(st['delta'])
     r.font.name = "Times New Roman"
     r.font.size = Pt(8.5)
-    r.font.color.rgb = RGBColor(4, 120, 87)
 
-    # (SECTION IV REMOVED AS REQUESTED)
-
-    # 7. Evaluation & Signatures
-    p_sign = doc.add_paragraph()
-    p_sign.paragraph_format.space_before = Pt(8)
-    p_sign.paragraph_format.space_after = Pt(0)
+    # 7. Signatures
+    sign_table = doc.add_table(rows=1, cols=2)
+    sign_table.alignment = WD_TABLE_ALIGNMENT.CENTER
+    remove_table_borders(sign_table)
     
-    r = p_sign.add_run("ĐÁNH GIÁ CỦA NHÓM: ...................................................          NHẬN XÉT & CHỮ KÝ GIÁO VIÊN: ")
+    sc1 = sign_table.rows[0].cells[0]
+    sc1.width = Inches(3.4)
+    sp1 = sc1.paragraphs[0]
+    sp1.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    sp1.paragraph_format.space_before = Pt(2)
+    sp1.paragraph_format.space_after = Pt(0)
+    sp1.paragraph_format.line_spacing = 1.1
+    r = sp1.add_run("ĐÁNH GIÁ CỦA NHÓM\n(Mức độ hoàn thành nhiệm vụ)\n........................................................................")
     r.font.name = "Times New Roman"
     r.font.size = Pt(8.5)
-    r.font.bold = True
-    
-    r2 = p_sign.add_run("Cô Mai Thuý Đức")
-    r2.font.name = "Times New Roman"
-    r2.font.bold = True
-    r2.font.size = Pt(8.5)
-    r2.font.color.rgb = RGBColor(16, 122, 80)
+
+    sc2 = sign_table.rows[0].cells[1]
+    sc2.width = Inches(3.57)
+    sp2 = sc2.paragraphs[0]
+    sp2.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    sp2.paragraph_format.space_before = Pt(2)
+    sp2.paragraph_format.space_after = Pt(0)
+    sp2.paragraph_format.line_spacing = 1.1
+    r = sp2.add_run("NHẬN XÉT CỦA GIÁO VIÊN\n(Ký và ghi rõ họ tên)\n\n\nCô Mai Thuý Đức")
+    r.font.name = "Times New Roman"
+    r.font.size = Pt(9)
 
     doc.save(filename)
-    print(f"Created: {filename}")
+    print(f"Created reference worksheet: {filename}")
 
 def main():
     file_configs = [
@@ -286,7 +286,7 @@ def main():
         (stations[3], "Phieu_Hoc_Tap_So_2D_Nhom_4_Tram_4.docx"),
     ]
     for st, fn in file_configs:
-        create_single_worksheet(st, fn)
+        create_reference_worksheet(st, fn)
 
 if __name__ == "__main__":
     main()
