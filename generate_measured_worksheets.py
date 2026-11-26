@@ -292,41 +292,6 @@ def build_station_worksheets(filename="Phieu_Hoc_Tap_KHTN7_Bai23_Quang_Hop_4_Tra
         r.font.size = Pt(8.5)
         r.font.color.rgb = RGBColor(4, 120, 87)
 
-        # Section IV: Scientific Questions
-        p_sec4 = doc.add_paragraph()
-        p_sec4.paragraph_format.space_before = Pt(4)
-        p_sec4.paragraph_format.space_after = Pt(2)
-        r = p_sec4.add_run("IV. CÂU HỎI KHOA HỌC & RÚT RA QUY LUẬT SINH HỌC (BÁO CÁO E-POSTER):")
-        r.font.bold = True
-        r.font.size = Pt(10)
-        r.font.color.rgb = RGBColor(27, 67, 50)
-
-        p_q1 = doc.add_paragraph()
-        p_q1.paragraph_format.space_before = Pt(1)
-        p_q1.paragraph_format.space_after = Pt(1)
-        r = p_q1.add_run("1. Câu hỏi 1: ")
-        r.font.bold = True
-        r.font.size = Pt(9)
-        r.font.color.rgb = RGBColor(180, 83, 9)
-        r2 = p_q1.add_run(st['q1'] + "\n")
-        r2.font.size = Pt(9)
-        r3 = p_q1.add_run("Trả lời: ...........................................................................................................................................................................................................................................\n..........................................................................................................................................................................................................................................................")
-        r3.font.size = Pt(8.5)
-        r3.font.color.rgb = RGBColor(107, 114, 128)
-
-        p_q2 = doc.add_paragraph()
-        p_q2.paragraph_format.space_before = Pt(3)
-        p_q2.paragraph_format.space_after = Pt(3)
-        r = p_q2.add_run("2. Câu hỏi 2: ")
-        r.font.bold = True
-        r.font.size = Pt(9)
-        r.font.color.rgb = RGBColor(180, 83, 9)
-        r2 = p_q2.add_run(st['q2'] + "\n")
-        r2.font.size = Pt(9)
-        r3 = p_q2.add_run("Trả lời: ...........................................................................................................................................................................................................................................\n..........................................................................................................................................................................................................................................................")
-        r3.font.size = Pt(8.5)
-        r3.font.color.rgb = RGBColor(107, 114, 128)
-
         # Signature Footer
         p_sign = doc.add_paragraph()
         p_sign.paragraph_format.space_before = Pt(5)
