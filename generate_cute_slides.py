@@ -82,7 +82,7 @@ def create_cute_deck():
         line.fill.fore_color.rgb = RGBColor(209, 235, 220)
         line.line.fill.background()
 
-    def add_footer(slide, slide_num, total_slides=17):
+    def add_footer(slide, slide_num, total_slides=18):
         tb = slide.shapes.add_textbox(Inches(0.8), Inches(7.05), Inches(11.733), Inches(0.35))
         tf = tb.text_frame
         p = tf.paragraphs[0]
@@ -99,6 +99,27 @@ def create_cute_deck():
         r2.font.size = Pt(9.5)
         r2.font.color.rgb = T_GREEN
         r2.font.name = "Arial"
+
+    def create_pill(slide, left, top, width, height, text, bg_color, border_color=None, text_color=T_PRIMARY, font_size=10, bold=True):
+        pill = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(left), Inches(top), Inches(width), Inches(height))
+        pill.fill.solid()
+        pill.fill.fore_color.rgb = bg_color
+        if border_color:
+            pill.line.color.rgb = border_color
+            pill.line.width = Pt(1.2)
+        else:
+            pill.line.fill.background()
+        tf = pill.text_frame
+        tf.word_wrap = True
+        p = tf.paragraphs[0]
+        p.alignment = PP_ALIGN.CENTER
+        r = p.add_run()
+        r.text = text
+        r.font.bold = bold
+        r.font.size = Pt(font_size)
+        r.font.color.rgb = text_color
+        r.font.name = "Arial"
+        return pill
 
     def create_card(slide, left, top, width, height, bg_color=C_WHITE, border_color=BORDER_MINT, border_width=1.5):
         card = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(left), Inches(top), Inches(width), Inches(height))
@@ -214,7 +235,7 @@ def create_cute_deck():
     s2 = prs.slides.add_slide(blank_layout)
     set_slide_bg(s2, BG_SOFT_MINT)
     add_header(s2, "Hôm Nay Chúng Mình Cùng Khám Phá Điều Gì Nhé? 🎯", "MỤC TIÊU BÀI HỌC")
-    add_footer(s2, 2)
+    add_footer(s2, 2, 18)
 
     # 3 Pastel Cards
     # Card 1: KHTN
@@ -298,7 +319,7 @@ def create_cute_deck():
     s3 = prs.slides.add_slide(blank_layout)
     set_slide_bg(s3, BG_SOFT_MINT)
     add_header(s3, "Bản Đồ Cuộc Phiêu Lưu Xanh 90 Phút Cùng Cô Thúy Đức 🗺️", "TIẾN TRÌNH 2 TIẾT HỌC")
-    add_footer(s3, 3)
+    add_footer(s3, 3, 18)
 
     # 2 Big Columns
     c_t1 = create_card(s3, 0.8, 1.7, 5.7, 5.1, bg_color=C_WHITE, border_color=BORDER_MINT, border_width=1.5)
@@ -360,112 +381,461 @@ def create_cute_deck():
         r2.font.color.rgb = T_BODY
 
     # ==========================================================
-    # SLIDE 4: KHỞI ĐỘNG - HAI BẠN CÂY
+    # SLIDE 4: KHỞI ĐỘNG - CÂU CHUYỆN CỦA HAI BẠN CÂY (3-CỘT CHUẨN GIAO DIỆN WEB)
     # ==========================================================
     s4 = prs.slides.add_slide(blank_layout)
     set_slide_bg(s4, BG_SOFT_MINT)
-    add_header(s4, "Khởi Động: Câu Chuyện Của Hai Bạn Cây — Sao Bạn Lại Buồn? 🤔", "TIẾT 1 • KHỞI ĐỘNG (5 PHÚT)")
-    add_footer(s4, 4)
+    add_footer(s4, 4, 18)
 
-    # 2 Comparison Cards (Pastel Rose vs Pastel Sky)
-    c_left = create_card(s4, 0.8, 1.7, 5.7, 3.8, bg_color=C_WHITE, border_color=BORDER_ROSE, border_width=1.5)
+    # Header: Pill, Title & Subtitle y hệt Web
+    create_pill(s4, 0.8, 0.35, 4.3, 0.35, "🌱 KHỞI ĐỘNG BÀI HỌC • TÌNH HUỐNG THỰC TIỄN", C_PILL_MINT, BORDER_MINT, RGBColor(6, 95, 70), font_size=10)
+    create_pill(s4, 9.2, 0.35, 3.333, 0.35, "🔊 Giọng Đọc AI & Tương Tác Số 🌿", C_PILL_PEACH, BORDER_AMBER, RGBColor(180, 83, 9), font_size=9.5)
+
+    tb_h4 = s4.shapes.add_textbox(Inches(0.8), Inches(0.72), Inches(11.733), Inches(0.78))
+    tf = tb_h4.text_frame
+    tf.word_wrap = True
+    p = tf.paragraphs[0]
+    r = p.add_run()
+    r.text = 'Câu Chuyện Của Hai Bạn Cây: "Sao Bạn Lại Buồn?" 🧐'
+    r.font.bold = True
+    r.font.size = Pt(20)
+    r.font.color.rgb = T_PRIMARY
+    r.font.name = "Arial"
+
+    p_sub = tf.add_paragraph()
+    p_sub.space_before = Pt(3)
+    r_sub = p_sub.add_run()
+    r_sub.text = "Lắng nghe cuộc đối thoại giữa Bạn Cây Sân Thượng (thừa nắng cháy lá) và Bạn Cây Phòng Khách (thiếu sáng đói lả) để tìm ra câu hỏi nghiên cứu trọng tâm!"
+    r_sub.font.size = Pt(10)
+    r_sub.font.color.rgb = T_MUTED
+    r_sub.font.name = "Arial"
+
+    # Line divider
+    line = s4.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.8), Inches(1.52), Inches(11.733), Inches(0.02))
+    line.fill.solid()
+    line.fill.fore_color.rgb = RGBColor(209, 235, 220)
+    line.line.fill.background()
+
+    # --- CỘT TRÁI: BÉ LAN Ý (SÂN THƯỢNG NẮNG GẮT) ---
+    c_left = create_card(s4, 0.8, 1.62, 3.25, 4.25, bg_color=C_WHITE, border_color=RGBColor(251, 191, 36), border_width=1.8)
+    create_pill(s4, 1.15, 1.76, 2.55, 0.32, "☀️ SÂN THƯỢNG NẮNG GẮT", RGBColor(254, 243, 199), RGBColor(253, 230, 138), RGBColor(180, 83, 9), font_size=9.5)
+    
     if os.path.exists("images/cay_san_thuong.png"):
-        s4.shapes.add_picture("images/cay_san_thuong.png", Inches(5.1), Inches(1.8), Inches(1.25), Inches(1.25))
+        s4.shapes.add_picture("images/cay_san_thuong.png", Inches(1.47), Inches(2.18), width=Inches(1.9), height=Inches(1.8))
 
-    tb = s4.shapes.add_textbox(Inches(0.95), Inches(1.8), Inches(4.1), Inches(3.5))
+    tb = s4.shapes.add_textbox(Inches(0.9), Inches(4.02), Inches(3.05), Inches(0.65))
     tf = tb.text_frame
     tf.word_wrap = True
     p = tf.paragraphs[0]
+    p.alignment = PP_ALIGN.CENTER
     r = p.add_run()
-    r.text = "☀️ BÉ LAN Ý (SÂN THƯỢNG):\n\"NÓNG QUÁ, TỚ CHÁY LÁ RỒI!\""
+    r.text = "Bé Lan Ý (Ưa Bóng)"
     r.font.bold = True
-    r.font.size = Pt(11)
-    r.font.color.rgb = T_ROSE
-
-    p = tf.add_paragraph()
-    p.space_before = Pt(6)
-    r = p.add_run()
-    r.text = "• Tình cảnh: "
-    r.font.bold = True
-    r.font.size = Pt(10)
-    r.font.color.rgb = T_BODY
-    r2 = p.add_run()
-    r2.text = "Nắng gắt 48.000 Lux, 39°C. Sáng nào cũng được tưới 100% đẫm nước nhưng mép lá cứ vàng xém khô giòn!"
-    r2.font.size = Pt(9.5)
-
-    p2 = tf.add_paragraph()
-    p2.space_before = Pt(6)
-    r = p2.add_run()
-    r.text = "• Nghịch lý: "
-    r.font.bold = True
-    r.font.size = Pt(10)
-    r.font.color.rgb = T_ROSE
-    r2 = p2.add_run()
-    r2.text = "Quang hợp cần nắng và nước, vì sao thừa cả hai mà cây vẫn bị cháy lá?"
-    r2.font.size = Pt(9.5)
-
-    c_right = create_card(s4, 6.8, 1.7, 5.7, 3.8, bg_color=C_WHITE, border_color=BORDER_SKY, border_width=1.5)
-    if os.path.exists("images/cay_phong_khach.png"):
-        s4.shapes.add_picture("images/cay_phong_khach.png", Inches(11.1), Inches(1.8), Inches(1.25), Inches(1.25))
-
-    tb = s4.shapes.add_textbox(Inches(6.95), Inches(1.8), Inches(4.1), Inches(3.5))
-    tf = tb.text_frame
-    tf.word_wrap = True
-    p = tf.paragraphs[0]
-    r = p.add_run()
-    r.text = "🌑 BÉ BÀNG CẢNH (PHÒNG KHÁCH):\n\"TỐI QUÁ, TỚ ĐÓI LẢ ĐI MẤT!\""
-    r.font.bold = True
-    r.font.size = Pt(11)
-    r.font.color.rgb = T_BLUE
-
-    p = tf.add_paragraph()
-    p.space_before = Pt(6)
-    r = p.add_run()
-    r.text = "• Tình cảnh: "
-    r.font.bold = True
-    r.font.size = Pt(10)
-    r.font.color.rgb = T_BODY
-    r2 = p.add_run()
-    r2.text = "Đặt góc sảnh tối 650 Lux, 25°C. Đất luôn ẩm mát nhưng lá nhạt màu dần rồi rụng lả tả vì đói năng lượng!"
-    r2.font.size = Pt(9.5)
-
-    p2 = tf.add_paragraph()
-    p2.space_before = Pt(6)
-    r = p2.add_run()
-    r.text = "• Nghịch lý: "
-    r.font.bold = True
-    r.font.size = Pt(10)
-    r.font.color.rgb = T_BLUE
-    r2 = p2.add_run()
-    r2.text = "Uống nước no nê mà không có ánh sáng thì cây có quang hợp tạo tinh bột được không?"
-    r2.font.size = Pt(9.5)
-
-    # Bottom Question Plate (Cute pill with web link)
-    c_bot = create_card(s4, 0.8, 5.7, 11.7, 1.25, bg_color=C_PILL_MINT, border_color=BORDER_MINT, border_width=1.5)
-    tb = s4.shapes.add_textbox(Inches(1.0), Inches(5.75), Inches(11.3), Inches(1.15))
-    tf = tb.text_frame
-    tf.word_wrap = True
-    p = tf.paragraphs[0]
-    r = p.add_run()
-    r.text = "💡 TRẢI NGHIỆM TƯƠNG TÁC SỐ TRÊN WEB: https://sinhhoc-amber.vercel.app/"
-    r.font.bold = True
-    r.font.size = Pt(10.5)
+    r.font.size = Pt(12)
     r.font.color.rgb = T_PRIMARY
     p2 = tf.add_paragraph()
+    p2.alignment = PP_ALIGN.CENTER
+    p2.space_before = Pt(3)
+    r2 = p2.add_run()
+    r2.text = "\"Nóng rát phiến lá quá!\""
+    r2.font.italic = True
+    r2.font.size = Pt(10)
+    r2.font.color.rgb = RGBColor(220, 38, 38)
+
+    # Box thông số vi khí hậu
+    c_param_l = create_card(s4, 0.95, 4.68, 2.95, 1.05, bg_color=RGBColor(255, 251, 235), border_color=RGBColor(254, 215, 170), border_width=1.0)
+    tb_pl = s4.shapes.add_textbox(Inches(1.05), Inches(4.72), Inches(2.75), Inches(0.95))
+    tf = tb_pl.text_frame
+    tf.word_wrap = True
+    params_l = [
+        ("Ánh sáng: ", "48.000 Lux ⚠️", RGBColor(220, 38, 38)),
+        ("Nhiệt độ: ", "39.0°C ⚠️", RGBColor(220, 38, 38)),
+        ("Tưới nước: ", "Đầy đủ (100%)", RGBColor(16, 122, 80))
+    ]
+    for idx, (lbl, val, col) in enumerate(params_l):
+        p = tf.paragraphs[0] if idx == 0 else tf.add_paragraph()
+        if idx > 0: p.space_before = Pt(2)
+        r = p.add_run()
+        r.text = lbl
+        r.font.size = Pt(9)
+        r.font.color.rgb = T_MUTED
+        r2 = p.add_run()
+        r2.text = val
+        r2.font.bold = True
+        r2.font.size = Pt(9.5)
+        r2.font.color.rgb = col
+
+    # --- CỘT GIỮA: KHUNG ĐỐI THOẠI CỦA HAI BẠN CÂY ---
+    c_mid = create_card(s4, 4.25, 1.62, 4.833, 4.25, bg_color=C_WHITE, border_color=RGBColor(56, 189, 248), border_width=1.8)
+    create_pill(s4, 4.5, 1.76, 2.5, 0.32, "🟣 Bé Bàng Cảnh  •  4 / 6", RGBColor(243, 232, 255), RGBColor(216, 180, 254), RGBColor(126, 34, 206), font_size=9.5)
+
+    tb_dialogue = s4.shapes.add_textbox(Inches(4.45), Inches(2.18), Inches(4.433), Inches(1.65))
+    tf = tb_dialogue.text_frame
+    tf.word_wrap = True
+    p = tf.paragraphs[0]
+    r = p.add_run()
+    p = tf.paragraphs[0]
+    r = p.add_run()
+    r.text = "“Đúng đấy! Hình như tớ là cây ưa sáng phiến lá dày, cần nhiều nắng; còn cậu là cây ưa bóng phiến lá mỏng, chỉ thích ánh sáng dịu mát thôi!"
+    r.font.size = Pt(11)
+    r.font.color.rgb = RGBColor(31, 41, 55)
+    r.font.name = "Arial"
+    p2 = tf.add_paragraph()
+    p2.space_before = Pt(6)
+    r2 = p2.add_run()
+    r2.text = "Lại còn nhiệt độ nữa, trên 40°C thì các chú thợ enzyme quang hợp bị đình công hết!”"
+    r2.font.size = Pt(11)
+    r2.font.color.rgb = RGBColor(31, 41, 55)
+    r2.font.name = "Arial"
+    r.font.size = Pt(11)
+    r.font.color.rgb = RGBColor(31, 41, 55)
+    r.font.name = "Arial"
+
+    # Pagination indicator
+    tb_dots = s4.shapes.add_textbox(Inches(4.45), Inches(3.92), Inches(4.433), Inches(0.3))
+    tf = tb_dots.text_frame
+    p = tf.paragraphs[0]
+    p.alignment = PP_ALIGN.CENTER
+    r = p.add_run()
+    r.text = "‹ Quay lại          ● ● ● ● ○ ○          Tiếp theo ›"
+    r.font.size = Pt(9.5)
+    r.font.color.rgb = RGBColor(156, 163, 175)
+
+    # Mini Swap Prompt Card
+    c_swap = create_card(s4, 4.4, 4.30, 4.533, 1.43, bg_color=RGBColor(240, 253, 244), border_color=RGBColor(187, 247, 208), border_width=1.2)
+    tb_sw = s4.shapes.add_textbox(Inches(4.5), Inches(4.35), Inches(4.333), Inches(1.3))
+    tf = tb_sw.text_frame
+    tf.word_wrap = True
+    p = tf.paragraphs[0]
+    r = p.add_run()
+    r.text = "🔄 Thử nghiệm nhanh: Hoán đổi vị trí của 2 chậu cây!"
+    r.font.bold = True
+    r.font.size = Pt(10)
+    r.font.color.rgb = RGBColor(22, 101, 52)
+    
+    p2 = tf.add_paragraph()
+    p2.space_before = Pt(3)
+    r2 = p2.add_run()
+    r2.text = "Nếu đưa Bé Lan Ý vào bóng râm và đưa Bé Bàng Cảnh ra đón nắng thì điều gì sẽ xảy ra? Liệu hai bạn có hồi phục không?"
+    r2.font.italic = True
+    r2.font.size = Pt(9)
+    r2.font.color.rgb = RGBColor(55, 65, 81)
+
+    p3 = tf.add_paragraph()
+    p3.space_before = Pt(4)
+    r3 = p3.add_run()
+    r3.text = "👉 [ 🔄 Bấm Thử Hoán Đổi Vị Trí Ngay Trên Web ]"
+    r3.font.bold = True
+    r3.font.size = Pt(9.5)
+    r3.font.color.rgb = RGBColor(5, 150, 105)
+
+    # --- CỘT PHẢI: BÉ BÀNG CẢNH (PHÒNG KHÁCH TỐI MỜ) ---
+    c_right = create_card(s4, 9.283, 1.62, 3.25, 4.25, bg_color=C_WHITE, border_color=RGBColor(6, 182, 212), border_width=1.8)
+    create_pill(s4, 9.633, 1.76, 2.55, 0.32, "🔵 PHÒNG KHÁCH TỐI MỜ", RGBColor(224, 242, 254), RGBColor(186, 230, 253), RGBColor(2, 132, 199), font_size=9.5)
+
+    if os.path.exists("images/cay_phong_khach.png"):
+        s4.shapes.add_picture("images/cay_phong_khach.png", Inches(9.953), Inches(2.18), width=Inches(1.9), height=Inches(1.8))
+
+    tb = s4.shapes.add_textbox(Inches(9.383), Inches(4.02), Inches(3.05), Inches(0.65))
+    tf = tb.text_frame
+    tf.word_wrap = True
+    p = tf.paragraphs[0]
+    p.alignment = PP_ALIGN.CENTER
+    r = p.add_run()
+    r.text = "Bé Bàng Cảnh (Ưa Sáng)"
+    r.font.bold = True
+    r.font.size = Pt(12)
+    r.font.color.rgb = T_PRIMARY
+    p2 = tf.add_paragraph()
+    p2.alignment = PP_ALIGN.CENTER
+    p2.space_before = Pt(3)
+    r2 = p2.add_run()
+    r2.text = "\"Tối mờ, đói lả cả người!\""
+    r2.font.italic = True
+    r2.font.size = Pt(10)
+    r2.font.color.rgb = RGBColor(2, 132, 199)
+
+    # Box thông số vi khí hậu
+    c_param_r = create_card(s4, 9.433, 4.68, 2.95, 1.05, bg_color=RGBColor(240, 249, 255), border_color=RGBColor(186, 230, 253), border_width=1.0)
+    tb_pr = s4.shapes.add_textbox(Inches(9.533), Inches(4.72), Inches(2.75), Inches(0.95))
+    tf = tb_pr.text_frame
+    tf.word_wrap = True
+    params_r = [
+        ("Ánh sáng: ", "650 Lux ⚠️", RGBColor(180, 83, 9)),
+        ("Nhiệt độ: ", "25.0°C (Mát)", RGBColor(2, 132, 199)),
+        ("Tưới nước: ", "Đầy đủ (100%)", RGBColor(16, 122, 80))
+    ]
+    for idx, (lbl, val, col) in enumerate(params_r):
+        p = tf.paragraphs[0] if idx == 0 else tf.add_paragraph()
+        if idx > 0: p.space_before = Pt(2)
+        r = p.add_run()
+        r.text = lbl
+        r.font.size = Pt(9)
+        r.font.color.rgb = T_MUTED
+        r2 = p.add_run()
+        r2.text = val
+        r2.font.bold = True
+        r2.font.size = Pt(9.5)
+        r2.font.color.rgb = col
+
+    # --- BANNER CHÂN TRANG: NHIỆM VỤ HỌC TẬP TRỌNG TÂM ---
+    c_bot = create_card(s4, 0.8, 6.00, 11.733, 0.95, bg_color=RGBColor(6, 78, 59), border_color=RGBColor(16, 185, 129), border_width=1.5)
+    tb_bot = s4.shapes.add_textbox(Inches(1.05), Inches(6.08), Inches(7.6), Inches(0.8))
+    tf = tb_bot.text_frame
+    tf.word_wrap = True
+    p = tf.paragraphs[0]
+    r = p.add_run()
+    r.text = "🚀 Nhiệm Vụ Học Tập Trọng Tâm: Giải Cứu Cây Xanh!"
+    r.font.bold = True
+    r.font.size = Pt(12)
+    r.font.color.rgb = RGBColor(255, 255, 255)
+    
+    p2 = tf.add_paragraph()
+    p2.space_before = Pt(3)
+    r2 = p2.add_run()
+    r2.text = "Cùng vào Phòng Thí Nghiệm Số (Module 1) để điều tra ngưỡng tối ưu của Ánh Sáng, Nước, CO₂ và Nhiệt Độ."
+    r2.font.size = Pt(10)
+    r2.font.color.rgb = RGBColor(167, 243, 208)
+
+    # Nút bấm bên phải
+    btn_bot = create_card(s4, 8.85, 6.12, 3.5, 0.7, bg_color=RGBColor(255, 255, 255), border_color=RGBColor(52, 211, 153), border_width=1.2)
+    tb_btn = s4.shapes.add_textbox(Inches(8.9), Inches(6.12), Inches(3.4), Inches(0.7))
+    tf = tb_btn.text_frame
+    tf.word_wrap = True
+    p = tf.paragraphs[0]
+    p.alignment = PP_ALIGN.CENTER
+    r = p.add_run()
+    r.text = "🧪 Vào Phòng Thí Nghiệm Số Ngay ➔"
+    r.font.bold = True
+    r.font.size = Pt(10)
+    r.font.color.rgb = RGBColor(6, 78, 59)
+    p2 = tf.add_paragraph()
+    p2.alignment = PP_ALIGN.CENTER
     p2.space_before = Pt(2)
-    r = p2.add_run()
-    r.text = "👉 Bấm nút [🔄 Thử Hoán Đổi Vị Trí] trên web để xem phép màu! Cây cần Nắng ☀️, Nước 💧, Khí CO₂ ☁️ và Nhiệt độ 🌡️ ở ngưỡng bao nhiêu thì tối ưu?"
+    r2 = p2.add_run()
+    r2.text = "sinhhoc-amber.vercel.app"
+    r2.font.size = Pt(9)
+    r2.font.color.rgb = RGBColor(5, 150, 105)
+
+    # ==========================================================
+    # SLIDE 6: KHỞI ĐỘNG - KẾT QUẢ HOÁN ĐỔI VỊ TRÍ (GIẢI CỨU THÀNH CÔNG!)
+    # ==========================================================
+    s5_res = prs.slides.add_slide(blank_layout)
+    set_slide_bg(s5_res, BG_SOFT_MINT)
+    add_footer(s5_res, 5, 18)
+
+    create_pill(s5_res, 0.8, 0.35, 4.3, 0.35, "🌱 KHỞI ĐỘNG BÀI HỌC • KẾT QUẢ THỬ NGHIỆM SỐ", C_PILL_MINT, BORDER_MINT, RGBColor(6, 95, 70), font_size=10)
+    create_pill(s5_res, 9.2, 0.35, 3.333, 0.35, "✨ Giải Cứu Cây Trồng Thành Công!", C_PILL_MINT, BORDER_MINT, RGBColor(6, 95, 70), font_size=9.5)
+
+    tb_h5 = s5_res.shapes.add_textbox(Inches(0.8), Inches(0.72), Inches(11.733), Inches(0.78))
+    tf = tb_h5.text_frame
+    tf.word_wrap = True
+    p = tf.paragraphs[0]
+    r = p.add_run()
+    r.text = "Khởi Động: Thử Nghiệm Hoán Đổi Vị Trí — Hai Bạn Cây Cùng Tươi Vui! 🎉"
+    r.font.bold = True
+    r.font.size = Pt(19)
+    r.font.color.rgb = T_PRIMARY
+    r.font.name = "Arial"
+
+    p_sub = tf.add_paragraph()
+    p_sub.space_before = Pt(3)
+    r_sub = p_sub.add_run()
+    r_sub.text = "Khi đưa Bé Lan Ý vào phòng khách mát mẻ và đưa Bé Bàng Cảnh ra ban công đón nắng: Cả hai bạn cây đều hồi sinh rực rỡ!"
+    r_sub.font.size = Pt(10)
+    r_sub.font.color.rgb = T_MUTED
+    r_sub.font.name = "Arial"
+
+    line = s5_res.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.8), Inches(1.52), Inches(11.733), Inches(0.02))
+    line.fill.solid()
+    line.fill.fore_color.rgb = RGBColor(209, 235, 220)
+    line.line.fill.background()
+
+    # --- CỘT TRÁI: LAN Ý HỒI SINH TRONG PHÒNG KHÁCH ---
+    c_l5 = create_card(s5_res, 0.8, 1.62, 3.25, 4.25, bg_color=C_WHITE, border_color=RGBColor(52, 211, 153), border_width=1.8)
+    create_pill(s5_res, 1.05, 1.76, 2.75, 0.32, "🏡 PHÒNG KHÁCH MÁT (VỊ TRÍ MỚI)", RGBColor(209, 250, 229), RGBColor(167, 243, 208), RGBColor(6, 95, 70), font_size=9)
+
+    if os.path.exists("images/cay_san_thuong.png"):
+        s5_res.shapes.add_picture("images/cay_san_thuong.png", Inches(1.47), Inches(2.18), width=Inches(1.9), height=Inches(1.8))
+
+    tb = s5_res.shapes.add_textbox(Inches(0.9), Inches(4.02), Inches(3.05), Inches(0.65))
+    tf = tb.text_frame
+    tf.word_wrap = True
+    p = tf.paragraphs[0]
+    p.alignment = PP_ALIGN.CENTER
+    r = p.add_run()
+    r.text = "Bé Lan Ý (Hồi Sinh Tươi Tốt! 🌸)"
+    r.font.bold = True
+    r.font.size = Pt(11.5)
+    r.font.color.rgb = RGBColor(6, 95, 70)
+    p2 = tf.add_paragraph()
+    p2.alignment = PP_ALIGN.CENTER
+    p2.space_before = Pt(3)
+    r2 = p2.add_run()
+    r2.text = "\"Mát dịu quá, mép lá tớ đã lành rồi!\""
+    r2.font.italic = True
+    r2.font.size = Pt(9.5)
+    r2.font.color.rgb = RGBColor(16, 185, 129)
+
+    c_param_l5 = create_card(s5_res, 0.95, 4.68, 2.95, 1.05, bg_color=RGBColor(240, 253, 244), border_color=RGBColor(187, 247, 208), border_width=1.0)
+    tb_pl5 = s5_res.shapes.add_textbox(Inches(1.05), Inches(4.72), Inches(2.75), Inches(0.95))
+    tf = tb_pl5.text_frame
+    tf.word_wrap = True
+    params_l5 = [
+        ("Ánh sáng: ", "650 Lux (Tán xạ dịu) ✅", RGBColor(16, 122, 80)),
+        ("Nhiệt độ: ", "25.0°C (Mát mẻ) ✅", RGBColor(16, 122, 80)),
+        ("Quang hợp: ", "Ổn định, tạo tinh bột ✅", RGBColor(6, 95, 70))
+    ]
+    for idx, (lbl, val, col) in enumerate(params_l5):
+        p = tf.paragraphs[0] if idx == 0 else tf.add_paragraph()
+        if idx > 0: p.space_before = Pt(2)
+        r = p.add_run()
+        r.text = lbl
+        r.font.size = Pt(9)
+        r.font.color.rgb = T_MUTED
+        r2 = p.add_run()
+        r2.text = val
+        r2.font.bold = True
+        r2.font.size = Pt(9)
+        r2.font.color.rgb = col
+
+    # --- CỘT GIỮA: ĐÚC KẾT KHOA HỌC & CÂU HỎI MỞ BÀI ---
+    c_m5 = create_card(s5_res, 4.25, 1.62, 4.833, 4.25, bg_color=C_WHITE, border_color=BORDER_MINT, border_width=1.8)
+    create_pill(s5_res, 4.5, 1.76, 3.2, 0.32, "💡 BẬT MÍ KHOA HỌC TỪ THỬ NGHIỆM", RGBColor(254, 243, 199), RGBColor(253, 230, 138), RGBColor(180, 83, 9), font_size=9.5)
+
+    tb_disc = s5_res.shapes.add_textbox(Inches(4.45), Inches(2.18), Inches(4.433), Inches(2.15))
+    tf = tb_disc.text_frame
+    tf.word_wrap = True
+    points = [
+        ("1. Nhu cầu Ánh sáng khác biệt: ", "Cây ưa sáng cần quang năng mạnh, phiến lá dày. Cây ưa bóng chỉ cần ánh sáng tán xạ dịu nhẹ, nếu phơi nắng gắt sẽ bị cháy lá."),
+        ("2. Giới hạn Nhiệt độ: ", "Khi trời quá nóng (>40°C), enzyme quang hợp bị đình công; khí khổng đóng chặt để giữ nước khiến cây ngừng quang hợp."),
+        ("3. Bí mật cần giải mã: ", "Còn NƯỚC 💧 và KHÍ CO₂ ☁️ ảnh hưởng như thế nào? Cây cần bao nhiêu thì đủ để năng suất quang hợp đạt đỉnh cao nhất?")
+    ]
+    for idx, (head, body) in enumerate(points):
+        p = tf.paragraphs[0] if idx == 0 else tf.add_paragraph()
+        if idx > 0: p.space_before = Pt(6)
+        r = p.add_run()
+        r.text = head
+        r.font.bold = True
+        r.font.size = Pt(10)
+        r.font.color.rgb = T_PRIMARY
+        r2 = p.add_run()
+        r2.text = body
+        r2.font.size = Pt(9.5)
+        r2.font.color.rgb = T_BODY
+
+    # Mini Call to action
+    c_cta5 = create_card(s5_res, 4.4, 4.48, 4.533, 1.25, bg_color=RGBColor(234, 247, 239), border_color=BORDER_MINT, border_width=1.2)
+    tb_cta5 = s5_res.shapes.add_textbox(Inches(4.5), Inches(4.52), Inches(4.333), Inches(1.15))
+    tf = tb_cta5.text_frame
+    tf.word_wrap = True
+    p = tf.paragraphs[0]
+    r = p.add_run()
+    r.text = "🎯 CÙNG BƯỚC VÀO PHÒNG THÍ NGHIỆM SỐ (MODULE 1)!"
     r.font.bold = True
     r.font.size = Pt(10.5)
     r.font.color.rgb = T_GREEN
+    p2 = tf.add_paragraph()
+    p2.space_before = Pt(3)
+    r2 = p2.add_run()
+    r2.text = "Các em hãy tự tay điều chỉnh 4 yếu tố trên mô hình số để quan sát bọt khí O₂ cành rong và giải mã toàn bộ ngưỡng tối ưu!"
+    r2.font.size = Pt(9.5)
+    r2.font.color.rgb = T_BODY
+
+    # --- CỘT PHẢI: BÀNG CẢNH TẮM NẮNG QUANG HỢP ---
+    c_r5 = create_card(s5_res, 9.283, 1.62, 3.25, 4.25, bg_color=C_WHITE, border_color=RGBColor(251, 191, 36), border_width=1.8)
+    create_pill(s5_res, 9.533, 1.76, 2.75, 0.32, "☀️ BAN CÔNG ĐÓN NẮNG (VỊ TRÍ MỚI)", RGBColor(254, 243, 199), RGBColor(253, 230, 138), RGBColor(180, 83, 9), font_size=9)
+
+    if os.path.exists("images/cay_phong_khach.png"):
+        s5_res.shapes.add_picture("images/cay_phong_khach.png", Inches(9.953), Inches(2.18), width=Inches(1.9), height=Inches(1.8))
+
+    tb = s5_res.shapes.add_textbox(Inches(9.383), Inches(4.02), Inches(3.05), Inches(0.65))
+    tf = tb.text_frame
+    tf.word_wrap = True
+    p = tf.paragraphs[0]
+    p.alignment = PP_ALIGN.CENTER
+    r = p.add_run()
+    r.text = "Bé Bàng Cảnh (Quang Hợp Hăng Say! ⚡)"
+    r.font.bold = True
+    r.font.size = Pt(11.5)
+    r.font.color.rgb = T_PRIMARY
+    p2 = tf.add_paragraph()
+    p2.alignment = PP_ALIGN.CENTER
+    p2.space_before = Pt(3)
+    r2 = p2.add_run()
+    r2.text = "\"Nắng ngập tràn rồi, tớ no nê tinh bột!\""
+    r2.font.italic = True
+    r2.font.size = Pt(9.5)
+    r2.font.color.rgb = RGBColor(180, 83, 9)
+
+    c_param_r5 = create_card(s5_res, 9.433, 4.68, 2.95, 1.05, bg_color=RGBColor(255, 251, 235), border_color=RGBColor(254, 215, 170), border_width=1.0)
+    tb_pr5 = s5_res.shapes.add_textbox(Inches(9.533), Inches(4.72), Inches(2.75), Inches(0.95))
+    tf = tb_pr5.text_frame
+    tf.word_wrap = True
+    params_r5 = [
+        ("Ánh sáng: ", "45.000 Lux (Nắng tốt) ✅", RGBColor(180, 83, 9)),
+        ("Nhiệt độ: ", "30.0°C (Gió thoáng) ✅", RGBColor(16, 122, 80)),
+        ("Quang hợp: ", "Bọt O₂ thoát mạnh mẽ! ✅", RGBColor(6, 95, 70))
+    ]
+    for idx, (lbl, val, col) in enumerate(params_r5):
+        p = tf.paragraphs[0] if idx == 0 else tf.add_paragraph()
+        if idx > 0: p.space_before = Pt(2)
+        r = p.add_run()
+        r.text = lbl
+        r.font.size = Pt(9)
+        r.font.color.rgb = T_MUTED
+        r2 = p.add_run()
+        r2.text = val
+        r2.font.bold = True
+        r2.font.size = Pt(9)
+        r2.font.color.rgb = col
+
+    # --- BANNER CHÂN TRANG: CHUYỂN TIẾP HOẠT ĐỘNG 2 ---
+    c_bot5 = create_card(s5_res, 0.8, 6.00, 11.733, 0.95, bg_color=RGBColor(6, 78, 59), border_color=RGBColor(16, 185, 129), border_width=1.5)
+    tb_bot5 = s5_res.shapes.add_textbox(Inches(1.05), Inches(6.08), Inches(7.6), Inches(0.8))
+    tf = tb_bot5.text_frame
+    tf.word_wrap = True
+    p = tf.paragraphs[0]
+    r = p.add_run()
+    r.text = "🌿 BẮT ĐẦU HOẠT ĐỘNG 2: HÌNH THÀNH KIẾN THỨC MỚI (35 PHÚT)"
+    r.font.bold = True
+    r.font.size = Pt(12)
+    r.font.color.rgb = RGBColor(255, 255, 255)
+    
+    p2 = tf.add_paragraph()
+    p2.space_before = Pt(3)
+    r2 = p2.add_run()
+    r2.text = "Khám phá 4 yếu tố quang hợp qua Thí nghiệm cành rong ảo & Điền Phiếu học tập số 1."
+    r2.font.size = Pt(10)
+    r2.font.color.rgb = RGBColor(167, 243, 208)
+
+    # Nút bấm bên phải
+    btn_bot5 = create_card(s5_res, 8.85, 6.12, 3.5, 0.7, bg_color=RGBColor(255, 255, 255), border_color=RGBColor(52, 211, 153), border_width=1.2)
+    tb_btn5 = s5_res.shapes.add_textbox(Inches(8.9), Inches(6.15), Inches(3.4), Inches(0.65))
+    tf = tb_btn5.text_frame
+    tf.word_wrap = True
+    p = tf.paragraphs[0]
+    p.alignment = PP_ALIGN.CENTER
+    r = p.add_run()
+    r.text = "📝 Mở Phiếu Học Tập Số 1 ➔"
+    r.font.bold = True
+    r.font.size = Pt(10)
+    r.font.color.rgb = RGBColor(6, 78, 59)
+    p2 = tf.add_paragraph()
+    p2.alignment = PP_ALIGN.CENTER
+    p2.space_before = Pt(2)
+    r2 = p2.add_run()
+    r2.text = "Khám phá bọt khí O₂ cành rong"
+    r2.font.size = Pt(9)
+    r2.font.color.rgb = RGBColor(5, 150, 105)
 
     # ==========================================================
-    # SLIDE 5: BOSCO VERTICALE - KHU RỪNG THẲNG ĐỨNG
+    # SLIDE 7: BOSCO VERTICALE - KHU RỪNG THẲNG ĐỨNG
     # ==========================================================
     s5 = prs.slides.add_slide(blank_layout)
     set_slide_bg(s5, BG_SOFT_MINT)
     add_header(s5, "Tư Liệu SGK Trang 107: 'Khu Rừng Thẳng Đứng' Lọc Không Khí 🏢🌿", "TƯ LIỆU THỰC TẾ SGK")
-    add_footer(s5, 5)
+    add_footer(s5, 6, 18)
 
     # Left: Text Excerpt in soft pastel card
     c_txt = create_card(s5, 0.8, 1.7, 6.2, 5.1, bg_color=C_WHITE, border_color=BORDER_MINT, border_width=1.5)
@@ -525,12 +895,12 @@ def create_cute_deck():
     r2.font.color.rgb = T_BODY
 
     # ==========================================================
-    # SLIDE 6: YẾU TỐ 1 - ÁNH SÁNG
+    # SLIDE 7: YẾU TỐ 1 - ÁNH SÁNG
     # ==========================================================
     s6 = prs.slides.add_slide(blank_layout)
     set_slide_bg(s6, BG_SOFT_MINT)
     add_header(s6, "Yếu Tố 1: Ánh Nắng Ấm Áp — Bí Mật Của Cành Rong Nhỏ ☀️", "TIẾT 1 • THÍ NGHIỆM SỐ")
-    add_footer(s6, 6)
+    add_footer(s6, 7, 18)
 
     # Left: Science & Friendly explanation
     c_left = create_card(s6, 0.8, 1.7, 6.2, 5.1, bg_color=C_WHITE, border_color=BORDER_MINT, border_width=1.5)
@@ -568,12 +938,12 @@ def create_cute_deck():
         s6.shapes.add_picture("screenshots/lab_elodea_realistic.png", Inches(7.2), Inches(1.7), width=Inches(5.33), height=Inches(5.1))
 
     # ==========================================================
-    # SLIDE 7: YẾU TỐ 2 - NƯỚC
+    # SLIDE 8: YẾU TỐ 2 - NƯỚC
     # ==========================================================
     s7 = prs.slides.add_slide(blank_layout)
     set_slide_bg(s7, BG_SOFT_MINT)
     add_header(s7, "Yếu Tố 2: Giọt Nước Mát Lành — 'Chiếc Miệng' Của Lá Cây 💧", "TIẾT 1 • THÍ NGHIỆM SỐ")
-    add_footer(s7, 7)
+    add_footer(s7, 8, 18)
 
     # 2 Big Cards
     c1 = create_card(s7, 0.8, 1.7, 5.7, 5.1, bg_color=C_WHITE, border_color=BORDER_SKY, border_width=1.5)
@@ -637,12 +1007,12 @@ def create_cute_deck():
         r2.font.color.rgb = T_BODY
 
     # ==========================================================
-    # SLIDE 8: YẾU TỐ 3 & 4 - KHÍ CO2 VÀ NHIỆT ĐỘ
+    # SLIDE 9: YẾU TỐ 3 & 4 - KHÍ CO2 VÀ NHIỆT ĐỘ
     # ==========================================================
     s8 = prs.slides.add_slide(blank_layout)
     set_slide_bg(s8, BG_SOFT_MINT)
     add_header(s8, "Yếu Tố 3 & 4: Khí CO₂ Và Nhiệt Độ — Cần Vừa Đủ Thôi Nhé! ☁️🌡️", "TIẾT 1 • THÍ NGHIỆM SỐ")
-    add_footer(s8, 8)
+    add_footer(s8, 9, 18)
 
     # Card Left: CO2
     c1 = create_card(s8, 0.8, 1.7, 5.7, 5.1, bg_color=C_WHITE, border_color=BORDER_AMBER, border_width=1.5)
@@ -707,12 +1077,12 @@ def create_cute_deck():
         r2.font.color.rgb = T_BODY
 
     # ==========================================================
-    # SLIDE 9: BẢNG BÍ KÍP QUANG HỢP (PHIẾU HỌC TẬP SỐ 1)
+    # SLIDE 10: BẢNG BÍ KÍP QUANG HỢP (PHIẾU HỌC TẬP SỐ 1)
     # ==========================================================
     s9 = prs.slides.add_slide(blank_layout)
     set_slide_bg(s9, BG_SOFT_MINT)
     add_header(s9, "Bảng Bí Kíp Quang Hợp Của Nhà Sinh Học Nhí 📋✨", "TỔNG KẾT TIẾT 1")
-    add_footer(s9, 9)
+    add_footer(s9, 10, 18)
 
     # Soft Pastel Table
     rows = [
@@ -753,12 +1123,12 @@ def create_cute_deck():
                     p.font.color.rgb = T_GREEN
 
     # ==========================================================
-    # SLIDE 10: TIẾT 2 - ĐỐ VUI NHANH
+    # SLIDE 11: TIẾT 2 - ĐỐ VUI NHANH
     # ==========================================================
     s10 = prs.slides.add_slide(blank_layout)
     set_slide_bg(s10, BG_SOFT_MINT)
     add_header(s10, "Thử Thách Vui: Bạn Nào Trả Lời Nhanh Nhất? 🎮⭐", "TIẾT 2 • KHỞI ĐỘNG VUI (10 PHÚT)")
-    add_footer(s10, 10)
+    add_footer(s10, 11, 18)
 
     # 4 Quiz Question Cards (Pastel Style)
     quiz_items = [
@@ -796,12 +1166,12 @@ def create_cute_deck():
         r2.font.color.rgb = T_BODY
 
     # ==========================================================
-    # SLIDE 11: VẬN DỤNG STEM - 4 ĐỘI KỸ SƯ NHÍ
+    # SLIDE 12: VẬN DỤNG STEM - 4 ĐỘI KỸ SƯ NHÍ
     # ==========================================================
     s11 = prs.slides.add_slide(blank_layout)
     set_slide_bg(s11, BG_SOFT_MINT)
     add_header(s11, "Dự Án STEM: 4 Đội Kỹ Sư Sinh Thái Nhí Xuất Kích! 🚀🌿", "TIẾT 2 • VẬN DỤNG DỰ ÁN")
-    add_footer(s11, 11)
+    add_footer(s11, 12, 18)
 
     # 4 Team Cards
     teams = [
@@ -855,12 +1225,12 @@ def create_cute_deck():
         r2.font.size = Pt(9.5)
 
     # ==========================================================
-    # SLIDE 12: THAO TÁC TRẠM 1 - KHU VƯỜN THẲNG ĐỨNG
+    # SLIDE 13: THAO TÁC TRẠM 1 - KHU VƯỜN THẲNG ĐỨNG
     # ==========================================================
     s12 = prs.slides.add_slide(blank_layout)
     set_slide_bg(s12, BG_SOFT_MINT)
     add_header(s12, "Trải Nghiệm Trạm 1: Kéo Cây Vào Trồng Cực Vui Nhé! 🌿🏡", "THAO TÁC THỰC HÀNH WEB")
-    add_footer(s12, 12)
+    add_footer(s12, 13, 18)
 
     # Left: Steps
     c_left = create_card(s12, 0.8, 1.7, 5.7, 5.1, bg_color=C_WHITE, border_color=BORDER_MINT, border_width=1.5)
@@ -899,12 +1269,12 @@ def create_cute_deck():
         s12.shapes.add_picture("screenshots/garden_planted.png", Inches(6.8), Inches(1.7), width=Inches(5.733), height=Inches(5.1))
 
     # ==========================================================
-    # SLIDE 13: BÀN LÀM VIỆC CÔ MAI THUÝ ĐỨC
+    # SLIDE 14: BÀN LÀM VIỆC CÔ MAI THUÝ ĐỨC
     # ==========================================================
     s13 = prs.slides.add_slide(blank_layout)
     set_slide_bg(s13, BG_SOFT_MINT)
     add_header(s13, "Bàn Làm Việc Cô Mai Thuý Đức: Chờ Cô Chấm Điểm & Chuẩn Y 👩‍🏫✨", "CỔNG PHÊ DUYỆT BÀI")
-    add_footer(s13, 13)
+    add_footer(s13, 14, 18)
 
     # Left: Explanation
     c_left = create_card(s13, 0.8, 1.7, 5.7, 5.1, bg_color=C_WHITE, border_color=BORDER_AMBER, border_width=1.5)
@@ -942,12 +1312,12 @@ def create_cute_deck():
         s13.shapes.add_picture("screenshots/exp_4_poster_gallery_approved.png", Inches(6.8), Inches(1.7), width=Inches(5.733), height=Inches(5.1))
 
     # ==========================================================
-    # SLIDE 14: THUYẾT TRÌNH BÁO CÁO E-POSTER KHOA HỌC
+    # SLIDE 15: THUYẾT TRÌNH BÁO CÁO E-POSTER KHOA HỌC
     # ==========================================================
     s14 = prs.slides.add_slide(blank_layout)
     set_slide_bg(s14, BG_SOFT_MINT)
     add_header(s14, "Triển Lãm E-Poster: Cả Lớp Cùng Khoe Thành Quả Rực Rỡ! 🎨🎙️", "THUYẾT TRÌNH DỰ ÁN")
-    add_footer(s14, 14)
+    add_footer(s14, 15, 18)
 
     # Left: Explanation
     c_left = create_card(s14, 0.8, 1.7, 5.7, 5.1, bg_color=C_WHITE, border_color=BORDER_MINT, border_width=1.5)
@@ -985,12 +1355,12 @@ def create_cute_deck():
         s14.shapes.add_picture("screenshots/exp_5_presentation_poster.png", Inches(6.8), Inches(1.7), width=Inches(5.733), height=Inches(5.1))
 
     # ==========================================================
-    # SLIDE 15: TRAO GIẤY CHỨNG NHẬN KỸ SƯ SINH THÁI SỐ
+    # SLIDE 16: TRAO GIẤY CHỨNG NHẬN KỸ SƯ SINH THÁI SỐ
     # ==========================================================
     s15 = prs.slides.add_slide(blank_layout)
     set_slide_bg(s15, BG_SOFT_MINT)
     add_header(s15, "Vinh Danh: Nhận Giấy Chứng Nhận Kỹ Sư Sinh Học Xanh! 🎖️🏆", "TRAO THƯỞNG DỰ ÁN")
-    add_footer(s15, 15)
+    add_footer(s15, 16, 18)
 
     # Left: Explanation
     c_left = create_card(s15, 0.8, 1.7, 5.7, 5.1, bg_color=C_WHITE, border_color=BORDER_AMBER, border_width=1.5)
@@ -1028,12 +1398,12 @@ def create_cute_deck():
         s15.shapes.add_picture("screenshots/screen_certificate.png", Inches(6.8), Inches(1.7), width=Inches(5.733), height=Inches(5.1))
 
     # ==========================================================
-    # SLIDE 16: DỰ ÁN NHỎ VỀ NHÀ
+    # SLIDE 17: DỰ ÁN NHỎ VỀ NHÀ
     # ==========================================================
     s16 = prs.slides.add_slide(blank_layout)
     set_slide_bg(s16, BG_SOFT_MINT)
     add_header(s16, "Dự Án Nhỏ Về Nhà: 'Góc Xanh Ban Công Của Em' 🏡🌱", "TỰ HỌC & MỞ RỘNG")
-    add_footer(s16, 16)
+    add_footer(s16, 17, 18)
 
     # Left: Rubric friendly
     c_rubric = create_card(s16, 0.8, 1.7, 5.7, 5.1, bg_color=C_WHITE, border_color=BORDER_MINT, border_width=1.5)
@@ -1098,7 +1468,7 @@ def create_cute_deck():
         r2.font.color.rgb = T_BODY
 
     # ==========================================================
-    # SLIDE 17: TRANG KẾT THÚC SIÊU NGỌT NGÀO
+    # SLIDE 18: TRANG KẾT THÚC SIÊU NGỌT NGÀO
     # ==========================================================
     s17 = prs.slides.add_slide(blank_layout)
     set_slide_bg(s17, BG_TITLE)

@@ -2,6 +2,11 @@
 __pycache__/
 *.pyc
 
+# Office temp files
+~$*.docx
+~$*.pptx
+~$*.xlsx
+
 # OS files
 Thumbs.db
 .DS_Store
