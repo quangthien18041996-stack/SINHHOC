@@ -4576,9 +4576,9 @@
                 } else {
                     badgeHtml = `<span class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-stone-100 text-stone-500 border border-stone-200">Đang Thực Hiện</span>`;
                     actionBtn = `
-                        <button onclick="quickSubmitMockForStation(${id})" class="w-full mt-2.5 py-1.5 px-3 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-700 border border-stone-300 text-xs font-medium transition flex items-center justify-center gap-1 cursor-pointer">
-                            <i class="fa-solid fa-arrow-up-from-bracket text-[10px]"></i> Nộp Mẫu Thử
-                        </button>
+                        <div class="w-full mt-2.5 py-1.5 px-3 rounded-xl bg-stone-50 text-stone-400 border border-dashed border-stone-200 text-[11px] text-center font-medium">
+                            <i class="fa-regular fa-clock mr-1"></i> Đang thực hiện...
+                        </div>
                     `;
                 }
 
@@ -4727,9 +4727,7 @@
                                 <button onclick="openStationFromGallery(${id})" class="text-xs font-bold text-emerald-800 hover:underline flex items-center gap-1 cursor-pointer">
                                     <i class="fa-solid fa-arrow-left"></i> Đến Trạm ${id} Làm Bài
                                 </button>
-                                <button onclick="quickSubmitMockForStation(${id})" class="px-3 py-1.5 rounded-xl bg-white hover:bg-stone-100 text-stone-700 border border-stone-300 text-xs font-medium cursor-pointer shadow-2xs">
-                                    Nộp Mẫu Thử
-                                </button>
+                                <span class="text-[11px] text-stone-400 font-medium italic">Chờ nộp bài...</span>
                             </div>
                         </div>
                     `;
