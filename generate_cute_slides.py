@@ -1175,10 +1175,10 @@ def create_cute_deck():
 
     # 4 Team Cards
     teams = [
-        ("ĐỘI 1: TÒA NHÀ CAO TẦNG", "Trạm 1: Bosco Verticale", "Nắng gắt tầng trên (45.000 Lux), ngạt khói bụi xe tầng trệt (CO₂ 850 ppm).", "Thiết kế tháp rừng thẳng đứng phủ xanh từ nóc xuống chân.", BORDER_MINT, T_GREEN),
-        ("ĐỘI 2: ĐẢO NHIỆT PHỐ ĐI BỘ", "Trạm 2: Trung Tâm Thương Mại", "Bê tông và kính hấp thụ nhiệt bức xạ >38°C, gió quẩn khô khan.", "Thiết kế ốc đảo râm mát, giàn dây leo tường và phun sương.", BORDER_SKY, T_BLUE),
-        ("ĐỘI 3: NHÀ MÀNG CÔNG NGHỆ CAO", "Trạm 3: Nông Nghiệp Củ Chi", "Nhà màng kín hầm nhiệt, thiếu hụt CO₂ cục bộ giữa trưa nắng.", "Điều hòa mái che tự động, cấp CO₂ sinh học, tưới nhỏ giọt hẹn giờ.", BORDER_AMBER, T_AMBER),
-        ("ĐỘI 4: HÀNH LANG HỌC ĐƯỜNG", "Trạm 4: THCS Tân Tạo A", "Bụi mịn từ đường lộ, dãy phòng học hướng Tây hứng trọn nắng trưa gay gắt.", "Trồng rèm cây leo chống nắng hướng Tây, đặt cây lọc bụi hành lang.", BORDER_ROSE, T_ROSE)
+        ("NHÓM 1: ĐÔ THỊ NÉN & THÁP RỪNG ĐỨNG", "Trạm 1: Chung cư & Nhà phố TP.HCM", "Khói xe CO₂ cao (850 ppm), bê tông nóng 36°C; tầng trên nắng gắt 45.000 Lux, tầng trệt râm.", "Phân tầng cây ưa sáng trên mái, giàn leo vách đứng, cây ưa bóng tầng trệt & tưới nhỏ giọt.", BORDER_MINT, T_GREEN),
+        ("NHÓM 2: NHÀ MÀNG NÔNG NGHIỆP SỐ", "Trạm 2: Nông nghiệp công nghệ cao Củ Chi", "Cần tối ưu cả 4 yếu tố quanh năm (hiện trạng thiếu sáng 12.000 Lux, CO₂ 400 ppm, nóng 34°C).", "Lắp đèn LED quang phổ, bổ sung CO₂ (1.200 ppm), quạt hạ nhiệt 26°C & tưới nhỏ giọt tự động.", BORDER_SKY, T_BLUE),
+        ("NHÓM 3: SÂN THƯỢNG NẮNG GẮT", "Trạm 3: Mái bê tông & Ban công hướng Tây", "Nắng trưa gay gắt 58.000 Lux, sàn bê tông 43°C làm khí khổng đóng chặt, lá dễ cháy khô.", "Căng lưới lan giảm nắng gắt, trồng cây chịu hạn cutin dày, phun sương làm mát & phủ gốc giữ ẩm.", BORDER_AMBER, T_AMBER),
+        ("NHÓM 4: TRONG NHÀ & HÀNH LANG RÂM", "Trạm 4: Lớp học & Khu vực thiếu sáng", "Ánh sáng rất yếu (800 Lux, dưới điểm bù cây ưa sáng), thiếu thông gió tự nhiên, CO₂ 650 ppm.", "Chọn cây ưa bóng giàu diệp lục b, đo sáng bằng smartphone, bù đèn LED 4000K & lau sạch bụi lá.", BORDER_ROSE, T_ROSE)
     ]
 
     for idx, (t_name, sub, problem, goal, col_border, col_title) in enumerate(teams):
@@ -1249,7 +1249,7 @@ def create_cute_deck():
         ("Bước 2: Phủ xanh vách tường đứng", "Kéo Dây Thường Xuân hoặc Hoa Giấy leo bám tường, che mát bề mặt bê tông nóng bức."),
         ("Bước 3: Trồng cây tầng trệt", "Kéo Cây Lan Ý hoặc Dương Xỉ vào tầng trệt. Cây ưa bóng lá mỏng lọc khí độc cực tốt!"),
         ("Bước 4: Cấp nước thông minh", "Kéo Hệ Thống Tưới Nhỏ Giọt Hẹn Giờ để rễ luôn đủ ẩm mà không lo ngập úng."),
-        ("Các nút chăm sóc rộn ràng:", "Bấm [Tưới Nước 🌧️], [Kéo Lưới Che Nắng ⛱️], [Thổi Gió Mát 🍃]. Theo dõi điểm hiệu suất quang hợp tăng vọt đạt 96/100đ!")
+        ("Các nút chăm sóc rộn ràng", "Bấm [Tưới Nước 🌧️], [Kéo Lưới Che Nắng ⛱️], [Thổi Gió Mát 🍃]. Theo dõi điểm hiệu suất quang hợp tăng vọt đạt 100/100đ!")
     ]
     for title, desc in st1_cute:
         p = tf.add_paragraph()

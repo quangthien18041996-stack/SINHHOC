@@ -11,3 +11,6 @@ __pycache__/
 Thumbs.db
 .DS_Store
 desktop.ini
+
+# Packaged competition folder (generated locally from root files)
+Ho_So_Du_Thi_KHTN_THCS_Mai-Thuy-Duc/
