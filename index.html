@@ -5637,64 +5637,76 @@
                 code: '2A',
                 team: 'Nhóm 1',
                 stationName: 'TRẠM 1: ĐÔ THỊ NÉN & THÁP RỪNG THẲNG ĐỨNG (BOSCO VERTICALE SÀI GÒN)',
-                context: 'Chung cư cao tầng tại Quận 1, TP.HCM. Mặt tiền phía Tây nắng chiều gay gắt (>42.000 Lux, 39°C), tầng trệt và sảnh kín gió, thiếu sáng (<700 Lux). Bụi mịn PM2.5 cao.',
-                mission: 'Bố trí cây xanh đa tầng lọc không khí, giảm nhiệt đô thị, chống hiệu ứng đảo nhiệt.',
-                tableData: [
-                    { level: 'Tầng 1 (Tầng mái & Ban công Tây)', plant: 'Bàng Singapore, Hoa Giấy', light: '45.000 Lux (Ưa sáng)', temp: '32°C (Che lưới 30%)', water: 'Tưới phun sương 100%', co2: '800 ppm', reason: 'Phiến lá dày, khí khổng chịu nhiệt tốt, quang hợp mạnh hấp thụ CO2.' },
-                    { level: 'Tầng 2 (Ban công Đông & Hướng Nam)', plant: 'Lưỡi Hổ, Trầu Bà Nam Mỹ', light: '15.000 Lux (Trung bình)', temp: '28°C (Tự nhiên)', water: 'Tưới nhỏ giọt 80%', co2: '650 ppm', reason: 'Thích nghi ánh sáng vừa phải, sinh khối lá lớn lọc bụi PM2.5.' },
-                    { level: 'Tầng 3 (Hành lang kín & Tầng trệt)', plant: 'Lan Ý, Trầu Bà Xanh', light: '650 Lux (Ưa bóng)', temp: '26°C (Mát mẻ)', water: 'Đất ẩm 60%', co2: '550 ppm', reason: 'Phiến lá mỏng, nhiều diệp lục tố nhạy cảm, quang hợp tốt ở quang năng thấp.' }
+                context: 'Chung cư cao tầng tại Quận 1, TP.HCM. Hiệu ứng đảo nhiệt đô thị gay gắt, nhiệt độ bề mặt bê tông 36°C - 39°C. Khí thải xe cộ khiến nồng độ CO₂ tăng cao cục bộ (850 ppm). Tầng mái nắng gắt (>45.000 Lux), sảnh kín và tầng trệt thiếu sáng (<650 Lux). Bụi mịn PM2.5 cao.',
+                mission: 'Ứng dụng mô hình phân tầng sinh thái Bosco Verticale: Tuyển chọn và đưa từng giải pháp cây xanh, hệ thống tưới vào để hạ nhiệt, lọc không khí và tối ưu hóa quang hợp.',
+                steps: [
+                    { step: 'Ban đầu (Hiện trạng)', sol: 'Chưa kích hoạt giải pháp (Bê tông khô nóng)', co2: '850 ppm ⚠️', light: '45.000 Lux / 650 Lux', temp: '36.0°C ⚠️', eff: '15% (Kém)', obs: 'Khí khổng đóng chặt để giữ nước; mép lá Lan Ý cháy vàng khô rụm.' },
+                    { step: 'Bước 1', sol: 'Đưa Giải pháp 1: Vách tường đứng nhiều tầng (Trầu bà, Dây cúc tần Ấn Độ, Lưỡi hổ)', co2: '720 ppm', light: '42.000 Lux', temp: '34.0°C', eff: '45% (Bắt đầu phục hồi)', obs: 'Tán lá cản bức xạ trực tiếp vào tường, hấp thụ bước đầu CO₂ và giữ bụi mịn PM2.5.' },
+                    { step: 'Bước 2', sol: 'Đưa Giải pháp 2: Tầng thượng trồng cây ưa sáng phiến lá dày cản bụi (Hoa giấy, Trúc quân tử)', co2: '620 ppm', light: '38.000 Lux', temp: '31.5°C', eff: '70% (Khá tốt)', obs: 'Phiến lá dày, tầng cutin bóng cản bức xạ, quang hợp tạo tinh bột mạnh mẽ trên cao.' },
+                    { step: 'Bước 3', sol: 'Đưa Giải pháp 3: Tầng trệt & sảnh kín bố trí cây ưa bóng phiến lá mỏng lọc khí độc (Bé Lan Ý)', co2: '510 ppm', light: '1.200 Lux (Tán xạ dịu)', temp: '29.5°C', eff: '85% (Tốt)', obs: 'Lan Ý hấp thu hiệu quả ánh sáng yếu trong nhà, phiến lá hồi phục xanh mọng nước.' },
+                    { step: 'Bước 4', sol: 'Đưa Giải pháp 4: Hệ thống tưới nhỏ giọt hẹn giờ tự động & Thu gom nước mưa tuần hoàn', co2: '410 ppm (Lý tưởng)', light: 'Phân tầng tối ưu', temp: '28.0°C (Mát mẻ)', eff: '100% (Cực đại ⚡)', obs: 'Nước cung cấp đầy đủ khiến tế bào hạt đậu trương nước mở to khí khổng; quang hợp đạt đỉnh cao.' }
                 ],
+                delta: '• CO₂: Giảm từ 850 ppm → 410 ppm (giảm 440 ppm, không khí sạch mát)\n• Nhiệt độ: Hạ từ 36.0°C → 28.0°C (hạ 8.0°C, triệt tiêu hiệu ứng đảo nhiệt)\n• Hiệu suất quang hợp: Tăng vọt từ 15% → 100% (cả 4 tầng cây đều xanh tốt)',
                 questions: [
-                    'Vì sao không thể đem Bé Lan Ý trồng trực tiếp trên sân thượng tầng mái vào mùa khô?',
-                    'Giải pháp công nghệ: Kể tên 02 biện pháp cơ khí/công nghệ hỗ trợ cây quang hợp tối ưu tại trạm.'
+                    'Sự thay đổi của các thông số đo lường (CO₂, Ánh sáng, Nhiệt độ, Nước) sau khi cho từng giải pháp vào đã tác động như thế nào đến sự đóng/mở khí khổng và hiệu suất quang hợp của cây xanh tại trạm?',
+                    'Từ kết quả thực nghiệm đo lường trên, nhóm hãy rút ra quy luật sinh học về sự phối hợp đồng bộ giữa 4 yếu tố môi trường (Ánh sáng, Nước, CO₂, Nhiệt độ) đối với quá trình quang hợp.'
                 ]
             },
             'station-2': {
                 code: '2B',
                 team: 'Nhóm 2',
                 stationName: 'TRẠM 2: NHÀ MÀNG NÔNG NGHIỆP CÔNG NGHỆ CAO (CỦ CHI - TP.HCM)',
-                context: 'Khu nông nghiệp công nghệ cao trồng dưa lưới và rau thủy canh. Mùa mưa ẩm độ quá cao (>85%), mùa khô nhiệt độ nhà kính vọt lên 43°C gây đình công enzyme.',
-                mission: 'Lập trình thông số vi khí hậu tối ưu để tối đa hóa năng suất tích lũy đường và sinh khối.',
-                tableData: [
-                    { level: 'Giai đoạn phát triển lá (Tuần 1-3)', plant: 'Rau xà lách, Cải thìa', light: '18.000 Lux (LED nông nghiệp)', temp: '24°C - 26°C', water: 'EC dinh dưỡng 1.2 mS/cm', co2: '700 ppm', reason: 'Tập trung tạo diệp lục và sinh khối phiến lá mọng nước.' },
-                    { level: 'Giai đoạn thụ phấn & nuôi quả (Tuần 4-8)', plant: 'Dưa lưới F1 Nhật Bản', light: '35.000 Lux (Toàn phần)', temp: '28°C - 30°C', water: 'Nhỏ giọt điều áp 100%', co2: '1.000 ppm (Làm giàu CO2)', reason: 'Nồng độ CO2 cao tăng tốc độ cố định Carbon, tích lũy độ ngọt Brix > 14.' },
-                    { level: 'Kiểm soát sốc nhiệt (Buổi trưa hè)', plant: 'Toàn bộ nhà màng', light: 'Giảm 25% bằng rèm cuốn', temp: 'Dưới 32°C (Bật quạt đối lưu)', water: 'Phun sương hạ nhiệt', co2: '800 ppm', reason: 'Bảo vệ enzyme quang hợp không bị biến tính hay ngưng trệ.' }
+                context: 'Nhà màng công nghệ cao trồng dưa lưới F1 và rau thủy canh tại Củ Chi. Vào giữa trưa hè, hiệu ứng nhà kính làm nhiệt độ không khí vọt lên 38.5°C - 43°C gây sốc nhiệt cho cây. Mùa khô thiếu ẩm, nồng độ CO₂ tự nhiên bị cây tiêu thụ cạn kiệt.',
+                mission: 'Thiết lập hệ thống cảm biến và lập trình đưa từng giải pháp vi khí hậu thông minh vào nhà màng để kích thích quang hợp tích lũy đường Brix và sinh khối.',
+                steps: [
+                    { step: 'Ban đầu (Hiện trạng)', sol: 'Chưa kích hoạt giải pháp (Nhà màng hầm nóng, kín khí)', co2: '380 ppm ⚠️', light: '12.000 Lux', temp: '38.5°C ⚠️', eff: '20% (Kém)', obs: 'Enzyme quang hợp bị ức chế do sốc nhiệt; cây dưa lưới héo rũ, tích lũy đường ngưng trệ.' },
+                    { step: 'Bước 1', sol: 'Đưa Giải pháp 1: Lưới cắt nắng tự động 50% & Quạt đối lưu không khí lưu thông', co2: '400 ppm', light: '22.000 Lux', temp: '31.0°C', eff: '50% (Phục hồi)', obs: 'Hạ cường độ bức xạ thiêu đốt, luồng gió đối lưu giúp giảm nhiệt độ mặt lá.' },
+                    { step: 'Bước 2', sol: 'Đưa Giải pháp 2: Hệ thống phun sương làm mát tự động theo cảm biến ẩm độ', co2: '420 ppm', light: '25.000 Lux', temp: '27.5°C', eff: '75% (Tốt)', obs: 'Ẩm độ đạt mức tối ưu 65-70%, hạn chế bốc thoát hơi nước quá mức, giữ tế bào lá căng mọng.' },
+                    { step: 'Bước 3', sol: 'Đưa Giải pháp 3: Làm giàu nồng độ khí CO₂ sinh học (800 - 1.000 ppm) vào buổi sáng', co2: '900 ppm (Bão hòa CO₂)', light: '28.000 Lux', temp: '26.5°C', eff: '90% (Rất cao)', obs: 'Cung cấp dồi dào nguyên liệu cho pha tối quang hợp, tốc độ cố định Carbon tăng vọt, trái tích đường nhanh.' },
+                    { step: 'Bước 4', sol: 'Đưa Giải pháp 4: Tưới nhỏ giọt bù áp tự động điều hòa nồng độ dinh dưỡng khoáng EC chuẩn', co2: '1.000 ppm', light: '32.000 Lux', temp: '26.0°C (Lý tưởng)', eff: '100% (Cực đại ⚡)', obs: 'Dinh dưỡng khoáng và nước đầy đủ giúp tổng hợp chất hữu cơ tối đa; độ ngọt Brix vượt 14.' }
                 ],
+                delta: '• CO₂: Tăng từ 380 ppm → 1.000 ppm (làm giàu nguyên liệu cho chu trình Calvin)\n• Nhiệt độ: Hạ từ 38.5°C → 26.0°C (hạ 12.5°C, đưa về vùng tối ưu của enzyme)\n• Hiệu suất quang hợp: Tăng từ 20% → 100% (trái dưa lưới lớn nhanh, năng suất kỷ lục)',
                 questions: [
-                    'Tại sao người trồng rau nhà kính thường dẫn khí CO2 nhân tạo vào buổi sáng sớm (6h - 9h)?',
-                    'Nếu để nhiệt độ nhà kính vượt quá 40°C thì cành rong / lá cây dưa lưới sẽ phản ứng ra sao?'
+                    'Tại sao người trồng dưa lưới nhà kính công nghệ cao lại chủ động bơm thêm khí CO₂ vào buổi sáng sớm (6h - 9h)? Mức CO₂ tăng lên có tác dụng gì đối với quang hợp?',
+                    'Nếu chỉ làm giàu CO₂ mà không bật quạt đối lưu và phun sương hạ nhiệt độ (để nhiệt độ >40°C) thì năng suất dưa lưới có đạt đỉnh được không? Vì sao?'
                 ]
             },
             'station-3': {
                 code: '2C',
                 team: 'Nhóm 3',
                 stationName: 'TRẠM 3: SÂN THƯỢNG NẮNG GẮT & VƯỜN MÁI NHÀ PHỐ TP.HCM',
-                context: 'Sân thượng nhà ống mặt phố đón nắng trưa hè xế chiều (>48.000 Lux, nhiệt độ sàn bê tông 42°C, gió mạnh làm mất nước cực nhanh).',
-                mission: 'Cứu chữa tình trạng cháy xém mép lá, tạo ốc đảo xanh điều hòa không khí cho ngôi nhà.',
-                tableData: [
-                    { level: 'Lớp trên cùng (Đón nắng toàn phần)', plant: 'Bàng cảnh, Hoa giấy, Sử quân tử', light: '48.000 Lux (Nắng gắt)', temp: '33°C (Có gió lưu thông)', water: 'Tưới tự động 2 lần/ngày', co2: '750 ppm', reason: 'Cây ưa sáng tạo bóng râm che chở cho các tầng cây bên dưới.' },
-                    { level: 'Lớp tán che (Dưới giàn leo)', plant: 'Trầu bà, Lưỡi hổ, Cây cau tiểu trâm', light: '12.000 Lux (Nắng tán xạ)', temp: '29°C (Dịu mát)', water: 'Đất mùn ẩm 80%', co2: '600 ppm', reason: 'Tránh ánh nắng trực tiếp thiêu đốt, giữ độ xanh bóng mượt cho lá.' },
-                    { level: 'Biện pháp công trình sàn mái', plant: 'Lớp thảm cỏ & Khay trữ nước', light: 'Tự nhiên', temp: 'Giảm 6°C nhiệt sàn bê tông', water: 'Tuần hoàn chống úng rễ', co2: 'Tự nhiên', reason: 'Ngăn nhiệt độ truyền xuống phòng ngủ tầng dưới của ngôi nhà.' }
+                context: 'Sân thượng nhà phố hướng Tây tại TP.HCM. Trưa hè nắng chang chang (>55.000 Lux), sàn bê tông hấp thụ nhiệt nóng rực lên đến 43°C. Gió khô nóng thổi mạnh làm mất nước cực nhanh; mép lá cây bị cháy xém vàng giòn dù sáng nào cũng được tưới đẫm nước.',
+                mission: 'Thiết kế giải pháp giải cứu cây trồng sân thượng, chống cháy lá và biến vườn mái thành lá phổi xanh điều hòa nhiệt độ cho toàn bộ ngôi nhà.',
+                steps: [
+                    { step: 'Ban đầu (Hiện trạng)', sol: 'Chưa kích hoạt giải pháp (Sàn bê tông nóng rực, nắng gắt)', co2: '420 ppm', light: '55.000 Lux ⚠️', temp: '43.0°C ⚠️', eff: '10% (Nguy kịch)', obs: 'Hiện tượng quang ức chế (quá tải quang năng); diệp lục bị phá hủy, mép lá khô xém giòn rụm.' },
+                    { step: 'Bước 1', sol: 'Đưa Giải pháp 1: Giàn cây leo Sử quân tử & Bàng cảnh che bóng tầng cao', co2: '430 ppm', light: '35.000 Lux', temp: '38.0°C', eff: '40% (Giảm sốc nhiệt)', obs: 'Tán lá giàn leo cản bớt ánh nắng chói chang, tạo lớp che chắn tự nhiên cho tầng dưới.' },
+                    { step: 'Bước 2', sol: 'Đưa Giải pháp 2: Tấm đệm thoát nước và lớp thảm thực vật cách nhiệt sàn mái bê tông', co2: '440 ppm', light: '30.000 Lux', temp: '34.0°C', eff: '65% (Hồi tỉnh)', obs: 'Nhiệt độ sàn bê tông giảm 8°C, chấm dứt hiện tượng rễ cây bị nung nóng trong chậu đất.' },
+                    { step: 'Bước 3', sol: 'Đưa Giải pháp 3: Bố trí nhóm cây ưa bóng (Lan Ý, Trầu bà, Cau tiểu trâm) dưới bóng giàn', co2: '450 ppm', light: '15.000 Lux (Tán xạ dịu)', temp: '32.0°C', eff: '85% (Tươi tỉnh)', obs: 'Lan Ý được bảo vệ khỏi nắng gắt, phiến lá mỏng xanh mướt trở lại, không còn cháy mép lá.' },
+                    { step: 'Bước 4', sol: 'Đưa Giải pháp 4: Hệ thống tưới phun mưa hẹn giờ bán tự động buổi sáng sớm và chiều mát', co2: '450 ppm', light: '25.000 Lux', temp: '31.0°C (Dịu mát)', eff: '100% (Cực đại ⚡)', obs: 'Đảm bảo bù đắp đủ lượng nước thoát hơi; khí khổng mở đều, vi khí hậu sân thượng trở thành ốc đảo xanh.' }
                 ],
+                delta: '• Ánh sáng: Điều tiết từ 55.000 Lux (cháy nắng) → 25.000 Lux (vùng bão hòa ánh sáng)\n• Nhiệt độ: Hạ từ 43.0°C → 31.0°C (hạ 12.0°C, cứu sống hoàn toàn bộ rễ)\n• Hiệu suất quang hợp: Tăng từ 10% → 100% (vườn mái xanh mướt, cách nhiệt phòng ngủ bên dưới)',
                 questions: [
-                    'Vì sao bạn nhỏ dù sáng nào cũng tưới đẫm chậu nhưng Bé Lan Ý phơi trên sân thượng vẫn bị khô xém?',
-                    'Nêu 03 biện pháp đơn giản giúp bảo vệ vườn sân thượng trong những đợt nắng nóng cực đoan.'
+                    'Vì sao sáng nào bạn nhỏ cũng tưới no nước vào chậu nhưng Bé Lan Ý đặt trên sân thượng giữa trưa hè vẫn bị cháy mép lá khô giòn?',
+                    'Hãy phân tích vai trò của việc phối hợp giữa \'giàn cây che nắng\' và \'hệ thống tưới nước giữ ẩm\' trong việc cứu sống cây trồng sân thượng.'
                 ]
             },
             'station-4': {
                 code: '2D',
                 team: 'Nhóm 4',
-                stationName: 'TRẠM 4: TRONG NHÀ, GÓC HỌC TẬP & HÀNH LANG KÍN GIÓ',
-                context: 'Không gian sống trong căn hộ, góc cầu thang và phòng khách: Ánh sáng yếu (<600 Lux), thông gió kém, nồng độ CO2 cục bộ tăng khi đông người.',
-                mission: 'Chọn cây ưa bóng lọc độc tố formaldehyde, bổ sung đèn quang học nhân tạo để cây không bị đói ăn.',
-                tableData: [
-                    { level: 'Góc học tập & Bàn làm việc', plant: 'Bé Lan Ý, Kim Tiền', light: '650 Lux (Tán xạ tự nhiên)', temp: '25°C (Điều hòa mát)', water: 'Tưới 2-3 ngày/lần (60%)', co2: '600 ppm', reason: 'Cây ưa bóng hô hấp & quang hợp cân bằng, lá bóng mọng nước.' },
-                    { level: 'Góc tối xa cửa sổ (<300 Lux)', plant: 'Bổ sung đèn LED chuyên dụng', light: '1.200 Lux (Bước sóng xanh/đỏ)', temp: '25°C', water: 'Độ ẩm 50%', co2: 'Tự nhiên', reason: 'Cung cấp năng lượng photon kích thích diệp lục tố tổng hợp tinh bột.' },
-                    { level: 'Hành lang & Sảnh cầu thang', plant: 'Trầu Bà thanh lọc khí', light: '800 Lux', temp: '27°C', water: 'Phun ẩm bề mặt lá', co2: 'Tự nhiên', reason: 'Lọc bụi và điều hòa không khí trong nhà mát mẻ dễ chịu.' }
+                stationName: 'TRẠM 4: TRONG NHÀ, GÓC HỌC TẬP & HÀNH LANG RÂM MÁT',
+                context: 'Không gian phòng khách, góc cầu thang và góc học tập của học sinh. Ánh sáng tự nhiên rất yếu (<250 Lux, nằm dưới điểm bù ánh sáng). Không khí tù đọng, bụi mịn bám đầy phiến lá. Cây bàng cảnh bị vàng lá, đói lả và rụng lả tả.',
+                mission: 'Thiết kế giải pháp bổ sung ánh sáng quang học nhân tạo, thông gió và chăm sóc cây ưa bóng trong nhà để cây quang hợp khỏe mạnh, thanh lọc khí thở.',
+                steps: [
+                    { step: 'Ban đầu (Hiện trạng)', sol: 'Chưa kích hoạt giải pháp (Tối mờ, thiếu sáng trầm trọng)', co2: '750 ppm ⚠️', light: '250 Lux ⚠️', temp: '29.0°C', eff: '5% (Đình trệ)', obs: 'Cường độ quang hợp nhỏ hơn hô hấp (tiêu hao chất hữu cơ); cây không tự nuôi sống được, lá úa rụng.' },
+                    { step: 'Bước 1', sol: 'Đưa Giải pháp 1: Bổ sung đèn quang phổ chuyên dụng cho cây trồng (LED 4000K bước sóng xanh/đỏ)', co2: '700 ppm', light: '1.200 Lux (Vượt điểm bù)', temp: '28.0°C', eff: '45% (Bắt đầu quang hợp)', obs: 'Cung cấp photon năng lượng kích thích diệp lục tố tổng hợp phân tử glucose đầu tiên.' },
+                    { step: 'Bước 2', sol: 'Đưa Giải pháp 2: Vệ sinh lau sạch bụi bẩn bám trên bề mặt phiến lá định kỳ', co2: '650 ppm', light: '1.500 Lux', temp: '27.5°C', eff: '70% (Khá tốt)', obs: 'Lỗ khí khổng được giải phóng khỏi bụi bẩn, tăng khả năng hấp thụ ánh sáng và trao đổi khí CO₂.' },
+                    { step: 'Bước 3', sol: 'Đưa Giải pháp 3: Quạt đối lưu thông gió nhẹ nhàng lưu chuyển không khí tươi', co2: '550 ppm', light: '1.500 Lux', temp: '26.0°C (Mát dịu)', eff: '85% (Tốt)', obs: 'Tránh tích tụ nhiệt từ đèn điện, giúp lá cây thoát hơi nước tự nhiên và hấp thụ CO₂ lưu thông.' },
+                    { step: 'Bước 4', sol: 'Đưa Giải pháp 4: Chế độ tưới nước giữ ẩm 60%, giá thể xơ dừa thoát nước tốt chống úng rễ', co2: '500 ppm', light: '1.800 Lux (Lý tưởng)', temp: '25.5°C', eff: '100% (Cực đại ⚡)', obs: 'Đất ẩm thoáng khí, rễ hút nước và khoáng dễ dàng; lá cây căng bóng mọng nước, thanh lọc formaldehyde.' }
                 ],
+                delta: '• Ánh sáng: Tăng từ 250 Lux (dưới điểm bù) → 1.800 Lux (quang hợp hiệu quả)\n• CO₂ & Thông gió: Giảm từ 750 ppm tù đọng → 500 ppm tươi mát\n• Hiệu suất quang hợp: Tăng từ 5% → 100% (cây trong nhà chấm dứt rụng lá, phát triển xanh tốt)',
                 questions: [
-                    'Tại sao Bé Bàng Cảnh để trong góc tối dù được tưới nước thường xuyên nhưng lá cứ vàng và rụng dần?',
-                    'Ánh sáng đèn huỳnh quang thông thường có thay thế hoàn toàn được ánh sáng mặt trời cho cây không? Vì sao?'
+                    'Tại sao Bé Bàng Cảnh để trong góc tối dù được tưới nước đầy đủ nhưng lá cứ nhạt màu dần rồi rụng lả tả?',
+                    'Ánh sáng từ bóng đèn huỳnh quang thông thường trong phòng học có giúp cây quang hợp tốt như ánh sáng mặt trời hoặc đèn LED chuyên dụng không? Vì sao?'
                 ]
             }
         };
@@ -5734,16 +5746,21 @@
             if (!container) return;
 
             let tableRowsHtml = '';
-            data.tableData.forEach((row, idx) => {
+            data.steps.forEach((row, idx) => {
+                const isInitial = idx === 0;
+                const isFinal = idx === 4;
+                const rowBg = isInitial ? 'bg-rose-50/50' : (isFinal ? 'bg-emerald-50/60 font-bold' : (idx % 2 === 0 ? 'bg-stone-50/40' : 'bg-white'));
+                const effColor = isInitial ? 'text-rose-700' : 'text-emerald-800';
+
                 tableRowsHtml += `
-                    <tr class="border-b border-stone-200 hover:bg-emerald-50/40 transition text-xs">
-                        <td class="p-3 font-semibold text-stone-900">${row.level}</td>
-                        <td class="p-3 font-bold text-emerald-800">${row.plant}</td>
-                        <td class="p-3 text-stone-700">${row.light}</td>
-                        <td class="p-3 text-stone-700">${row.temp}</td>
-                        <td class="p-3 text-stone-700">${row.water}</td>
-                        <td class="p-3 text-stone-700 font-mono">${row.co2}</td>
-                        <td class="p-3 text-stone-600 italic leading-relaxed">${row.reason}</td>
+                    <tr class="border-b border-stone-200 hover:bg-emerald-50/40 transition text-xs ${rowBg}">
+                        <td class="p-2.5 text-center font-bold text-stone-800">${row.step}</td>
+                        <td class="p-2.5 font-medium text-stone-900">${row.sol}</td>
+                        <td class="p-2.5 text-center font-semibold text-stone-700 font-mono">${row.co2}</td>
+                        <td class="p-2.5 text-center font-semibold text-stone-700 font-mono">${row.light}</td>
+                        <td class="p-2.5 text-center font-semibold text-stone-700 font-mono">${row.temp}</td>
+                        <td class="p-2.5 text-center font-bold ${effColor}">${row.eff}</td>
+                        <td class="p-2.5 text-stone-600 italic leading-relaxed text-[11px]">${row.obs}</td>
                     </tr>
                 `;
             });
@@ -5796,23 +5813,23 @@
                     </p>
                 </div>
 
-                <!-- Part 2: Table Data -->
+                <!-- Part 2: Measured Table Data (5 Steps) -->
                 <div class="bg-white rounded-2xl border border-stone-300 p-5 shadow-xs mb-6">
                     <h4 class="font-serif font-bold text-sm text-stone-900 uppercase tracking-wide text-emerald-900 mb-3 flex items-center gap-2">
                         <i class="fa-solid fa-table-list text-emerald-600"></i>
-                        <span>2. BẢNG THIẾT KẾ CÁC TẦNG CÂY TRỒNG VÀ THÔNG SỐ QUANG HỢP TỐI ƯU</span>
+                        <span>2. BẢNG GHI LẠI THÔNG SỐ ĐO LƯỜNG KHI CHO TỪNG GIẢI PHÁP VÀO</span>
                     </h4>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse border border-stone-200">
                             <thead>
-                                <tr class="bg-emerald-900 text-white text-[11px] uppercase tracking-wider font-mono">
-                                    <th class="p-2.5 border border-emerald-950">Vị trí / Tầng</th>
-                                    <th class="p-2.5 border border-emerald-950">Loài cây lựa chọn</th>
-                                    <th class="p-2.5 border border-emerald-950">Ánh sáng (Lux)</th>
-                                    <th class="p-2.5 border border-emerald-950">Nhiệt độ (°C)</th>
-                                    <th class="p-2.5 border border-emerald-950">Nước & Tưới</th>
-                                    <th class="p-2.5 border border-emerald-950">Khí CO2</th>
-                                    <th class="p-2.5 border border-emerald-950">Giải thích cơ chế sinh học</th>
+                                <tr class="bg-[#1e3a8a] text-white text-[11px] uppercase tracking-wider font-mono">
+                                    <th class="p-2.5 border border-blue-950 text-center">Bước thực nghiệm</th>
+                                    <th class="p-2.5 border border-blue-950">Giải pháp kỹ thuật đưa vào</th>
+                                    <th class="p-2.5 border border-blue-950 text-center">CO₂ (ppm)</th>
+                                    <th class="p-2.5 border border-blue-950 text-center">Ánh sáng (Lux)</th>
+                                    <th class="p-2.5 border border-blue-950 text-center">Nhiệt độ (°C)</th>
+                                    <th class="p-2.5 border border-blue-950 text-center">Hiệu suất quang hợp</th>
+                                    <th class="p-2.5 border border-blue-950">Hiện tượng quan sát (Lá & Khí khổng)</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -5822,11 +5839,20 @@
                     </div>
                 </div>
 
-                <!-- Part 3: Scientific Questions -->
+                <!-- Part 3: Delta Improvement -->
+                <div class="bg-emerald-50/80 rounded-2xl border border-emerald-300 p-5 shadow-xs mb-6 text-xs text-emerald-950">
+                    <h4 class="font-serif font-bold text-sm uppercase tracking-wide text-emerald-900 mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-calculator text-emerald-700"></i>
+                        <span>3. ĐÁNH GIÁ MỨC ĐỘ CẢI THIỆN VI KHÍ HẬU (Δ SAU - BAN ĐẦU)</span>
+                    </h4>
+                    <p class="leading-relaxed whitespace-pre-line font-medium">${data.delta}</p>
+                </div>
+
+                <!-- Part 4: Scientific Questions -->
                 <div class="bg-white rounded-2xl border border-stone-300 p-5 shadow-xs">
                     <h4 class="font-serif font-bold text-sm text-stone-900 uppercase tracking-wide text-emerald-900 mb-3 flex items-center gap-2">
                         <i class="fa-solid fa-lightbulb text-amber-500"></i>
-                        <span>3. CÂU HỎI KHOA HỌC & RÚT RA BÀI HỌC THỰC TIỄN</span>
+                        <span>4. CÂU HỎI KHOA HỌC & RÚT RA QUY LUẬT SINH HỌC (BÁO CÁO E-POSTER)</span>
                     </h4>
                     <div class="space-y-4">
                         <div class="bg-stone-50 p-4 rounded-xl border border-stone-200 text-xs">
